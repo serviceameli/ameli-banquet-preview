@@ -135,7 +135,6 @@
     .about-clients-head h3 { font-size: 22px; }
 
     .furniture-examples-section { height: 100svh; min-height: 660px; padding: 24px 0; }
-    .review-mode .furniture-examples-section { height: calc(100svh - 58px); min-height: 610px; }
     .furniture-examples-shell { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr); }
     .furniture-examples-head { grid-template-columns: minmax(0, 1fr) auto; gap: 30px; margin-bottom: 12px; }
     .furniture-examples-head h2 { max-width: 860px; font-size: clamp(29px, 3vw, 41px); }
@@ -438,24 +437,6 @@
     footer { display: flex; justify-content: space-between; gap: 24px; margin-top: 60px; padding-top: 26px; border-top: 1px solid #333; color: #777; font-size: 9px; letter-spacing: .06em; }
     .mobile-cta { display: none; }
 
-    .review-bar[hidden] { display: none; }
-    .review-bar { position: sticky; z-index: 75; top: 0; border-bottom: 1px solid #333; background: var(--black); color: var(--white); }
-    .review-inner { width: min(var(--max), calc(100% - 32px)); min-height: 58px; display: flex; align-items: center; gap: 10px; margin: 0 auto; }
-    .review-status { flex: 0 0 auto; display: grid; gap: 2px; padding-right: 12px; border-right: 1px solid #3d3d3d; }
-    .review-status strong { color: var(--accent); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
-    .review-status span { color: #aaa; font-size: 9px; }
-    .review-control, .review-link { min-height: 38px; border: 1px solid #444; border-radius: 0; background: transparent; color: #d8d8d8; font: inherit; font-size: 9px; font-weight: 600; letter-spacing: .04em; white-space: nowrap; cursor: pointer; }
-    .review-control { flex: 0 0 38px; padding: 0; font-size: 15px; }
-    .review-copy { flex-basis: auto; padding: 0 12px; font-size: 8px; text-transform: uppercase; }
-    .review-control:hover, .review-control:focus-visible, .review-link:hover, .review-link:focus-visible { border-color: var(--accent); color: var(--white); }
-    .review-track { min-width: 0; flex: 1 1 auto; display: flex; gap: 6px; overflow-x: auto; padding: 10px 0; scrollbar-width: thin; scrollbar-color: #555 transparent; }
-    .review-link { flex: 0 0 auto; display: inline-flex; align-items: center; padding: 0 12px; text-decoration: none; }
-    .review-link[aria-current="true"] { border-color: var(--accent); background: var(--accent); color: var(--black); }
-    .review-mode [data-review-section] { position: relative; scroll-margin-top: 142px; }
-    .review-mode [data-review-section]::after { content: "БЛОК " attr(data-review-section); position: absolute; z-index: 6; top: 12px; right: 12px; padding: 6px 9px; border: 1px solid var(--accent); background: var(--black); color: var(--accent); font-size: 8px; font-weight: 700; letter-spacing: .13em; }
-    .review-mode [data-review-section].is-review-active { box-shadow: inset 4px 0 0 var(--accent); }
-    .review-mode .mobile-cta { display: none; }
-    .review-mode .hero-grid { height: calc(100svh - 58px); min-height: 630px; }
 
     @media (max-width: 1040px) {
       .nav-links > a:not(.button) { display: none; }
@@ -504,7 +485,6 @@
       .hero-actions { display: grid; }
       .hero-actions .button { width: 100%; }
       .hero-brand { grid-column: 1; grid-row: 3; align-items: flex-start; padding: 0 20px 24px; text-align: left; }
-      .review-mode .hero-grid { height: auto; min-height: 0; }
       .problem-list { grid-template-columns: 1fr; }
       .payback-head { margin-bottom: 24px; text-align: left; }
       .payback-head h2 { font-size: clamp(36px, 10vw, 48px); }
@@ -568,7 +548,7 @@
       .before-after-grid { height: auto; grid-template-columns: 1fr; }
       .comparison-before { min-height: 350px; }
       .after-grid { grid-template-rows: 250px 190px; }
-      .furniture-examples-section, .review-mode .furniture-examples-section { height: auto; min-height: 0; padding: 58px 0; }
+      .furniture-examples-section { height: auto; min-height: 0; padding: 58px 0; }
       .furniture-examples-shell { height: auto; display: block; }
       .furniture-examples-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 24px; }
       .furniture-examples-head h2 { font-size: clamp(30px, 8.5vw, 43px); }
@@ -605,14 +585,6 @@
       footer { flex-direction: column; margin-bottom: 68px; }
       .mobile-cta { position: fixed; z-index: 90; right: 10px; bottom: 10px; left: 10px; display: block; padding: 6px; background: var(--black); }
       .mobile-cta .button { width: 100%; border-color: var(--white); background: var(--white); color: var(--black); }
-      .review-bar { top: 0; }
-      .review-inner { width: 100%; min-height: 0; flex-wrap: wrap; gap: 6px; padding: 7px 10px 0; }
-      .review-status { flex: 1 1 auto; padding-right: 6px; }
-      .review-copy { padding: 0 9px; }
-      .review-track { flex-basis: 100%; order: 2; margin: 0 -10px; padding: 6px 10px 8px; }
-      .review-link { min-height: 40px; padding: 0 13px; }
-      .review-mode [data-review-section] { scroll-margin-top: 160px; }
-      .review-mode [data-review-section]::after { top: 8px; right: 8px; }
     }
 
     @media (max-width: 620px) {
@@ -814,7 +786,7 @@
     .furniture-point strong { font-size: 12px; }
     .furniture-point p { font-size: 9px; }
 
-    .furniture-examples-section, .review-mode .furniture-examples-section { height: auto; min-height: 0; padding: 82px 0; }
+    .furniture-examples-section { height: auto; min-height: 0; padding: 82px 0; }
     .furniture-examples-shell { height: auto; display: block; }
     .furniture-examples-head { margin-bottom: 30px; }
     .furniture-examples-head h2 { font-size: clamp(38px, 4vw, 56px); }
@@ -873,24 +845,6 @@
     .final-grid { gap: 96px; }
     .contact-box { border-color: rgba(255,255,255,.2); border-top-color: var(--accent); background: transparent; }
 
-    .review-bar { border-bottom-color: var(--line); background: rgba(248, 247, 242, .98); color: var(--black); }
-    .review-inner { min-height: 64px; }
-    .review-status { min-width: 172px; border-right-color: var(--line); }
-    .review-status strong { color: var(--black); font-size: 18px; font-weight: 500; letter-spacing: .18em; }
-    .review-status span { color: var(--muted); font-size: 8px; }
-    .review-control, .review-link { min-height: 36px; border: 0; color: var(--mid); }
-    .review-control { border: 1px solid var(--line); }
-    .review-copy { display: none; }
-    .review-control:hover, .review-control:focus-visible, .review-link:hover, .review-link:focus-visible { border-color: var(--accent); color: var(--black); }
-    .review-link { position: relative; padding: 0 10px; font-size: 8px; }
-    .review-link::after { content: ""; position: absolute; right: 10px; bottom: 1px; left: 10px; height: 1px; background: var(--accent); transform: scaleX(0); }
-    .review-link[aria-current="true"] { background: transparent; color: var(--black); }
-    .review-link[aria-current="true"]::after { transform: scaleX(1); }
-    .review-mode .site-header { display: none; }
-    .review-mode [data-review-section] { scroll-margin-top: 76px; }
-    .review-mode [data-review-section]::after { border-color: rgba(40,42,38,.3); background: rgba(248,247,242,.94); color: var(--black); }
-    .review-mode [data-review-section].is-review-active { box-shadow: inset 2px 0 0 var(--accent); }
-    .review-mode .hero-grid { height: min(760px, calc(100svh - 64px)); min-height: 650px; }
 
     @media (max-width: 1040px) {
       .shell { width: min(var(--max), calc(100% - 48px)); }
@@ -907,14 +861,14 @@
 
     @media (max-width: 780px) {
       .shell { width: min(calc(100% - 40px), 620px); }
-      .section, .offer-section, .furniture-section, .furniture-examples-section, .review-mode .furniture-examples-section { padding: 68px 0; }
+      .section, .offer-section, .furniture-section, .furniture-examples-section { padding: 68px 0; }
       .section-head, .problem-layout, .offer-layout, .about-layout, .final-grid, .furniture-top { grid-template-columns: 1fr; gap: 34px; }
       h2 { font-size: clamp(38px, 10.5vw, 50px); }
       .site-header { position: relative; }
       .nav { min-height: 58px; }
       .brand strong { font-size: 20px; }
       .hero-grid { width: 100%; }
-      .hero-grid, .review-mode .hero-grid { height: auto; min-height: 0; grid-template-columns: 1fr; grid-template-rows: minmax(300px, 43svh) auto; }
+      .hero-grid { height: auto; min-height: 0; grid-template-columns: 1fr; grid-template-rows: minmax(300px, 43svh) auto; }
       .hero-visual { grid-column: 1; grid-row: 1; min-height: 300px; }
       .hero-visual img { object-position: 52% 50%; }
       .hero-copy { grid-column: 1; grid-row: 2; padding: 30px 20px 38px; }
@@ -937,20 +891,12 @@
       .model-image { height: 240px; }
       .combination-layout { grid-template-columns: 1fr; }
       .order-flow { gap: 10px; }
-      .review-inner { min-height: 58px; flex-wrap: nowrap; padding: 7px 10px; }
-      .review-status { min-width: 0; flex: 1 1 auto; border-right: 0; }
-      .review-status strong { font-size: 17px; }
-      .review-status span { font-size: 7px; }
-      .review-track { display: none; }
-      .review-control { flex-basis: 40px; }
-      .review-mode [data-review-section] { scroll-margin-top: 66px; }
-      .review-mode [data-review-section]::after { display: none; }
     }
 
     @media (max-width: 520px) {
       .shell { width: calc(100% - 32px); }
-      .section, .offer-section, .furniture-section, .furniture-examples-section, .review-mode .furniture-examples-section { padding: 58px 0; }
-      .hero-grid, .review-mode .hero-grid { grid-template-rows: 280px auto; }
+      .section, .offer-section, .furniture-section, .furniture-examples-section { padding: 58px 0; }
+      .hero-grid { grid-template-rows: 280px auto; }
       .hero-visual { min-height: 280px; }
       .hero-copy { padding: 25px 16px 32px; }
       .hero-copy h1 { font-size: clamp(39px, 11.5vw, 50px); }
@@ -966,7 +912,6 @@
       .model-image { height: 280px; }
       .ceremony-grid { grid-template-columns: 1fr; }
       .furniture-benefit { padding: 15px 0; }
-      .review-status strong { letter-spacing: .14em; }
     }
   </style>
 </head>
@@ -986,35 +931,8 @@
     </div>
   </header>
 
-  <aside class="review-bar" id="reviewBar" aria-label="Навигация по блокам для планёрки" hidden>
-    <div class="review-inner">
-      <div class="review-status"><strong>AMELI</strong><span id="reviewCurrent">Блок 01 из 16</span></div>
-      <button class="review-control" id="reviewPrev" type="button" aria-label="Предыдущий блок">←</button>
-      <button class="review-control" id="reviewNext" type="button" aria-label="Следующий блок">→</button>
-      <button class="review-control review-copy" id="reviewCopy" type="button">Скопировать номер</button>
-      <nav class="review-track" id="reviewTrack" aria-label="Блоки лендинга">
-        <a class="review-link" href="#hero" data-review-link="01">01 · Первый экран</a>
-        <a class="review-link" href="#problem" data-review-link="02">02 · Задача</a>
-        <a class="review-link" href="#business" data-review-link="03">03 · Что можем сделать</a>
-        <a class="review-link" href="#about" data-review-link="04">04 · Кто мы</a>
-        <a class="review-link" href="#visualization" data-review-link="05">05 · Визуализация</a>
-        <a class="review-link" href="#furniture" data-review-link="06">06 · Мебель</a>
-        <a class="review-link" href="#furniture-options" data-review-link="07">07 · Примеры мебели</a>
-        <a class="review-link" href="#textile" data-review-link="08">08 · Текстиль</a>
-        <a class="review-link" href="#tableware" data-review-link="09">09 · Посуда</a>
-        <a class="review-link" href="#ceremony-zones" data-review-link="10">10 · Фотозоны</a>
-        <a class="review-link" href="#before-after" data-review-link="11">11 · До/после</a>
-        <a class="review-link" href="#reasons" data-review-link="12">12 · Почему окупается</a>
-        <a class="review-link" href="#color-combinations" data-review-link="13">13 · Сочетания цветов</a>
-        <a class="review-link" href="#textile-payback" data-review-link="14">14 · Окупаемость текстиля</a>
-        <a class="review-link" href="#order" data-review-link="15">15 · Как заказать</a>
-        <a class="review-link" href="#contact" data-review-link="16">16 · Финал</a>
-      </nav>
-    </div>
-  </aside>
-
   <main id="content">
-    <section class="hero" id="hero" data-review-section="01" data-review-title="Первый экран">
+    <section class="hero" id="hero">
       <div class="shell hero-grid">
         <div class="hero-copy">
           <p class="hero-eyebrow">Для ресторанов и банкетных площадок</p>
@@ -1039,7 +957,7 @@
       </div>
     </section>
 
-    <section class="section" id="problem" data-review-section="02" data-review-title="Задача площадки">
+    <section class="section" id="problem">
       <div class="shell problem-layout">
         <div class="problem-copy">
           <p class="label">Ситуация на рынке</p>
@@ -1056,7 +974,7 @@
       </div>
     </section>
 
-    <section class="section offer-section" id="business" data-review-section="03" data-review-title="Что можем сделать">
+    <section class="section offer-section" id="business">
       <div class="shell offer-layout">
         <div class="offer-copy">
           <p class="label">Всё для нового образа зала</p>
@@ -1079,7 +997,7 @@
       </div>
     </section>
 
-    <section class="section soft about-section" id="about" data-review-section="04" data-review-title="Кто мы">
+    <section class="section soft about-section" id="about">
       <div class="shell">
         <div class="about-layout">
           <div class="about-copy">
@@ -1107,7 +1025,7 @@
       </div>
     </section>
 
-    <section class="section" id="visualization" data-review-section="05" data-review-title="Визуализация зала">
+    <section class="section" id="visualization">
       <div class="shell">
         <div class="visual-sales-head">
           <h2>Визуализация зала, которая продаёт</h2>
@@ -1122,7 +1040,7 @@
       </div>
     </section>
 
-    <section class="section soft furniture-section" id="furniture" data-review-section="06" data-review-title="Мебель">
+    <section class="section soft furniture-section" id="furniture">
       <div class="shell furniture-story">
         <div class="furniture-story-copy">
           <p class="label">Основа готовых решений</p>
@@ -1139,7 +1057,7 @@
       </div>
     </section>
 
-    <section class="section furniture-examples-section" id="furniture-options" data-review-section="07" data-review-title="Примеры мебели">
+    <section class="section furniture-examples-section" id="furniture-options">
       <div class="shell furniture-examples-shell">
         <div class="section-head furniture-examples-head">
           <h2>Изготовим мебель под стиль вашей площадки в любом цвете</h2>
@@ -1196,7 +1114,7 @@
       </div>
     </section>
 
-    <section class="section soft furniture-section textile-section" id="textile" data-review-section="08" data-review-title="Текстиль">
+    <section class="section soft furniture-section textile-section" id="textile">
       <div class="shell">
         <div class="furniture-top textile-top">
           <div>
@@ -1231,7 +1149,7 @@
       </div>
     </section>
 
-    <section class="section furniture-section tableware-section" id="tableware" data-review-section="09" data-review-title="Посуда">
+    <section class="section furniture-section tableware-section" id="tableware">
       <div class="shell">
         <div class="furniture-top tableware-top">
           <div>
@@ -1274,7 +1192,7 @@
       </div>
     </section>
 
-    <section class="section soft furniture-section ceremony-section" id="ceremony-zones" data-review-section="10" data-review-title="Фотозоны и зоны церемонии">
+    <section class="section soft furniture-section ceremony-section" id="ceremony-zones">
       <div class="shell">
         <div class="furniture-top ceremony-top">
           <div>
@@ -1299,7 +1217,7 @@
       </div>
     </section>
 
-    <section class="section dark before-after-section" id="before-after" data-review-section="11" data-review-title="Площадка до и после">
+    <section class="section dark before-after-section" id="before-after">
       <div class="shell">
         <div class="section-head before-after-head">
           <div><p class="label">Преображение пространства</p><h2>Площадка до/после</h2></div>
@@ -1328,7 +1246,7 @@
       </div>
     </section>
 
-    <section class="section" id="reasons" data-review-section="12" data-review-title="Почему это окупается">
+    <section class="section" id="reasons">
       <div class="shell">
         <div class="payback-head">
           <h2>Почему это окупается</h2>
@@ -1367,7 +1285,7 @@
       </div>
     </section>
 
-    <section class="section dark color-combinations-section" id="color-combinations" data-review-section="13" data-review-title="Сочетания цветов">
+    <section class="section dark color-combinations-section" id="color-combinations">
       <div class="shell">
         <div class="section-head combination-head">
           <div><p class="label">Вариативность оформления</p><h2>Три элемента — до 27 вариантов оформления</h2></div>
@@ -1406,7 +1324,7 @@
       </div>
     </section>
 
-    <section class="section soft textile-payback-section" id="textile-payback" data-review-section="14" data-review-title="Окупаемость текстиля">
+    <section class="section soft textile-payback-section" id="textile-payback">
       <div class="shell">
         <div class="section-head textile-payback-head">
           <div><p class="label">Калькулятор комплекта</p><h2>Посчитайте окупаемость текстиля для вашего зала</h2></div>
@@ -1468,7 +1386,7 @@
       </div>
     </section>
 
-    <section class="section order-section" id="order" data-review-section="15" data-review-title="Как сделать заказ">
+    <section class="section order-section" id="order">
       <div class="shell">
         <div class="section-head order-head">
           <div><p class="label">Порядок работы</p><h2>Как сделать заказ</h2></div>
@@ -1507,7 +1425,7 @@
       </div>
     </section>
 
-    <section class="final" id="contact" data-review-section="16" data-review-title="Финальный призыв">
+    <section class="final" id="contact">
       <div class="shell">
         <div class="final-grid">
           <div>
@@ -1535,91 +1453,6 @@
   </main>
 
   <div class="mobile-cta"><a class="button" href="https://t.me/amelirental" target="_blank" rel="noopener">Обсудить площадку</a></div>
-
-  <script>
-    (() => {
-      const reviewMode = new URLSearchParams(window.location.search).get('review') === '1';
-      if (!reviewMode) return;
-
-      const bar = document.getElementById('reviewBar');
-      const track = document.getElementById('reviewTrack');
-      const current = document.getElementById('reviewCurrent');
-      const prev = document.getElementById('reviewPrev');
-      const next = document.getElementById('reviewNext');
-      const copy = document.getElementById('reviewCopy');
-      const sections = [...document.querySelectorAll('[data-review-section]')];
-      const links = [...document.querySelectorAll('[data-review-link]')];
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let activeIndex = 0;
-      let ticking = false;
-
-      document.body.classList.add('review-mode');
-      bar.hidden = false;
-
-      const centerLink = link => {
-        const trackBox = track.getBoundingClientRect();
-        const linkBox = link.getBoundingClientRect();
-        if (linkBox.left < trackBox.left || linkBox.right > trackBox.right) {
-          track.scrollBy({ left: linkBox.left - trackBox.left - trackBox.width / 2 + linkBox.width / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
-        }
-      };
-
-      const setActive = index => {
-        activeIndex = Math.max(0, Math.min(index, sections.length - 1));
-        sections.forEach((section, i) => section.classList.toggle('is-review-active', i === activeIndex));
-        links.forEach((link, i) => link.setAttribute('aria-current', i === activeIndex ? 'true' : 'false'));
-        const section = sections[activeIndex];
-        current.textContent = `Блок ${section.dataset.reviewSection} из ${sections.length} · ${section.dataset.reviewTitle}`;
-        prev.disabled = activeIndex === 0;
-        next.disabled = activeIndex === sections.length - 1;
-        centerLink(links[activeIndex]);
-      };
-
-      const syncFromScroll = () => {
-        const marker = bar.offsetHeight + document.querySelector('.site-header').offsetHeight + 28;
-        let index = 0;
-        sections.forEach((section, i) => {
-          if (section.getBoundingClientRect().top <= marker) index = i;
-        });
-        setActive(index);
-        ticking = false;
-      };
-
-      const goTo = index => {
-        const bounded = Math.max(0, Math.min(index, sections.length - 1));
-        sections[bounded].scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-        setActive(bounded);
-      };
-
-      links.forEach((link, index) => link.addEventListener('click', event => {
-        event.preventDefault();
-        history.replaceState(null, '', `${window.location.pathname}${window.location.search}${link.getAttribute('href')}`);
-        goTo(index);
-      }));
-      prev.addEventListener('click', () => goTo(activeIndex - 1));
-      next.addEventListener('click', () => goTo(activeIndex + 1));
-      copy.addEventListener('click', async () => {
-        const section = sections[activeIndex];
-        const prompt = `Блок ${section.dataset.reviewSection} / правка / `;
-        try {
-          await navigator.clipboard.writeText(prompt);
-          copy.textContent = 'Номер скопирован';
-        } catch {
-          copy.textContent = `Блок ${section.dataset.reviewSection}`;
-        }
-        window.setTimeout(() => { copy.textContent = 'Скопировать номер'; }, 1800);
-      });
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          ticking = true;
-          window.requestAnimationFrame(syncFromScroll);
-        }
-      }, { passive: true });
-
-      const hashIndex = sections.findIndex(section => `#${section.id}` === window.location.hash);
-      setActive(hashIndex >= 0 ? hashIndex : 0);
-    })();
-  </script>
 
   <script>
     (() => {
