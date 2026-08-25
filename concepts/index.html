@@ -12,16 +12,24 @@
     header { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 20px 28px; border-bottom: 1px solid #c9c9c5; background: rgba(238,238,236,.94); backdrop-filter: blur(12px); }
     h1 { margin: 0; font-size: 18px; letter-spacing: .14em; }
     header p { margin: 0; color: #5a5a56; font-size: 13px; }
-    main { width: min(1680px, 100%); margin: 0 auto; padding: 24px; }
-    figure { margin: 0 0 44px; }
+    header nav { display: flex; gap: 16px; }
+    header nav a { font-size: 13px; text-decoration: none; border-bottom: 1px solid; }
+    main { width: min(1560px, 100%); margin: 0 auto; padding: 38px 24px 80px; }
+    section { scroll-margin-top: 86px; margin-bottom: 96px; }
+    section > h2 { margin: 0 0 24px; font-size: clamp(28px, 4vw, 54px); font-weight: 400; letter-spacing: -.04em; }
+    figure { margin: 0 0 34px; }
     figcaption { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 12px; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
     a { color: inherit; }
     img { display: block; width: 100%; height: auto; border: 1px solid #c9c9c5; background: #fff; }
+    .mobile { width: min(440px, 100%); }
+    .divider { height: 1px; margin-top: 70px; background: #c9c9c5; }
     @media (max-width: 640px) {
       header { position: static; display: block; padding: 18px 14px; }
       header p { margin-top: 8px; }
-      main { padding: 14px; }
+      header nav { margin-top: 14px; }
+      main { padding: 28px 14px 56px; }
       figure { margin-bottom: 28px; }
+      section { margin-bottom: 64px; }
     }
   </style>
 </head>
@@ -29,20 +37,58 @@
   <header>
     <h1>AMELI / ДИЗАЙН-КОНЦЕПЦИИ</h1>
     <p>Desktop и mobile · нажмите на макет, чтобы открыть в полном размере</p>
+    <nav><a href="#concept-1">01</a><a href="#concept-2">02</a><a href="#concept-3">03</a></nav>
   </header>
   <main>
-    <figure>
-      <figcaption><span>Концепция 1</span><a href="concept-1.png">Открыть PNG</a></figcaption>
-      <a href="concept-1.png"><img src="concept-1.png" alt="Концепция 1 для desktop и mobile"></a>
-    </figure>
-    <figure>
-      <figcaption><span>Концепция 2</span><a href="concept-2.png">Открыть PNG</a></figcaption>
-      <a href="concept-2.png"><img src="concept-2.png" alt="Концепция 2 для desktop и mobile"></a>
-    </figure>
-    <figure>
-      <figcaption><span>Концепция 3</span><a href="concept-3.png">Открыть PNG</a></figcaption>
-      <a href="concept-3.png"><img src="concept-3.png" alt="Концепция 3 для desktop и mobile"></a>
-    </figure>
+    <section id="concept-1">
+      <h2>Концепция 1</h2>
+      <figure>
+        <figcaption><span>Desktop · первый экран</span><a href="1-desktop-hero.png">Открыть PNG</a></figcaption>
+        <a href="1-desktop-hero.png"><img src="1-desktop-hero.png" alt="Концепция 1, первый экран desktop"></a>
+      </figure>
+      <figure>
+        <figcaption><span>Desktop · ключевые разделы</span><a href="1-desktop-sections.png">Открыть PNG</a></figcaption>
+        <a href="1-desktop-sections.png"><img src="1-desktop-sections.png" alt="Концепция 1, ключевые разделы desktop"></a>
+      </figure>
+      <figure class="mobile">
+        <figcaption><span>Mobile</span><a href="1-mobile.png">Открыть PNG</a></figcaption>
+        <a href="1-mobile.png"><img src="1-mobile.png" alt="Концепция 1, mobile"></a>
+      </figure>
+      <div class="divider"></div>
+    </section>
+
+    <section id="concept-2">
+      <h2>Концепция 2</h2>
+      <figure>
+        <figcaption><span>Desktop · первый экран</span><a href="2-desktop-hero.png">Открыть PNG</a></figcaption>
+        <a href="2-desktop-hero.png"><img src="2-desktop-hero.png" alt="Концепция 2, первый экран desktop"></a>
+      </figure>
+      <figure>
+        <figcaption><span>Desktop · ключевые разделы</span><a href="2-desktop-sections.png">Открыть PNG</a></figcaption>
+        <a href="2-desktop-sections.png"><img src="2-desktop-sections.png" alt="Концепция 2, ключевые разделы desktop"></a>
+      </figure>
+      <figure class="mobile">
+        <figcaption><span>Mobile</span><a href="2-mobile.png">Открыть PNG</a></figcaption>
+        <a href="2-mobile.png"><img src="2-mobile.png" alt="Концепция 2, mobile"></a>
+      </figure>
+      <div class="divider"></div>
+    </section>
+
+    <section id="concept-3">
+      <h2>Концепция 3</h2>
+      <figure>
+        <figcaption><span>Desktop · первый экран</span><a href="3-desktop-hero.png">Открыть PNG</a></figcaption>
+        <a href="3-desktop-hero.png"><img src="3-desktop-hero.png" alt="Концепция 3, первый экран desktop"></a>
+      </figure>
+      <figure>
+        <figcaption><span>Desktop · ключевые разделы</span><a href="3-desktop-sections.png">Открыть PNG</a></figcaption>
+        <a href="3-desktop-sections.png"><img src="3-desktop-sections.png" alt="Концепция 3, ключевые разделы desktop"></a>
+      </figure>
+      <figure class="mobile">
+        <figcaption><span>Mobile</span><a href="3-mobile.png">Открыть PNG</a></figcaption>
+        <a href="3-mobile.png"><img src="3-mobile.png" alt="Концепция 3, mobile"></a>
+      </figure>
+    </section>
   </main>
 </body>
 </html>
