@@ -14,8 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0" rel="stylesheet">
   
-  <link rel="stylesheet" href="ameli-modern.css">
+  <link rel="stylesheet" href="ameli-modern.css?v=20260907">
   <link rel="icon" href="premium-assets/ameli-rental-logo.png">
+  <link rel="stylesheet" href="ameli-refinements.css?v=20260907">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -51,8 +52,8 @@
         </div>
         <figure class="hero-visual">
           <picture>
-            <source media="(max-width: 780px)" srcset="s2-banquet-hall.jpeg">
-            <img src="s2-banquet-hall.jpeg" width="1280" height="854" fetchpriority="high" alt="Готовый декор банкетного зала">
+            <source media="(max-width: 780px)" srcset="s4-hall-toile.jpg">
+            <img src="s4-hall-toile.jpg" width="852" height="1280" fetchpriority="high" alt="Готовый декор банкетного зала">
           </picture>
           <figcaption class="hero-callouts" aria-hidden="true"><span class="hero-callout textile-callout">текстиль</span><span class="hero-callout tableware-callout">посуда</span><span class="hero-callout furniture-callout">мебель</span></figcaption>
         </figure>
@@ -65,6 +66,11 @@
       </div>
     </section>
 
+    <nav class="section-jump-nav" aria-label="Быстрый переход по разделам">
+      <div class="shell jump-links">
+        <a href="#furniture-options">Мебель</a><a href="#textile">Текстиль</a><a href="#tableware">Посуда</a><a href="#ceremony-zones">Фотозоны</a><a href="#before-after">До / после</a><a href="#textile-payback">Расчёт</a>
+      </div>
+    </nav>
     <section class="section" id="problem">
       <div class="shell problem-layout">
         <div class="problem-copy">
@@ -279,20 +285,20 @@
             <figcaption><span>01</span><strong>Готовая сервировка</strong></figcaption>
           </figure>
           <figure class="tableware-example classic">
-            <div class="dishware-duo" role="img" aria-label="Классическая сервировка с бокалами и прозрачными тарелками">
-              <div class="dishware-duo-item"><img src="premium-assets/dishware-clear-glass.png" width="730" height="360" loading="lazy" alt=""></div>
+            <div class="dishware-duo" role="group" aria-label="Классическая сервировка с бокалами и прозрачными тарелками">
+              <div class="dishware-duo-item"><img src="premium-assets/dishware-clear-glass.png" width="730" height="360" loading="lazy" alt="Прозрачные бокалы для классической сервировки"></div>
               <div class="dishware-duo-item dishware-plate-set">
-                <img src="premium-assets/dishware-clear-plate-black.png" width="215" height="215" loading="lazy" alt="">
-                <img src="premium-assets/dishware-clear-plate-silver.png" width="210" height="210" loading="lazy" alt="">
-                <img src="premium-assets/dishware-clear-plate-gold.png" width="202" height="215" loading="lazy" alt="">
+                <img src="premium-assets/dishware-clear-plate-black.png" width="215" height="215" loading="lazy" alt="Прозрачная тарелка с чёрным краем">
+                <img src="premium-assets/dishware-clear-plate-silver.png" width="210" height="210" loading="lazy" alt="Прозрачная тарелка с серебряным краем">
+                <img src="premium-assets/dishware-clear-plate-gold.png" width="202" height="215" loading="lazy" alt="Прозрачная тарелка с золотым краем">
               </div>
             </div>
             <figcaption><span>02</span><strong>Классическая посуда · бокалы и прозрачные тарелки</strong></figcaption>
           </figure>
           <figure class="tableware-example colors">
-            <div class="dishware-duo" role="img" aria-label="Цветные бокалы «Роуминг» и тарелки в нескольких оттенках">
-              <div class="dishware-duo-item"><img src="premium-assets/dishware-rouming-glasses.png" width="705" height="140" loading="lazy" alt=""></div>
-              <div class="dishware-duo-item"><img src="premium-assets/dishware-color-plates.png" width="811" height="190" loading="lazy" alt=""></div>
+            <div class="dishware-duo" role="group" aria-label="Цветные бокалы «Роуминг» и тарелки в нескольких оттенках">
+              <div class="dishware-duo-item"><img src="premium-assets/dishware-rouming-glasses.png" width="705" height="140" loading="lazy" alt="Цветные бокалы «Роуминг»"></div>
+              <div class="dishware-duo-item"><img src="premium-assets/dishware-color-plates.png" width="811" height="190" loading="lazy" alt="Коллекция цветных тарелок"></div>
             </div>
             <figcaption><span>03</span><strong>Цветные акценты · бокалы «Роуминг» и тарелки</strong></figcaption>
           </figure>
@@ -329,28 +335,19 @@
       <div class="shell">
         <div class="section-head before-after-head">
           <div><p class="label">Преображение пространства</p><h2>Площадка до/после</h2></div>
-          <p class="lead">Покажем один зал без оформления и несколько вариантов после обновления — с мебелью, текстилем и декором Ameli.</p>
+          <p class="lead">Один зал в одном ракурсе: без оформления и с мебелью, текстилем и декором Ameli.</p>
         </div>
-        <div class="before-after-grid">
+        <div class="before-after-grid honest-comparison">
           <figure class="comparison-frame comparison-before">
-            <img src="s2-banquet-hall.jpeg" width="1280" height="854" loading="lazy" alt="Базовый образ банкетного зала">
-            <figcaption><span>ДО</span><strong>Пространство без оформления</strong></figcaption>
+            <img src="premium-assets/hall-without-decor-visualization.jpg" width="1535" height="1024" loading="lazy" alt="Визуализация того же зала без банкетной мебели и оформления">
+            <figcaption><span>ДО · ВИЗУАЛИЗАЦИЯ</span><strong>Пространство без оформления</strong></figcaption>
           </figure>
-          <div class="after-grid" aria-label="Три фотографии площадки после оформления">
-            <figure class="comparison-frame comparison-after">
-              <img src="premium-assets/visualization-crossback-table.png" width="1536" height="1024" loading="lazy" alt="Мебель и текстиль в единой палитре">
-              <figcaption><span>ПОСЛЕ 01</span><strong>Мебель и текстиль в единой палитре</strong></figcaption>
-            </figure>
-            <figure class="comparison-frame comparison-after">
-              <img src="s4-hall-toile.jpg" width="852" height="1280" loading="lazy" alt="Оформленная банкетная зона">
-              <figcaption><span>ПОСЛЕ 02</span><strong>Оформленная банкетная зона</strong></figcaption>
-            </figure>
-            <figure class="comparison-frame comparison-after">
-              <img src="s7b-orange-pufs.jpg" width="858" height="1280" loading="lazy" alt="Готовая концепция зоны с декором">
-              <figcaption><span>ПОСЛЕ 03</span><strong>Готовая концепция пространства</strong></figcaption>
-            </figure>
-          </div>
+          <figure class="comparison-frame comparison-after">
+            <img src="s2-banquet-hall.jpeg" width="1280" height="854" loading="lazy" alt="Фотография того же банкетного зала с мебелью, текстилем и сервировкой">
+            <figcaption><span>ПОСЛЕ · ФОТОГРАФИЯ</span><strong>Мебель и текстиль в единой палитре</strong></figcaption>
+          </figure>
         </div>
+        <p class="comparison-explanation">Слева — визуализация зала без оформления, созданная на основе фотографии справа. Справа — фотография готового оформления. Так можно сравнить одно пространство в одном ракурсе.</p>
       </div>
     </section>
 
@@ -439,6 +436,11 @@
           <div><p class="label">Калькулятор комплекта</p><h2>Посчитайте окупаемость текстиля для вашего зала</h2></div>
           <p class="lead"><strong>На примере бархатных скатертей</strong><span>Укажите состав комплекта в одном цвете и ставки аренды. Калькулятор покажет инвестицию и окупаемость для 40, 60 и 80 гостей.</span></p>
         </div>
+        <div class="calc-live-summary" aria-label="Текущий результат расчёта">
+          <div><span>Инвестиция</span><output id="textileStickyInvestment">106 200 ₽</output></div>
+          <div><span>Для 60 гостей</span><output id="textileStickyEvents">3 мероприятия</output></div>
+          <a href="#textileResultPanel">К результату</a>
+        </div>
         <div class="textile-payback-layout">
           <div class="textile-calc-form" id="textileCalcForm">
             <fieldset class="textile-calc-group">
@@ -475,11 +477,13 @@
             </fieldset>
           </div>
 
-          <aside class="textile-payback-result" aria-labelledby="textileResultTitle">
+          <aside id="textileResultPanel" class="textile-payback-result" aria-labelledby="textileResultTitle">
             <div>
               <p class="textile-result-kicker" id="textileResultTitle">Окупаемость · 60 гостей</p>
               <div class="textile-main-payback"><strong id="textileMainPayback">3</strong><span id="textileMainPaybackLabel">мероприятия до окупаемости</span></div>
+              <p class="textile-result-basis">По арендной выручке, без учёта расходов.</p>
               <p class="textile-result-status" id="textileMainStatus" aria-live="polite">Комплекта достаточно</p>
+              <div class="textile-result-actions"><a class="button" id="textileDiscussTelegram" href="https://t.me/amelirental" target="_blank" rel="noopener">Обсудить этот комплект</a><p>Откроется Telegram с черновиком вашего расчёта.</p></div>
               <div class="textile-result-investment"><span>Инвестиция всего</span><strong id="textileResultInvestment">106 200 ₽</strong></div>
             </div>
             <div>
@@ -556,6 +560,7 @@
             </div>
           </aside>
         </div>
+        <div class="catalog-return"><a href="https://catalog.ameli-rental.ru/" target="_blank" rel="noopener">Перейти в каталог аренды Ameli<span class="material-symbols-outlined" aria-hidden="true">north_east</span></a></div>
         <footer><span>AMELI · РЕШЕНИЯ ДЛЯ БАНКЕТНЫХ ПЛОЩАДОК</span><span>МОСКВА · 2026</span></footer>
       </div>
     </section>
@@ -752,6 +757,33 @@
       }
 
       function update() {
+        let hasErrors = false;
+        inputIds.forEach(id => {
+          const input = inputs[id];
+          const raw = input.value.trim();
+          const value = Number(raw);
+          const minimum = id === 'textileColors' ? 1 : 0;
+          const invalid = raw === '' || !Number.isFinite(value) || !Number.isSafeInteger(value) || value < minimum || value > 1000000;
+          const errorId = `${id}Error`;
+          let error = get(errorId);
+          if (!error) {
+            error = document.createElement('p'); error.id = errorId; error.className = 'input-error';
+            input.closest('.textile-input').append(error);
+            input.setAttribute('aria-describedby', errorId);
+          }
+          input.setAttribute('aria-invalid', String(invalid));
+          error.hidden = !invalid;
+          error.textContent = invalid ? `Введите целое число от ${minimum} до 1 000 000.` : '';
+          hasErrors ||= invalid;
+        });
+        root.dataset.valid = String(!hasErrors);
+        if (hasErrors) {
+          ['textileOneColorTotal','textileInvestmentTotal','textileResultInvestment','textileMainPayback'].forEach(id => { get(id).textContent = '—'; });
+          get('textileMainStatus').textContent = 'Проверьте выделенные поля — расчёт обновится после исправления.';
+          [40,60,80].forEach(n => { get(`textilePayback${n}`).textContent = '—'; get(`textileStatus${n}`).textContent = 'Проверьте значения в полях'; });
+          root.dispatchEvent(new Event('calculationupdate'));
+          return;
+        }
         const roundQty = count('textileRoundQty');
         const rectQty = count('textileRectQty');
         const napkinQty = count('textileNapkinQty');
@@ -794,13 +826,18 @@
         } else {
           get('textileMainStatus').textContent = 'Комплекта достаточно';
         }
+        root.dispatchEvent(new Event('calculationupdate'));
       }
 
-      inputIds.forEach(id => inputs[id].addEventListener('input', update));
+      inputIds.forEach(id => {
+        inputs[id].step = '1';
+        inputs[id].addEventListener('input', update);
+      });
       update();
     })();
   </script>
 
-  <script src="ameli-modern.js"></script>
+  <script src="ameli-modern.js?v=20260907"></script>
+  <script src="ameli-refinements.js?v=20260907"></script>
 </body>
 </html>
