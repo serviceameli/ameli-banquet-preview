@@ -202,9 +202,9 @@ assert len(offer_points) == 5, 'Preserve all five original offer explanations'
 service_photos = [
     ('visualization-layout', 'Визуализация светлого зала с двумя группами фигурных столов и голубыми стульями'),
     ('banquet-chairs', 'Банкетная мебель со светлой обивкой в готовом оформлении зала'),
-    ('draped-buffet', 'Фигурный фуршетный стол в светлой драпировке с пуфами в интерьере'),
+    ('velvet-napkin', 'Терракотовая бархатная салфетка с золотистой кисточкой на тёмной тарелке'),
     ('pink-glass', 'Розовые бокалы и стаканы со светлой сервировкой стола'),
-    ('draped-photozone', 'Фотозона с волнообразным текстильным фоном и белыми цветочными композициями на ступенях'),
+    ('forest-ceremony', 'Фотозона в лесу со светлым текстильным фоном, белыми цветами, пуфами и зеркальной дорожкой'),
 ]
 service_cards = []
 for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points, service_photos), start=1):
@@ -212,7 +212,7 @@ for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points, service_
     if number == 1:
         sizes = '(max-width:400px) 36vw, (max-width:600px) 144px, (max-width:1100px) 260px, (max-width:1406px) calc((91vw - 72px) / 5), 242px'
     photograph = opening_image(slug, alt, sizes)
-    photo_class = 'offer-service-photo' + (' offer-service-photo-full' if slug in ('visualization-layout', 'draped-photozone') else '')
+    photo_class = 'offer-service-photo' + (' offer-service-photo-full' if slug in ('visualization-layout', 'velvet-napkin', 'forest-ceremony') else '')
     service_cards.append(f'          <article class="offer-service"><figure class="{photo_class}">{photograph}</figure>'
                          f'<div class="offer-service-heading"><span class="offer-index" aria-hidden="true">{number:02}</span><h3>{title}</h3></div><p>{copy}</p></article>')
 offer = (root / 'opening-offer.html').read_text()
