@@ -53,7 +53,7 @@ body { font-size:1rem; }
 .hero-actions .outline { min-height:44px; }
 .example-shot figcaption { font-size:.75rem; letter-spacing:.015em; line-height:1.6; }
 .problem-item b,.offer-item b,.furniture-point b,.furniture-benefit b,.about-point b,
-.example-no,.tableware-example figcaption>span,.ceremony-example figcaption>span,.order-step::before { color:#737373; }
+.example-no,.tableware-example figcaption>span,.ceremony-example figcaption>span,.order-step::before { color:#707070; }
 .model-body strong,.tableware-example figcaption strong,.ceremony-example figcaption strong { font-size:.875rem; line-height:1.65; }
 .offer-gallery,.furniture-top>div:first-child,.combination-control { top:var(--anchor-offset); }
 .payback-factor h3 { font-size:1rem; }

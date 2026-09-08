@@ -8,6 +8,12 @@ source = (root / 'responsive-redesign.html').read_text()
 html = re.sub(r'<style>.*?</style>', '', source, flags=re.S)
 html = re.sub(r'  <link rel="stylesheet" href="(?:concept-one|spatial-redesign-responsive)\.css">\n', '', html)
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-modern.css">\n  <link rel="icon" href="premium-assets/ameli-rental-logo.png">\n</head>')
+# Include the dynamic back-to-top icon as well as the symbols in the HTML.
+html = html.replace(
+    'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0',
+    'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0'
+    '&amp;icon_names=arrow_forward,arrow_upward,calendar_month,chair,local_shipping,north_east&amp;display=block'
+)
 html = html.replace('<meta name="theme-color" content="#1a1a1a">', '<meta name="theme-color" content="#ffffff">')
 html = html.replace('content="cover-photo.png"', 'content="https://serviceameli.github.io/ameli-banquet-preview/s2-banquet-hall.jpeg"')
 html = html.replace('<strong>AMELI</strong><span>решения для площадок</span>', '<img src="premium-assets/ameli-rental-logo.png" alt="" width="44" height="44"><span class="brand-name"><strong>AMELI</strong><span>решения для площадок</span></span>')
@@ -39,20 +45,20 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
       document.addEventListener('click', event => { if (!header.contains(event.target)) close(); });
       header.addEventListener('focusout', event => { if (event.relatedTarget && !header.contains(event.relatedTarget)) close(); });""")
 # Second pass: apply the approved UX audit while retaining the original text source.
-html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908b"')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908n">\n</head>')
+html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260909g"')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909f">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909a">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
-html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908q"></script>\n</body>')
+html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909g"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-contact.js?v=20260908q"></script>\n</body>')
 for filename, description in {
@@ -199,6 +205,7 @@ offer_end = html.index('    <section class="section soft about-section"', offer_
 offer_source = html[offer_start:offer_end]
 offer_points = re.findall(r'<article class="offer-item"><b>\d+</b><div><strong>(.*?)</strong><p>(.*?)</p></div></article>', offer_source, flags=re.S)
 assert len(offer_points) == 5, 'Preserve all five original offer explanations'
+offer_points[0] = ('Визуализация готовых комплектов в вашем интерьере', offer_points[0][1])
 service_photos = [
     ('visualization-layout', 'Визуализация светлого зала с двумя группами фигурных столов и голубыми стульями'),
     ('banquet-chairs', 'Банкетная мебель со светлой обивкой в готовом оформлении зала'),
@@ -357,5 +364,9 @@ html, _ = re.subn(r'<a\b[^>]*href="(?:#contact|https://t\.me/amelirental|https:/
 assert html.count(' data-contact-open') == 7
 dialog = (root / 'contact-dialog.html').read_text().replace('{{contact_options}}', options)
 html = html.replace('  <div class="mobile-cta">', dialog + '\n\n  <div class="mobile-cta">', 1)
+for asset in ['textile-chair-covers', 'textile-seat-cushion', 'textile-event-draping']:
+    html = html.replace(f'premium-assets/{asset}.png', f'premium-assets/{asset}.webp')
+# Decorative font glyphs must not become words in assistive technology.
+html = re.sub(r'<span class="material-symbols-outlined">', '<span class="material-symbols-outlined" aria-hidden="true">', html)
 (root / 'modern-redesign.html').write_text(html)
 print('Created modern-redesign.html; source page unchanged.')

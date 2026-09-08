@@ -7,7 +7,7 @@
 #order .order-flow { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
 #order .order-step { display:flex; flex-direction:column; gap:0; padding:16px 18px; border:1px solid #e6e6e6; border-radius:12px; background:#fafafa; }
 #order .order-step::before { content:none; }
-#order .order-step-number { position:absolute; right:13px; top:11px; color:#737373; font-size:.6875rem; font-weight:500; line-height:1; font-variant-numeric:tabular-nums; }
+#order .order-step-number { position:absolute; right:13px; top:11px; color:#707070; font-size:.6875rem; font-weight:500; line-height:1; font-variant-numeric:tabular-nums; }
 #order .order-step-heading { display:grid; grid-template-columns:52px minmax(0,1fr); gap:12px; align-items:center; min-height:52px; padding-right:10px; }
 #order .order-icon { display:block; width:52px; height:52px; color:var(--ink); flex-shrink:0; }
 #order .order-step h3 { font-size:1rem; line-height:1.35; letter-spacing:-.025em; text-wrap:pretty; }

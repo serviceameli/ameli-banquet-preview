@@ -37,11 +37,15 @@
   const calculator = document.getElementById('textile-payback');
   const get = id => document.getElementById(id);
   const discuss = get('textileDiscussTelegram');
+  const discussHint = discuss.closest('.textile-result-actions').querySelector('p');
   const syncQuote = () => {
     const valid = calculator.dataset.valid !== 'false';
     get('textileStickyInvestment').textContent = get('textileInvestmentTotal').textContent;
     get('textileStickyEvents').textContent = valid ? get('textilePayback60').textContent : 'Проверьте поля';
     discuss.setAttribute('aria-disabled', String(!valid));
+    discussHint.textContent = valid
+      ? 'Выберите способ связи — расчёт уже подготовлен.'
+      : 'Исправьте выделенные поля, чтобы обсудить рассчитанный комплект.';
     if(!valid) { discuss.removeAttribute('href'); delete discuss.dataset.contactMessage; return; }
     const lines = [
       'Здравствуйте! Хочу обсудить комплект текстиля для площадки.',
