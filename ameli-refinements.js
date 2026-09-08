@@ -18,7 +18,8 @@
     let expanded = false;
     const render = () => {
       const ceremony = gallery.classList.contains('ceremony-grid');
-      const limit = ceremony ? (mobileGallery.matches ? 4 : cards.length) : (mobileGallery.matches ? 2 : tabletGallery.matches ? 4 : cards.length);
+      const visualization = gallery.classList.contains('visual-sales-grid');
+      const limit = visualization ? cards.length : ceremony ? (mobileGallery.matches ? 4 : cards.length) : (mobileGallery.matches ? 2 : tabletGallery.matches ? 4 : cards.length);
       cards.forEach((card, i) => { card.hidden = !expanded && i >= limit; });
       button.hidden = cards.length <= limit;
       button.setAttribute('aria-expanded', String(expanded));
