@@ -36,6 +36,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908b"')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908b"></script>\n</body>')
 for filename, description in {
@@ -87,6 +88,27 @@ html = html[:comparison_start] + '''        <div class="before-after-grid honest
 calculator_start = html.index('    <section class="section soft textile-payback-section"')
 calculator_end = html.index('    <section class="section order-section"', calculator_start)
 html = html[:calculator_start] + (root / 'textile-calculator.html').read_text().rstrip() + '\n\n' + html[calculator_end:]
+# Keep the six original steps and perks, replacing hidden photos with light SVG illustrations.
+order_start = html.index('    <section class="section order-section"')
+order_end = html.index('    <section class="final"', order_start)
+order = html[order_start:order_end]
+order_icons = re.findall(r'<svg\b.*?</svg>', (root / 'order-icons.html').read_text(), flags=re.S)
+order_steps = re.findall(r'<article class="order-step">.*?</article>', order, flags=re.S)
+assert len(order_icons) == len(order_steps) == 6
+for number, (step, icon) in enumerate(zip(order_steps, order_icons), start=1):
+    heading = re.search(r'<h3>.*?</h3>', step, flags=re.S).group()
+    description = re.search(r'<div class="order-step-copy"><h3>.*?</h3>(<p>.*?</p>)</div>', step, flags=re.S).group(1)
+    perk = re.search(r'<p class="order-perk">.*?</p>', step, flags=re.S)
+    replacement = (
+        '<article class="order-step">\n'
+        f'            <span class="order-step-number" aria-hidden="true">{number:02}</span>\n'
+        f'            <div class="order-step-heading">{icon}{heading}</div>\n'
+        f'            {description}\n'
+        + (f'            {perk.group()}\n' if perk else '')
+        + '          </article>'
+    )
+    order = order.replace(step, replacement, 1)
+html = html[:order_start] + order + html[order_end:]
 html = html.replace('<footer><span>AMELI', '<div class="catalog-return"><a href="https://catalog.ameli-rental.ru/" target="_blank" rel="noopener">Перейти в каталог аренды Ameli<span class="material-symbols-outlined" aria-hidden="true">north_east</span></a></div>\n        <footer><span>AMELI')
 
 # Validate before updating any figures: invalid values must never look like a quote.

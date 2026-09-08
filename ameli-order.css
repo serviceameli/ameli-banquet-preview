@@ -1,0 +1,60 @@
+/* Six visible steps, sized for a laptop without clipping or internal scrolling. */
+#order { padding-block:28px; scroll-margin-top:-24px; }
+#order .order-head { grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:22px; }
+#order .label { margin-bottom:8px; }
+#order h2 { font-size:2.125rem; line-height:1.15; }
+#order .lead { font-size:.875rem; line-height:1.6; }
+#order .order-flow { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+#order .order-step { display:flex; flex-direction:column; gap:0; padding:16px 18px; border:1px solid #e6e6e6; border-radius:12px; background:#fafafa; }
+#order .order-step::before { content:none; }
+#order .order-step-number { position:absolute; right:13px; top:11px; color:#737373; font-size:.6875rem; font-weight:500; line-height:1; font-variant-numeric:tabular-nums; }
+#order .order-step-heading { display:grid; grid-template-columns:52px minmax(0,1fr); gap:12px; align-items:center; min-height:52px; padding-right:10px; }
+#order .order-icon { display:block; width:52px; height:52px; color:var(--ink); flex-shrink:0; }
+#order .order-step h3 { font-size:1rem; line-height:1.35; letter-spacing:-.025em; text-wrap:pretty; }
+#order .order-step p:not(.order-perk) { font-size:.875rem; line-height:1.5; margin:10px 0 0; }
+#order .order-step:has(.order-perk) p:not(.order-perk) { margin-bottom:12px; }
+#order .order-perk { margin:auto 0 0; padding:7px 10px; border-radius:6px; background:#fff4be; color:#48402a; font-size:.75rem; font-weight:500; line-height:1.45; }
+#order .order-result { margin-top:18px; padding:14px 20px; gap:24px; background:#f5f5f5; border-radius:12px; }
+#order .order-result strong { font-size:.9375rem; font-weight:600; line-height:1.4; }
+#order .order-result p { font-size:.8125rem; line-height:1.5; margin-top:4px; }
+#order .order-result .button { min-height:44px; padding:10px 22px; font-size:.875rem; }
+
+@media(min-width:1001px) and (max-height:750px) {
+  #order { padding-block:14px; }
+  #order .order-head { margin-bottom:12px; }
+  #order .label { margin-bottom:6px; }
+  #order h2 { font-size:1.875rem; }
+  #order .order-flow { gap:12px 16px; }
+  #order .order-step { padding:10px 16px; }
+  #order .order-step-heading { grid-template-columns:48px minmax(0,1fr); min-height:48px; gap:10px; }
+  #order .order-icon { width:48px; height:48px; }
+  #order .order-step p:not(.order-perk) { margin-top:6px; }
+  #order .order-step:has(.order-perk) p:not(.order-perk) { margin-bottom:10px; }
+  #order .order-perk { padding-block:6px; }
+  #order .order-result { margin-top:12px; padding-block:10px; }
+}
+@media(max-width:1000px) {
+  #order { padding-block:44px; }
+  #order .order-head { grid-template-columns:1fr; gap:16px; margin-bottom:24px; }
+  #order .order-flow { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  #order .order-step { padding:18px; }
+  #order .order-step-heading { min-height:56px; }
+  #order .order-icon { width:52px; height:52px; }
+  #order .order-step p:not(.order-perk) { font-size:.9375rem; line-height:1.6; }
+  #order .order-result { margin-top:24px; padding:20px; }
+}
+@media(max-width:600px) {
+  #order h2 { font-size:1.875rem; }
+  #order .lead { font-size:.9375rem; }
+  #order .order-flow { grid-template-columns:1fr; gap:12px; }
+  #order .order-step { padding:16px; }
+  #order .order-step-heading { grid-template-columns:52px minmax(0,1fr); gap:12px; min-height:52px; }
+  #order .order-step h3 { font-size:1.0625rem; }
+  #order .order-result { gap:16px; }
+  #order .order-result p { font-size:.875rem; line-height:1.6; }
+  #order .order-result .button { width:100%; }
+}
+@media print {
+  #order { padding-block:24px; }
+  #order .order-step { break-inside:avoid; }
+}
