@@ -146,14 +146,14 @@ assert textile_replacements == 1, 'Expected one textile catalogue card.'
 # Use compressed originals supplied by the owner; retain complete compositions.
 ceremony_images = json.loads((root / 'ceremony-images.json').read_text())
 ceremony_figures = []
-for number, item in enumerate(ceremony_images, start=1):
+for item in ceremony_images:
     small, large = item['variants']
     ceremony_figures.append(
         f'          <figure class="ceremony-example"><img src="{large["path"]}" '
         f'srcset="{small["path"]} {small["width"]}w, {large["path"]} {large["width"]}w" '
         'sizes="(max-width:600px) calc((100vw - 54px) / 2), (max-width:1000px) calc((91vw - 24px) / 2), (max-width:1406px) calc((91vw - 48px) / 3), 411px" '
         f'width="{large["width"]}" height="{large["height"]}" loading="lazy" decoding="async" alt="{escape(item["alt"])}">'
-        f'<figcaption><span>{number:02}</span><strong>{escape(item["title"])}</strong></figcaption></figure>'
+        '</figure>'
     )
 ceremony_start = html.index('        <div class="ceremony-grid"')
 ceremony_end = html.index('\n        </div>', ceremony_start)
