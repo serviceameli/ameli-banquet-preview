@@ -58,14 +58,4 @@
   discuss.addEventListener('click', event => { if (discuss.getAttribute('aria-disabled') === 'true') event.preventDefault(); });
   syncQuote();
 
-  const jumpLinks = [...document.querySelectorAll('.jump-links a')];
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.filter(entry => entry.isIntersecting).forEach(entry => {
-      jumpLinks.forEach(link => {
-        const active = link.hash === `#${entry.target.id}`;
-        if(active) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current');
-      });
-    });
-  }, {rootMargin:'-25% 0px -60% 0px'});
-  document.querySelectorAll('main > section[id]').forEach(section => sectionObserver.observe(section));
 })();

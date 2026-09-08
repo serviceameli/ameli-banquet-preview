@@ -1,5 +1,5 @@
 /* Audit refinements. The original presentation remains available separately. */
-:root { --header-height:85px; --jump-height:56px; --anchor-offset:calc(var(--header-height) + var(--jump-height) + 24px); }
+:root { --header-height:85px; --anchor-offset:calc(var(--header-height) + 24px); }
 html { scroll-padding-top:var(--anchor-offset); scroll-behavior:auto; }
 body { font-size:1rem; }
 .section { padding-block:84px; }
@@ -42,12 +42,7 @@ body { font-size:1rem; }
 .combination-total span,.combination-formula,.combination-element strong { font-size:.875rem; }
 .combination-gallery-head strong { font-size:1rem; }
 
-/* A compact, horizontally scrollable index stays within thumb reach. */
-.section-jump-nav { position:sticky; top:var(--header-height); z-index:40; background:rgba(255,255,255,.98); border-block:1px solid var(--line); }
-.jump-links { display:flex; align-items:center; gap:32px; min-height:calc(var(--jump-height) - 2px); overflow-x:auto; scrollbar-width:thin; }
-.jump-links a { display:inline-flex; align-items:center; flex-shrink:0; min-height:54px; text-decoration:none; font-size:.875rem; font-weight:500; white-space:nowrap; border-bottom:3px solid transparent; padding-top:3px; }
-.jump-links a:hover,.jump-links a[aria-current] { color:var(--ink); border-bottom-color:var(--accent); }
-.jump-links a:focus-visible { outline-offset:-4px; }
+/* Optional gallery disclosure controls. */
 .gallery-more { display:flex; align-items:center; justify-content:center; width:100%; min-height:48px; margin-top:22px; padding:12px 18px; border:1px solid #c8c8c8; border-radius:8px; background:transparent; color:var(--ink); font-size:.875rem; font-weight:500; }
 .gallery-more:hover { background:#fff; border-color:var(--ink); }
 .example-gallery,.textile-grid,.tableware-showcase,.ceremony-grid,.visual-sales-grid { scroll-margin-top:20px; }
@@ -124,7 +119,7 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
 }
 @media(max-width:900px) {
   .about-stats { grid-template-columns:1fr 1fr; gap:30px; }
-  .calc-live-summary { position:sticky; top:calc(var(--header-height) + var(--jump-height)); z-index:35; display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:center; padding:14px 16px; margin:0 0 24px; border:1px solid #ddd; border-top:3px solid var(--accent); border-radius:0 0 10px 10px; background:#fff; box-shadow:0 5px 16px #00000008; }
+  .calc-live-summary { position:sticky; top:var(--header-height); z-index:35; display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:center; padding:14px 16px; margin:0 0 24px; border:1px solid #ddd; border-top:3px solid var(--accent); border-radius:0 0 10px 10px; background:#fff; box-shadow:0 5px 16px #00000008; }
   .calc-live-summary span { display:block; color:var(--muted); font-size:.75rem; line-height:1.5; }
   .calc-live-summary output { display:block; font-size:.9375rem; font-weight:600; line-height:1.5; margin-top:3px; overflow-wrap:anywhere; }
   .calc-live-summary a { display:flex; align-items:center; min-height:44px; font-size:.8125rem; font-weight:500; }
@@ -136,7 +131,7 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
   .honest-comparison { grid-template-columns:1fr 1fr; gap:22px; }
 }
 @media(max-width:600px) {
-  :root { --header-height:69px; --jump-height:54px; }
+  :root { --header-height:69px; }
   .nav { gap:8px; }
   .menu-toggle { flex-shrink:0; gap:10px; padding-left:8px; }
   .brand-name>span { font-size:.75rem; }
@@ -151,8 +146,6 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
   .hero-fact strong { font-size:.75rem; }
   .section { padding-block:48px; }
   .hero .lead { line-height:1.75; }
-  .jump-links { gap:24px; width:100%; padding-inline:var(--gutter); }
-  .jump-links a { min-height:52px; font-size:.8125rem; }
   .example-copy p { font-size:.9375rem; }
   .example-gallery { gap:22px 14px; }
   .example-shot figcaption { font-size:.75rem; }
@@ -202,6 +195,6 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
   .calc-live-summary output { font-size:.8125rem; }
 }
 @media print {
-  .section-jump-nav,.calc-live-summary,.gallery-more { display:none!important; }
+  .calc-live-summary,.gallery-more { display:none!important; }
   .example-gallery>[hidden],.textile-grid>[hidden],.tableware-showcase>[hidden],.ceremony-grid>[hidden],.visual-sales-grid>[hidden] { display:block!important; }
 }

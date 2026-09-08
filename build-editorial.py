@@ -33,10 +33,11 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
       document.addEventListener('click', event => { if (!header.contains(event.target)) close(); });
       header.addEventListener('focusout', event => { if (event.relatedTarget && !header.contains(event.relatedTarget)) close(); });""")
 # Second pass: apply the approved UX audit while retaining the original text source.
-html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908"')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908">\n</head>')
-html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908"')
-html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908"></script>\n</body>')
+html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908b"')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908b">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
+html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
+html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908b"></script>\n</body>')
 for filename, description in {
     'dishware-clear-glass.png': 'Прозрачные бокалы для классической сервировки',
     'dishware-clear-plate-black.png': 'Прозрачная тарелка с чёрным краем',
@@ -65,12 +66,6 @@ html = html[:ceremony_start] + '        <div class="ceremony-grid" aria-label="�
 hero_start, hero_end = html.index('<section class="hero"'), html.index('<section class="section" id="problem">')
 hero = html[hero_start:hero_end].replace('s2-banquet-hall.jpeg', 's4-hall-toile.jpg').replace('width="1280" height="854"', 'width="852" height="1280"')
 html = html[:hero_start] + hero + html[hero_end:]
-html = html.replace('<section class="section" id="problem">', '''<nav class="section-jump-nav" aria-label="Быстрый переход по разделам">
-      <div class="shell jump-links">
-        <a href="#furniture-options">Мебель</a><a href="#textile">Текстиль</a><a href="#tableware">Посуда</a><a href="#ceremony-zones">Фотозоны</a><a href="#before-after">До / после</a><a href="#textile-payback">Расчёт</a>
-      </div>
-    </nav>
-    <section class="section" id="problem">''')
 html = html.replace('Покажем один зал без оформления и несколько вариантов после обновления — с мебелью, текстилем и декором Ameli.', 'Один зал в одном ракурсе: без оформления и с мебелью, текстилем и декором Ameli.')
 comparison_start = html.index('        <div class="before-after-grid">')
 comparison_end = html.index('\n    <section class="section" id="reasons">', comparison_start)
@@ -88,16 +83,10 @@ html = html[:comparison_start] + '''        <div class="before-after-grid honest
       </div>
     </section>
 ''' + html[comparison_end:]
-html = html.replace('<div class="textile-payback-layout">', '''<div class="calc-live-summary" aria-label="Текущий результат расчёта">
-          <div><span>Инвестиция</span><output id="textileStickyInvestment">106 200 ₽</output></div>
-          <div><span>Для 60 гостей</span><output id="textileStickyEvents">3 мероприятия</output></div>
-          <a href="#textileResultPanel">К результату</a>
-        </div>
-        <div class="textile-payback-layout">''')
-html = html.replace('<aside class="textile-payback-result"', '<aside id="textileResultPanel" class="textile-payback-result"')
-html = html.replace('<p class="textile-result-status"', '<p class="textile-result-basis">По арендной выручке, без учёта расходов.</p>\n              <p class="textile-result-status"')
-html = html.replace('<div class="textile-result-investment">', '''<div class="textile-result-actions"><a class="button" id="textileDiscussTelegram" href="https://t.me/amelirental" target="_blank" rel="noopener">Обсудить этот комплект</a><p>Откроется Telegram с черновиком вашего расчёта.</p></div>
-              <div class="textile-result-investment">''')
+# The compact calculator reuses the original field IDs and calculation logic.
+calculator_start = html.index('    <section class="section soft textile-payback-section"')
+calculator_end = html.index('    <section class="section order-section"', calculator_start)
+html = html[:calculator_start] + (root / 'textile-calculator.html').read_text().rstrip() + '\n\n' + html[calculator_end:]
 html = html.replace('<footer><span>AMELI', '<div class="catalog-return"><a href="https://catalog.ameli-rental.ru/" target="_blank" rel="noopener">Перейти в каталог аренды Ameli<span class="material-symbols-outlined" aria-hidden="true">north_east</span></a></div>\n        <footer><span>AMELI')
 
 # Validate before updating any figures: invalid values must never look like a quote.
