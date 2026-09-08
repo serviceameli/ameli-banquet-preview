@@ -37,6 +37,7 @@ html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=2026090
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908b"></script>\n</body>')
 for filename, description in {
@@ -84,6 +85,14 @@ html = html[:comparison_start] + '''        <div class="before-after-grid honest
       </div>
     </section>
 ''' + html[comparison_end:]
+# Make the business mechanism explicit while keeping all six original explanations.
+benefits_start = html.index('    <section class="section" id="reasons">')
+benefits_end = html.index('    <section class="section dark color-combinations-section" id="color-combinations">', benefits_start)
+benefit_factors = re.search(r'<ul class="payback-factors".*?</ul>', html[benefits_start:benefits_end], flags=re.S).group()
+for old_icon, icon_id in zip(re.findall(r'<span class="payback-icon".*?</span>', benefit_factors), ['income', 'conversion', 'check', 'content', 'referral', 'refresh']):
+    benefit_factors = benefit_factors.replace(old_icon, f'<svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-{icon_id}"/></svg>', 1)
+benefits = (root / 'business-benefits.html').read_text().replace('{{FACTORS}}', benefit_factors)
+html = html[:benefits_start] + benefits.rstrip() + '\n\n' + html[benefits_end:]
 # The compact calculator reuses the original field IDs and calculation logic.
 calculator_start = html.index('    <section class="section soft textile-payback-section"')
 calculator_end = html.index('    <section class="section order-section"', calculator_start)

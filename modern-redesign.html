@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="ameli-refinements.css?v=20260908b">
   <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">
   <link rel="stylesheet" href="ameli-order.css?v=20260908c">
+  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -350,41 +351,69 @@
       </div>
     </section>
 
-    <section class="section" id="reasons">
+    <section class="section" id="reasons" aria-labelledby="benefits-title">
       <div class="shell">
+        <svg class="benefit-symbols" width="0" height="0" aria-hidden="true" focusable="false">
+          <defs>
+            <symbol id="benefit-income" viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="19" rx="4"/><path d="M4 12h24M10 19h5m7-3v7m-3.5-3.5h7"/></symbol>
+            <symbol id="benefit-conversion" viewBox="0 0 32 32"><path d="M6 5h20l-8 10v8l-4 3V15Z"/><path d="m19 23 3 3 6-7" stroke="var(--accent)" stroke-width="2.8"/></symbol>
+            <symbol id="benefit-check" viewBox="0 0 32 32"><path d="M7 28V5l3 2 3-2 3 2 3-2 3 2 3-2v23l-3-2-3 2-3-2-3 2-3-2Z"/><path d="M12 20h9m-8-6 6-5m-5 0h5v5"/></symbol>
+            <symbol id="benefit-content" viewBox="0 0 32 32"><rect x="8" y="3" width="16" height="26" rx="4"/><rect x="11" y="9" width="10" height="11" rx="1.5"/><path d="m11 18 4-4 6 5M14 24h4"/></symbol>
+            <symbol id="benefit-referral" viewBox="0 0 32 32"><path d="M25 11A10 10 0 0 0 7 8L4 12m0-6v6h6m-3 9a10 10 0 0 0 18 3l3-4m0 6v-6h-6"/><path d="M16 21s-6-3.5-6-7a3.3 3.3 0 0 1 6-1.8 3.3 3.3 0 0 1 6 1.8c0 3.5-6 7-6 7Z"/></symbol>
+            <symbol id="benefit-refresh" viewBox="0 0 32 32"><rect x="4" y="7" width="11" height="20" rx="2" transform="rotate(-12 9.5 17)"/><rect x="11" y="6" width="11" height="20" rx="2" transform="rotate(8 16.5 16)" fill="white"/><path d="m24 4 1.8 4.2L30 10l-4.2 1.8L24 16l-1.8-4.2L18 10l4.2-1.8Z" fill="var(--accent)"/></symbol>
+          </defs>
+        </svg>
         <div class="payback-head">
-          <h2>Почему это окупается</h2>
+          <h2 id="benefits-title">Почему это окупается</h2>
           <p class="lead">Шесть механизмов, по которым вложение работает годами</p>
         </div>
-        <div class="payback-infographic">
-          <div class="payback-calendar" aria-label="Схематичный календарь мероприятий площадки">
-            <div class="payback-calendar-head"><span>Календарь площадки</span><strong>ИЮНЬ</strong></div>
-            <div class="payback-weekdays" aria-hidden="true"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
-            <div class="payback-calendar-grid" aria-hidden="true">
-              <div class="payback-day is-muted">27</div><div class="payback-day is-muted">28</div><div class="payback-day is-muted">29</div><div class="payback-day is-muted">30</div><div class="payback-day is-muted">31</div><div class="payback-day">1<span class="payback-event">Свадьба</span></div><div class="payback-day">2</div>
-              <div class="payback-day">3</div><div class="payback-day">4</div><div class="payback-day">5<span class="payback-event">Корпоратив</span></div><div class="payback-day">6</div><div class="payback-day">7</div><div class="payback-day">8<span class="payback-event">Юбилей</span></div><div class="payback-day">9</div>
-              <div class="payback-day">10</div><div class="payback-day">11</div><div class="payback-day">12<span class="payback-event">Презентация</span></div><div class="payback-day">13</div><div class="payback-day">14</div><div class="payback-day">15<span class="payback-event">Свадьба</span></div><div class="payback-day">16</div>
-              <div class="payback-day">17</div><div class="payback-day">18</div><div class="payback-day">19<span class="payback-event">День рождения</span></div><div class="payback-day">20</div><div class="payback-day">21</div><div class="payback-day">22<span class="payback-event">Корпоратив</span></div><div class="payback-day">23</div>
-              <div class="payback-day">24</div><div class="payback-day">25</div><div class="payback-day">26<span class="payback-event">Свадьба</span></div><div class="payback-day">27</div><div class="payback-day">28</div><div class="payback-day">29<span class="payback-event">Выпускной</span></div><div class="payback-day">30</div>
-            </div>
-            <div class="payback-calendar-note"><span aria-hidden="true">✓</span><div><strong>Больше готовых сценариев для разных событий</strong><p>Менеджеру проще показать клиенту подходящий вариант оформления.</p></div></div>
-          </div>
 
-          <ul class="payback-factors" aria-label="Шесть механизмов окупаемости">
-            <li class="payback-factor"><div class="payback-factor-head"><span class="payback-icon" aria-hidden="true">₽+</span><b>Доход</b></div><h3>Новая статья выручки</h3><p>Продажа пакетов оформления — дополнительный доход с каждого мероприятия.</p></li>
-            <li class="payback-factor"><div class="payback-factor-head"><span class="payback-icon" aria-hidden="true">✓</span><b>Конверсия</b></div><h3>Быстрее закрывают клиентов</h3><p>Площадка с готовой концепцией закрывает сделки быстрее — меньше «подумаю», больше «берём».</p></li>
-            <li class="payback-factor"><div class="payback-factor-head"><span class="payback-icon" aria-hidden="true">₽</span><b>Чек</b></div><h3>Рост среднего чека</h3><p>Красивый зал позволяет ставить цену выше — клиенты готовы платить за готовую картинку.</p></li>
-            <li class="payback-factor"><div class="payback-factor-head"><span class="payback-icon" aria-hidden="true">▣</span><b>Маркетинг</b></div><h3>Контент, который продаёт</h3><p>Красивые фото зала работают на продажи круглый год — в соцсетях, на сайте и порталах.</p></li>
-            <li class="payback-factor"><div class="payback-factor-head"><span class="payback-icon" aria-hidden="true">♡</span><b>Удержание</b></div><h3>Повторные продажи по рекомендации</h3><p>Красивый зал → хорошие отзывы и фото → клиенты приходят по рекомендации друзей.</p></li>
-            <li class="payback-factor"><div class="payback-factor-head"><span class="payback-icon" aria-hidden="true">↻</span><b>Гибкость</b></div><h3>Легко менять под тренды</h3><p>Съёмные чехлы и сменные палитры — стиль зала обновляется под запросы сезона без новых затрат.</p></li>
+        <ol class="benefit-cycle" aria-label="Как вложения в оформление создают дополнительную выручку">
+          <li class="benefit-stage benefit-base">
+            <span class="benefit-stage-label">01 · Вложение в комплект</span>
+            <div class="benefit-base-content">
+              <svg class="benefit-furniture" viewBox="0 0 144 104" width="144" height="104" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <ellipse cx="72" cy="94" rx="65" ry="5" fill="#ffffff0c" stroke="none"/>
+                <rect x="12" y="19" width="29" height="41" rx="12" fill="#363636"/>
+                <path d="M11 60h31v9H11zm4 9-3 24m27-24 3 24"/>
+                <path d="M53 41h78l-9 40c-7 5-14-5-21 0s-14-5-21 0-14-5-21 0Z" fill="var(--accent)" stroke="var(--accent)"/>
+                <ellipse cx="92" cy="41" rx="39" ry="8" fill="#ffe16b" stroke="#ffe16b"/>
+                <path d="M65 85v9m53-9v9M84 40h16M92 39V24m-5 0h10m-5 0c-7-3-7-9-6-12 5 1 7 7 6 12Zm0 0c7-2 10-6 8-11-5 0-8 6-8 11Z"/>
+              </svg>
+              <strong>Мебель,<br>текстиль и декор</strong>
+            </div>
+            <span class="benefit-connector" aria-hidden="true">→</span>
+          </li>
+          <li class="benefit-stage benefit-events">
+            <span class="benefit-stage-label">02 · Много применений</span>
+            <strong>Готовые решения<br>для разных событий</strong>
+            <ul class="benefit-event-list" aria-label="Примеры мероприятий">
+              <li>Свадьба</li><li>Корпоратив</li><li>День рождения</li>
+            </ul>
+            <span class="benefit-connector" aria-hidden="true">→</span>
+          </li>
+          <li class="benefit-stage benefit-revenue">
+            <span class="benefit-stage-label">03 · Дополнительная выручка</span>
+            <div class="benefit-receipt">
+              <span>Аренда площадки</span>
+              <strong><span aria-hidden="true">＋</span> Пакет оформления</strong>
+            </div>
+            <p>Предлагайте оформление<br>к каждому мероприятию</p>
+          </li>
+        </ol>
+
+        <ul class="payback-factors" aria-label="Шесть механизмов окупаемости">
+            <li class="payback-factor"><div class="payback-factor-head"><svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-income"/></svg><b>Доход</b></div><h3>Новая статья выручки</h3><p>Продажа пакетов оформления — дополнительный доход с каждого мероприятия.</p></li>
+            <li class="payback-factor"><div class="payback-factor-head"><svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-conversion"/></svg><b>Конверсия</b></div><h3>Быстрее закрывают клиентов</h3><p>Площадка с готовой концепцией закрывает сделки быстрее — меньше «подумаю», больше «берём».</p></li>
+            <li class="payback-factor"><div class="payback-factor-head"><svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-check"/></svg><b>Чек</b></div><h3>Рост среднего чека</h3><p>Красивый зал позволяет ставить цену выше — клиенты готовы платить за готовую картинку.</p></li>
+            <li class="payback-factor"><div class="payback-factor-head"><svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-content"/></svg><b>Маркетинг</b></div><h3>Контент, который продаёт</h3><p>Красивые фото зала работают на продажи круглый год — в соцсетях, на сайте и порталах.</p></li>
+            <li class="payback-factor"><div class="payback-factor-head"><svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-referral"/></svg><b>Удержание</b></div><h3>Повторные продажи по рекомендации</h3><p>Красивый зал → хорошие отзывы и фото → клиенты приходят по рекомендации друзей.</p></li>
+            <li class="payback-factor"><div class="payback-factor-head"><svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-refresh"/></svg><b>Гибкость</b></div><h3>Легко менять под тренды</h3><p>Съёмные чехлы и сменные палитры — стиль зала обновляется под запросы сезона без новых затрат.</p></li>
           </ul>
-        </div>
-        <div class="payback-equation" aria-label="Логика вложений в оформление">
-          <div class="payback-equation-part"><span aria-hidden="true">▦</span><strong>Мебель, текстиль и декор площадки</strong></div>
-          <div class="payback-equation-sign" aria-hidden="true">→</div>
-          <strong class="payback-equation-main">Больше готовых решений для разных событий</strong>
-          <div class="payback-equation-sign" aria-hidden="true">=</div>
-          <div class="payback-equation-part"><span aria-hidden="true">↗</span><strong>Дополнительные возможности для выручки и продвижения</strong></div>
+
+        <div class="benefit-next">
+          <p>Посмотрите, как это работает на вашем комплекте текстиля.</p>
+          <a class="button" href="#textile-payback">Рассчитать окупаемость <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>

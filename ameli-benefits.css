@@ -1,0 +1,91 @@
+/* A causal diagram replaces the decorative calendar; no invented performance figures. */
+#reasons { padding-block:40px; scroll-margin-top:-24px; }
+#reasons .benefit-symbols { position:absolute; overflow:hidden; pointer-events:none; }
+#reasons .payback-head { align-items:center; gap:32px; margin-bottom:24px; }
+#reasons h2 { font-size:2.125rem; line-height:1.15; }
+#reasons .payback-head .lead { max-width:340px; margin:0; font-size:.875rem; line-height:1.6; }
+#reasons .benefit-cycle { display:grid; grid-template-columns:1fr 1.12fr 1fr; list-style:none; padding:0; margin:0 0 26px; border-radius:16px; background:#262626; color:white; }
+#reasons .benefit-stage { position:relative; min-width:0; padding:22px 26px; }
+#reasons .benefit-stage-label { display:block; font-size:.6875rem; font-weight:500; line-height:1.5; letter-spacing:.07em; text-transform:uppercase; color:#c4c4c4; }
+#reasons .benefit-base-content { display:flex; align-items:center; gap:14px; margin-top:10px; }
+#reasons .benefit-furniture { display:block; flex:0 0 118px; width:118px; height:92px; }
+#reasons .benefit-stage strong { font-size:1.125rem; font-weight:500; line-height:1.4; letter-spacing:-.025em; }
+#reasons .benefit-connector { position:absolute; right:-17px; top:calc(50% - 17px); z-index:1; display:grid; place-items:center; width:34px; height:34px; border:1px solid #636363; border-radius:50%; background:#262626; color:var(--accent); font-size:1.25rem; line-height:1; }
+#reasons .benefit-events { border-inline:1px solid #4a4a4a; padding-inline:34px; }
+#reasons .benefit-events>strong { display:block; margin-top:16px; }
+#reasons .benefit-event-list { display:flex; flex-wrap:wrap; gap:6px; list-style:none; padding:0; margin:14px 0 0; }
+#reasons .benefit-event-list li { border:1px solid #666; border-radius:5px; padding:5px 8px; color:#e0e0e0; font-size:.6875rem; line-height:1.4; }
+#reasons .benefit-revenue { background:var(--accent); color:#262626; border-radius:0 16px 16px 0; }
+#reasons .benefit-revenue .benefit-stage-label { color:#51440c; }
+#reasons .benefit-receipt { margin-top:16px; }
+#reasons .benefit-receipt>span { display:block; font-size:.8125rem; line-height:1.5; }
+#reasons .benefit-receipt strong { display:block; margin-top:6px; padding-top:7px; border-top:1px solid #26262630; font-size:1.1875rem; font-weight:600; }
+#reasons .benefit-receipt strong span { font-weight:400; }
+#reasons .benefit-revenue p { margin-top:10px; color:#51440c; font-size:.75rem; line-height:1.5; }
+#reasons .payback-factors { grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px 28px; }
+#reasons .payback-factor { display:grid; grid-template-columns:36px minmax(0,1fr); column-gap:12px; padding:0; border:0; }
+#reasons .payback-factor-head { display:contents; }
+#reasons .benefit-icon { grid-column:1; grid-row:1/4; width:32px; height:32px; margin-top:2px; color:#333; }
+#reasons .payback-factor-head b { display:none; }
+#reasons .payback-factor h3 { grid-column:2; margin:0; font-size:1rem; line-height:1.4; letter-spacing:-.025em; text-wrap:pretty; }
+#reasons .payback-factor p { grid-column:2; margin:6px 0 0; font-size:.875rem; line-height:1.55; }
+#reasons .benefit-next { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:18px 20px 0 0; border-top:1px solid var(--line); margin-top:24px; }
+#reasons .benefit-next p { font-size:.875rem; line-height:1.6; color:var(--muted); }
+#reasons .benefit-next .button { flex-shrink:0; min-height:44px; padding:10px 18px; font-size:.8125rem; }
+
+@media(min-width:1001px) and (max-height:750px) {
+  #reasons { padding-block:14px; }
+  #reasons h2 { font-size:1.875rem; }
+  #reasons .payback-head { margin-bottom:16px; }
+  #reasons .benefit-cycle { margin-bottom:18px; }
+  #reasons .benefit-stage { padding-block:14px; }
+  #reasons .benefit-furniture { height:76px; }
+  #reasons .benefit-events>strong { margin-top:10px; }
+  #reasons .benefit-event-list { margin-top:10px; }
+  #reasons .benefit-receipt { margin-top:10px; }
+  #reasons .benefit-revenue p { margin-top:6px; }
+  #reasons .payback-factors { row-gap:18px; }
+  #reasons .benefit-next { margin-top:16px; padding-top:8px; }
+}
+@media(max-width:1100px) and (min-width:1001px) {
+  #reasons .benefit-stage { padding-inline:20px; }
+  #reasons .benefit-furniture { flex-basis:94px; width:94px; }
+  #reasons .benefit-base-content { gap:8px; }
+  #reasons .benefit-stage strong { font-size:1rem; }
+}
+@media(max-width:1000px) {
+  #reasons .benefit-cycle { grid-template-columns:1fr; }
+  #reasons .benefit-stage { padding:24px; }
+  #reasons .benefit-base-content { margin-top:14px; }
+  #reasons .benefit-stage strong { font-size:1.25rem; }
+  #reasons .benefit-stage-label { font-size:.75rem; }
+  #reasons .benefit-events { border:0; border-block:1px solid #4a4a4a; }
+  #reasons .benefit-connector { top:auto; right:24px; bottom:-17px; transform:rotate(90deg); }
+  #reasons .benefit-revenue { border-radius:0 0 16px 16px; }
+  #reasons .benefit-event-list li { font-size:.8125rem; }
+  #reasons .benefit-revenue p { font-size:.875rem; }
+  #reasons .benefit-receipt>span { font-size:.9375rem; }
+  #reasons .payback-factors { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+  #reasons .payback-factor-head b { font-size:.6875rem; }
+}
+@media(max-width:600px) {
+  #reasons { padding-block:40px; }
+  #reasons .payback-head { display:grid; gap:14px; margin-bottom:22px; }
+  #reasons h2 { font-size:1.875rem; }
+  #reasons .payback-head .lead { max-width:none; font-size:.9375rem; }
+  #reasons .benefit-stage { padding:20px; }
+  #reasons .benefit-furniture { flex-basis:112px; width:112px; }
+  #reasons .benefit-base-content { gap:16px; }
+  #reasons .benefit-stage strong { font-size:1.125rem; }
+  #reasons .benefit-cycle { margin-bottom:30px; }
+  #reasons .payback-factors { grid-template-columns:1fr; gap:24px; }
+  #reasons .payback-factor { grid-template-columns:36px minmax(0,1fr); }
+  #reasons .payback-factor p { font-size:.9375rem; line-height:1.65; }
+  #reasons .payback-factor h3 { font-size:1.0625rem; }
+  #reasons .benefit-next { display:grid; gap:16px; padding:22px 0 0; }
+  #reasons .benefit-next .button { width:100%; }
+}
+@media print {
+  #reasons .benefit-cycle { print-color-adjust:exact; }
+  #reasons .payback-factor { break-inside:avoid; }
+}
