@@ -48,6 +48,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.cs
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260908p">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908i"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
@@ -160,7 +161,20 @@ ceremony_start = html.index('        <div class="ceremony-grid"')
 ceremony_end = html.index('\n        </div>', ceremony_start)
 html = html[:ceremony_start] + '        <div class="ceremony-grid" aria-label="Примеры фотозон и зон церемонии">\n' + '\n'.join(ceremony_figures) + html[ceremony_end:]
 hero_start, hero_end = html.index('<section class="hero"'), html.index('<section class="section" id="problem">')
-hero = html[hero_start:hero_end].replace('s2-banquet-hall.jpeg', 's4-hall-toile.jpg').replace('width="1280" height="854"', 'width="852" height="1280"')
+opening_images = json.loads((root / 'opening-images.json').read_text())
+
+def opening_image(slug, alt, sizes, eager=False):
+    variants = opening_images[slug]
+    large = variants[-1]
+    srcset = ', '.join(f'{item["path"]} {item["width"]}w' for item in variants)
+    loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<img src="{large["path"]}" srcset="{srcset}" sizes="{sizes}" '
+            f'width="{large["width"]}" height="{large["height"]}" {loading} decoding="async" alt="{escape(alt)}">')
+
+hero = html[hero_start:hero_end]
+hero = re.sub(r'<picture>.*?</picture>', '<picture>' + opening_image(
+    'banquet-hall', 'Светлый банкетный зал с круглыми столами, светлыми скатертями и стульями с серебристым каркасом',
+    '(max-width:600px) calc(100vw - 40px), (max-width:900px) 91vw, (max-width:1406px) 50vw, 690px', eager=True) + '</picture>', hero, flags=re.S)
 # Put the trust facts next to the introduction, before the primary actions.
 hero_facts = re.search(r'\n        <div class="hero-facts".*?\n        </div>', hero, flags=re.S)
 assert hero_facts, 'Expected the hero trust facts'
@@ -168,6 +182,43 @@ hero = hero[:hero_facts.start()] + hero[hero_facts.end():]
 hero = hero.replace('          <div class="hero-actions">',
                     '\n'.join('  ' + line for line in hero_facts.group().strip('\n').splitlines()) + '\n          <div class="hero-actions">', 1)
 html = html[:hero_start] + hero + html[hero_end:]
+html = html.replace('https://serviceameli.github.io/ameli-banquet-preview/s2-banquet-hall.jpeg',
+                    'https://serviceameli.github.io/ameli-banquet-preview/premium-assets/opening/banquet-hall-1280.webp')
+# Use the four original explanations as a typographic row, without a new icon system.
+problem_start = html.index('    <section class="section" id="problem">')
+problem_end = html.index('    <section class="section offer-section" id="business">', problem_start)
+problem = html[problem_start:problem_end].replace('class="section"', 'class="section soft"', 1)
+problem = re.sub(r'\n        <figure class="problem-photo">.*?</figure>', '', problem, flags=re.S)
+html = html[:problem_start] + problem + html[problem_end:]
+# Separate planning from four tangible product categories, each with a supplied photograph.
+offer_start = html.index('    <section class="section offer-section" id="business">')
+offer_end = html.index('    <section class="section soft about-section"', offer_start)
+offer_source = html[offer_start:offer_end]
+offer_points = re.findall(r'<article class="offer-item"><b>\d+</b><div><strong>(.*?)</strong><p>(.*?)</p></div></article>', offer_source, flags=re.S)
+assert len(offer_points) == 5, 'Preserve all five original offer explanations'
+service_photos = [
+    ('banquet-chairs', 'Банкетная мебель со светлой обивкой в готовом оформлении зала'),
+    ('draped-buffet', 'Фигурный фуршетный стол в светлой драпировке с пуфами в интерьере'),
+    ('pink-glass', 'Розовые бокалы и стаканы со светлой сервировкой стола'),
+    ('silver-ceremony', 'Зона церемонии с зеркальным фоном, драпировкой и серебристыми пуфами'),
+]
+service_cards = []
+for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points[1:], service_photos), start=2):
+    photograph = opening_image(slug, alt, '(max-width:400px) 36vw, (max-width:600px) 144px, (max-width:900px) calc((91vw - 24px) / 2), (max-width:1406px) calc((91vw - 54px) / 4), 307px')
+    service_cards.append(f'          <article class="offer-service"><figure class="offer-service-photo">{photograph}</figure>'
+                         f'<div class="offer-service-heading"><span class="offer-index" aria-hidden="true">{number:02}</span><h3>{title}</h3></div><p>{copy}</p></article>')
+offer = (root / 'opening-offer.html').read_text()
+offer_values = {
+    'LABEL': re.search(r'<p class="label">.*?</p>', offer_source).group(),
+    'HEADING': re.search(r'<h2>.*?</h2>', offer_source).group(),
+    'INTRO': re.search(r'<p class="offer-intro">.*?</p>', offer_source).group(),
+    'PLAN_TITLE': offer_points[0][0], 'PLAN_COPY': offer_points[0][1],
+    'SERVICES': '\n'.join(service_cards),
+}
+for key, value in offer_values.items():
+    offer = offer.replace('{{' + key + '}}', value)
+assert '{{' not in offer
+html = html[:offer_start] + offer.rstrip() + '\n\n' + html[offer_end:]
 # A real-photo showcase with explicitly labelled empty-room visualizations.
 comparison_start = html.index('    <section class="section dark before-after-section"')
 comparison_end = html.index('    <section class="section" id="reasons">', comparison_start)

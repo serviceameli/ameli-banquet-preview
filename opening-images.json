@@ -1,0 +1,72 @@
+{
+  "pink-glass": [
+    {
+      "path": "premium-assets/opening/pink-glass-320.webp",
+      "width": 320,
+      "height": 480,
+      "bytes": 23690
+    },
+    {
+      "path": "premium-assets/opening/pink-glass-600.webp",
+      "width": 600,
+      "height": 900,
+      "bytes": 51394
+    }
+  ],
+  "banquet-chairs": [
+    {
+      "path": "premium-assets/opening/banquet-chairs-320.webp",
+      "width": 320,
+      "height": 480,
+      "bytes": 29022
+    },
+    {
+      "path": "premium-assets/opening/banquet-chairs-854.webp",
+      "width": 854,
+      "height": 1280,
+      "bytes": 109858
+    }
+  ],
+  "banquet-hall": [
+    {
+      "path": "premium-assets/opening/banquet-hall-640.webp",
+      "width": 640,
+      "height": 392,
+      "bytes": 52908
+    },
+    {
+      "path": "premium-assets/opening/banquet-hall-1280.webp",
+      "width": 1280,
+      "height": 784,
+      "bytes": 144422
+    }
+  ],
+  "draped-buffet": [
+    {
+      "path": "premium-assets/opening/draped-buffet-320.webp",
+      "width": 320,
+      "height": 480,
+      "bytes": 42728
+    },
+    {
+      "path": "premium-assets/opening/draped-buffet-854.webp",
+      "width": 854,
+      "height": 1280,
+      "bytes": 173970
+    }
+  ],
+  "silver-ceremony": [
+    {
+      "path": "premium-assets/opening/silver-ceremony-320.webp",
+      "width": 320,
+      "height": 569,
+      "bytes": 59156
+    },
+    {
+      "path": "premium-assets/opening/silver-ceremony-720.webp",
+      "width": 720,
+      "height": 1280,
+      "bytes": 278476
+    }
+  ]
+}
