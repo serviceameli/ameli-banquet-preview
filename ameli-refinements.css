@@ -53,8 +53,8 @@ body { font-size:1rem; }
 .textile-composition .textile-fragment { display:block; position:absolute; overflow:hidden; }
 .textile-composition .textile-fragment>img { position:absolute; width:var(--fragment-width); max-width:none; height:auto; left:var(--fragment-left); top:var(--fragment-top); padding:0; object-fit:fill; pointer-events:none; }
 .textile-composition .textile-fragment-rect { width:88%; left:6%; top:6%; }
-.textile-composition .textile-fragment-round { width:62%; left:4%; top:38%; }
-.textile-composition .textile-fragment-napkin { width:30%; right:5%; top:34%; }
+.textile-composition .textile-fragment-round { width:60%; left:4%; top:40%; }
+.textile-composition .textile-fragment-napkin { width:28%; right:5%; top:40%; }
 .textile-swatch-grid { position:absolute; left:9%; right:9%; bottom:6%; display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:3px; }
 .textile-swatch-grid .textile-swatch { position:relative; border-radius:2px; box-shadow:inset 0 0 0 1px #00000008; }
 

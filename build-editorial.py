@@ -34,7 +34,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
       header.addEventListener('focusout', event => { if (event.relatedTarget && !header.contains(event.relatedTarget)) close(); });""")
 # Second pass: apply the approved UX audit while retaining the original text source.
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908b"')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908f">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
