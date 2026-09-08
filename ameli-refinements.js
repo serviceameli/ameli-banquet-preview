@@ -42,7 +42,7 @@
     get('textileStickyInvestment').textContent = get('textileInvestmentTotal').textContent;
     get('textileStickyEvents').textContent = valid ? get('textilePayback60').textContent : 'Проверьте поля';
     discuss.setAttribute('aria-disabled', String(!valid));
-    if(!valid) { discuss.removeAttribute('href'); return; }
+    if(!valid) { discuss.removeAttribute('href'); delete discuss.dataset.contactMessage; return; }
     const lines = [
       'Здравствуйте! Хочу обсудить комплект текстиля для площадки.',
       `В одном цвете: круглые скатерти — ${get('textileRoundQty').value} шт., прямоугольные — ${get('textileRectQty').value} шт., салфетки — ${get('textileNapkinQty').value} шт.`,
@@ -53,7 +53,8 @@
       get('textileMainStatus').textContent,
       'Хочу уточнить комплектацию и стоимость для моего зала.'
     ];
-    discuss.href = `https://t.me/amelirental?text=${encodeURIComponent(lines.join('\n'))}`;
+    discuss.href = '#contact';
+    discuss.dataset.contactMessage = lines.join('\n');
   };
   calculator.addEventListener('calculationupdate', syncQuote);
   discuss.addEventListener('click', event => { if (discuss.getAttribute('aria-disabled') === 'true') event.preventDefault(); });

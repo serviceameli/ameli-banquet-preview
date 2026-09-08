@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="ameli-categories.css?v=20260908l">
   <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">
   <link rel="stylesheet" href="ameli-opening.css?v=20260908p">
+  <link rel="stylesheet" href="ameli-contact.css?v=20260908q">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -40,7 +41,7 @@
         <a href="#textile-payback">Окупаемость</a>
         <a href="#order">Как мы работаем</a>
         <a href="#contact">Контакты</a>
-        <a class="button" href="#contact">Обсудить комплектацию</a>
+        <a class="button" href="#contact" data-contact-open>Обсудить комплектацию</a>
       </nav>
     </div>
   </header>
@@ -59,7 +60,7 @@
             <span class="hero-fact"><span class="material-symbols-outlined" aria-hidden="true">local_shipping</span><span><strong>По всей России</strong>поставки для площадок</span></span>
           </div>
           <div class="hero-actions">
-            <a class="button" href="#contact"><span>Обсудить комплектацию</span><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+            <a class="button" href="#contact" data-contact-open><span>Обсудить комплектацию</span><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
             <a class="button outline" href="#business">Что мы можем сделать</a>
           </div>
         </div>
@@ -170,7 +171,7 @@
       <div class="shell furniture-examples-shell">
         <div class="section-head furniture-examples-head">
           <h2>Изготовим мебель под стиль вашей площадки в любом цвете</h2>
-          <a class="button furniture-examples-cta" href="#contact">Получить подборку мебели под вашу площадку</a>
+          <a class="button furniture-examples-cta" href="#contact" data-contact-open>Получить подборку мебели под вашу площадку</a>
         </div>
         <div class="example-stack">
           <article class="example-row">
@@ -469,7 +470,7 @@
             <div class="combination-palette" id="combinationPalette" aria-label="Цвета примера"></div>
             <p class="combination-palette-note">Белый, розовый и зелёный показаны для примера. Для вашей площадки подберём палитру с учётом интерьера и форматов мероприятий.</p>
             <p class="combination-sales-note">Менеджер показывает клиенту готовые сочетания, а не отдельные образцы. Так проще представить оформление зала и выбрать подходящий вариант.</p>
-            <a class="button light" href="#contact">Подобрать палитру для площадки</a>
+            <a class="button light" href="#contact" data-contact-open>Подобрать палитру для площадки</a>
           </aside>
 
           <div class="combination-gallery">
@@ -552,7 +553,7 @@
               <div class="textile-scenario" id="textileScenario60"><div class="textile-scenario-guests"><strong>60 гостей</strong><span id="textileStatus60">комплекта достаточно</span></div><output id="textilePayback60">3 мероприятия</output></div>
               <div class="textile-scenario" id="textileScenario80"><div class="textile-scenario-guests"><strong>80 гостей</strong><span id="textileStatus80">комплекта достаточно</span></div><output id="textilePayback80">3 мероприятия</output></div>
             </div>
-            <div class="textile-result-actions"><a class="button" id="textileDiscussTelegram" href="https://t.me/amelirental" target="_blank" rel="noopener">Обсудить этот комплект</a><p>Откроется Telegram с черновиком вашего расчёта.</p></div>
+            <div class="textile-result-actions"><a class="button" id="textileDiscussTelegram" href="#contact" data-contact-open>Обсудить этот комплект</a><p>Выберите способ связи — расчёт уже подготовлен.</p></div>
           </aside>
         </div>
       </div>
@@ -636,7 +637,7 @@
         </div>
         <div class="order-result">
           <div><strong>Для первого шага не нужен готовый проект</strong><p>Достаточно фотографий зала и короткого описания задачи — остальное уточним вместе.</p></div>
-          <a class="button light" href="#contact">Начать обсуждение</a>
+          <a class="button light" href="#contact" data-contact-open>Начать обсуждение</a>
         </div>
       </div>
     </section>
@@ -650,18 +651,35 @@
             <p class="lead">Пришлите фотографии площадки и расскажите, что хотите обновить. Подберём состав решения и покажем, с чего лучше начать.</p>
             <div class="checklist"><span>мебель и текстиль</span><span>посуда и декор</span><span>визуализация зала</span><span>презентация для продаж</span></div>
           </div>
-          <aside class="contact-box">
-            <strong>Начнём с короткого брифа</strong>
-            <p>Напишите в удобный мессенджер. Для первого разговора достаточно фотографий зала и краткого описания задачи.</p>
-            <div class="contact-actions">
-              <a class="button light" href="https://t.me/amelirental" target="_blank" rel="noopener">Отправить фотографии в Telegram</a>
-              <a class="button" href="https://wa.me/79850843855" target="_blank" rel="noopener">Обсудить площадку в WhatsApp</a>
-            </div>
-            <div class="contact-details">
-              <div class="contact-detail"><span>Telegram</span><a href="https://t.me/amelirental" target="_blank" rel="noopener">@amelirental</a></div>
-              <div class="contact-detail"><span>Телефон</span><a href="tel:+79850843855">+7 985 084-38-55</a></div>
-            </div>
-          </aside>
+          <aside class="contact-box"><strong>Связаться с менеджером</strong><p>Для первого разговора достаточно фотографий зала и краткого описания задачи. Выберите удобный способ связи.</p><div class="contact-options" aria-label="Способы связи с менеджером">
+  <div class="contact-messengers">
+    <a class="contact-channel" data-contact-channel="telegram" href="https://t.me/amelirental" target="_blank" rel="noopener">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m21 3-4 18-6-5-3 3 1-6 8-7-10 6-5-2Z"/></svg></span>
+      <span class="contact-channel-text"><strong>Telegram</strong><span>@amelirental</span></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-channel" data-contact-channel="whatsapp" href="https://wa.me/79850843855" target="_blank" rel="noopener">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.1-4.7A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="m8 7 2 3-1.4 1.4a8 8 0 0 0 4 4L14 14l3 2c-.5 2-2 2-3 1.5A12 12 0 0 1 6.5 10C6 9 6 7.5 8 7Z"/></svg></span>
+      <span class="contact-channel-text"><strong>WhatsApp</strong><span>Ameli Rental</span></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <!-- MAX is rendered only after the owner's direct chat URL is supplied. -->
+
+  </div>
+  <div class="contact-direct">
+    <a class="contact-channel contact-channel-direct" data-contact-channel="phone" href="tel:+79850843855">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 3 3 5-3 2a16 16 0 0 0 7 7l2-3 5 3-1 4C10 22 2 14 3 4Z"/></svg></span>
+      <span class="contact-channel-text"><span>Позвонить</span><strong>+7 985 084-38-55</strong></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-channel contact-channel-direct" data-contact-channel="email" href="mailto:ameli.rental@gmail.com">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span>
+      <span class="contact-channel-text"><span>Написать на почту</span><strong>ameli.rental@gmail.com</strong></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</div>
+</aside>
         </div>
         <div class="catalog-return"><a href="https://catalog.ameli-rental.ru/" target="_blank" rel="noopener">Перейти в каталог аренды Ameli<span class="material-symbols-outlined" aria-hidden="true">north_east</span></a></div>
         <footer><span>AMELI · РЕШЕНИЯ ДЛЯ БАНКЕТНЫХ ПЛОЩАДОК</span><span>МОСКВА · 2026</span></footer>
@@ -669,7 +687,52 @@
     </section>
   </main>
 
-  <div class="mobile-cta"><a class="button" href="https://t.me/amelirental" target="_blank" rel="noopener"><span>Обсудить площадку</span><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></div>
+<dialog class="contact-dialog" id="contactDialog" aria-labelledby="contactDialogTitle" aria-describedby="contactDialogIntro">
+  <div class="contact-dialog-inner">
+    <button class="contact-close" type="button" aria-label="Закрыть окно связи"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+    <p class="contact-eyebrow">AMELI · ДЛЯ ПЛОЩАДОК</p>
+    <h2 id="contactDialogTitle" tabindex="-1" autofocus>Обсудим вашу площадку</h2>
+    <p id="contactDialogIntro" class="contact-intro">Выберите удобный способ связи. Можно сразу прислать фотографии зала и коротко описать задачу.</p>
+    <div class="contact-quote" id="contactQuote" hidden>
+      <p>Ваш расчёт добавлен в черновик для Telegram, WhatsApp и почты.</p>
+      <button class="contact-copy" type="button">Скопировать расчёт</button>
+      <p class="contact-copy-status" role="status"></p>
+      <textarea class="contact-copy-fallback" aria-label="Ваш расчёт — скопируйте текст" readonly hidden></textarea>
+    </div>
+    <div class="contact-options" aria-label="Способы связи с менеджером">
+  <div class="contact-messengers">
+    <a class="contact-channel" data-contact-channel="telegram" href="https://t.me/amelirental" target="_blank" rel="noopener">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m21 3-4 18-6-5-3 3 1-6 8-7-10 6-5-2Z"/></svg></span>
+      <span class="contact-channel-text"><strong>Telegram</strong><span>@amelirental</span></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-channel" data-contact-channel="whatsapp" href="https://wa.me/79850843855" target="_blank" rel="noopener">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.1-4.7A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="m8 7 2 3-1.4 1.4a8 8 0 0 0 4 4L14 14l3 2c-.5 2-2 2-3 1.5A12 12 0 0 1 6.5 10C6 9 6 7.5 8 7Z"/></svg></span>
+      <span class="contact-channel-text"><strong>WhatsApp</strong><span>Ameli Rental</span></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <!-- MAX is rendered only after the owner's direct chat URL is supplied. -->
+
+  </div>
+  <div class="contact-direct">
+    <a class="contact-channel contact-channel-direct" data-contact-channel="phone" href="tel:+79850843855">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 3 3 5-3 2a16 16 0 0 0 7 7l2-3 5 3-1 4C10 22 2 14 3 4Z"/></svg></span>
+      <span class="contact-channel-text"><span>Позвонить</span><strong>+7 985 084-38-55</strong></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-channel contact-channel-direct" data-contact-channel="email" href="mailto:ameli.rental@gmail.com">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span>
+      <span class="contact-channel-text"><span>Написать на почту</span><strong>ameli.rental@gmail.com</strong></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</div>
+
+  </div>
+</dialog>
+
+
+  <div class="mobile-cta"><a class="button" href="#contact" data-contact-open><span>Обсудить площадку</span><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></div>
 
   <script>
     (() => {
@@ -941,7 +1004,8 @@
   </script>
 
   <script src="ameli-modern.js?v=20260908b"></script>
-  <script src="ameli-refinements.js?v=20260908i"></script>
+  <script src="ameli-refinements.js?v=20260908q"></script>
   <script src="ameli-showcase.js?v=20260908e"></script>
+  <script src="ameli-contact.js?v=20260908q"></script>
 </body>
 </html>

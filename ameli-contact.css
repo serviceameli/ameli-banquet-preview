@@ -1,0 +1,74 @@
+/* One contact chooser, shared by every sales CTA and the final section. */
+.contact-dialog {
+  width:min(540px,calc(100% - 32px)); max-width:none;
+  max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px);
+  margin:auto; padding:0; border:1px solid #e4e4e4; border-radius:20px;
+  color:var(--ink); background:#fff; box-shadow:0 24px 100px #0004;
+  overflow:auto; overscroll-behavior:contain;
+}
+.contact-dialog:not([open]) { display:none; }
+.contact-dialog::backdrop { background:rgba(17,17,17,.6); backdrop-filter:blur(4px); }
+.contact-dialog-inner { position:relative; padding:28px; }
+.contact-close {
+  position:absolute; right:14px; top:14px; display:grid; place-items:center;
+  width:44px; height:44px; border:0; border-radius:50%; background:#f3f3f3; color:#202020;
+}
+.contact-close:hover { background:var(--accent); }
+.contact-close svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; }
+.contact-eyebrow { padding-right:32px; color:#666; font-size:11px; font-weight:600; letter-spacing:.12em; }
+.contact-dialog #contactDialogTitle { margin:16px 0 12px; padding-right:4px; color:#202020; font-size:28px; line-height:1.2; letter-spacing:-.035em; text-wrap:initial; }
+.contact-dialog #contactDialogTitle:focus { outline:none; }
+.contact-intro { color:#656565; font-size:13px; line-height:1.65; }
+.contact-options { margin-top:20px; }
+.contact-messengers { display:grid; gap:8px; }
+.contact-channel {
+  display:flex; align-items:center; gap:12px; min-height:62px; padding:9px 14px;
+  border:1px solid #dedede; border-radius:11px; color:#202020; background:#fff;
+  text-align:left; text-decoration:none; transition:background .15s,border-color .15s;
+}
+.contact-channel:hover { background:#fffbed; border-color:#c9a522; }
+.contact-channel-icon { display:grid; place-items:center; width:36px; height:36px; flex:0 0 36px; background:#f5f5f5; border-radius:50%; }
+.contact-channel-icon svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.contact-channel-icon-max { font-size:10px; font-weight:700; letter-spacing:-.04em; }
+.contact-channel-text { display:grid; gap:2px; min-width:0; line-height:1.35; }
+.contact-channel-text strong { font-size:14px; font-weight:600; overflow-wrap:anywhere; }
+.contact-channel-text>span { font-size:11px; color:#676767; }
+.contact-channel-arrow { margin-left:auto; padding-left:4px; font-size:20px; color:#777; }
+.contact-direct { display:grid; gap:2px; padding-top:10px; margin-top:14px; border-top:1px solid #e7e7e7; }
+.contact-channel-direct { min-height:56px; padding:6px 4px; border-color:transparent; }
+.contact-channel-direct .contact-channel-icon { background:transparent; }
+.contact-channel-direct .contact-channel-text strong { font-size:13px; }
+.contact-quote { margin-top:16px; padding:12px 14px; border-radius:10px; background:#fff8db; }
+.contact-quote p { font-size:12px; line-height:1.5; color:#514a34; }
+.contact-copy { display:inline-flex; align-items:center; min-height:44px; margin-bottom:-7px; padding:6px 0; border:0; background:none; color:#202020; font-size:12px; font-weight:600; text-decoration:underline; text-underline-offset:4px; }
+.contact-copy-status:empty { display:none; }
+.contact-copy-fallback { width:100%; min-height:120px; margin-top:10px; padding:10px; resize:vertical; font:12px/1.5 Montserrat,Arial,sans-serif; }
+#contact .contact-box { padding:28px; border:0; background:#fff; color:#202020; }
+#contact .contact-box>strong { font-size:22px; font-weight:600; }
+#contact .contact-box>p { margin-top:10px; color:#656565; font-size:13px; line-height:1.65; }
+#contact .contact-box .contact-options { margin-top:20px; }
+@media(min-width:601px) and (max-height:700px) {
+  .contact-dialog-inner { padding:24px; }
+  .contact-dialog .contact-options { margin-top:16px; }
+  .contact-dialog .contact-channel { min-height:58px; }
+  .contact-dialog .contact-channel-direct { min-height:52px; }
+}
+@media(max-width:600px) {
+  .contact-dialog { width:calc(100% - 24px); max-height:calc(100vh - 24px); max-height:calc(100dvh - 24px); border-radius:16px; }
+  .contact-dialog-inner { padding:24px 20px 18px; }
+  .contact-close { right:8px; top:8px; }
+  .contact-dialog #contactDialogTitle { font-size:25px; margin-top:17px; }
+  .contact-eyebrow { font-size:10px; }
+  .contact-channel { padding-inline:10px; gap:10px; }
+  .contact-channel-direct { padding-inline:0; }
+  #contact .contact-box { padding:24px 20px; }
+}
+@media(max-width:360px) {
+  .contact-dialog-inner { padding-inline:16px; }
+  .contact-dialog #contactDialogTitle { font-size:23px; }
+  .contact-channel-text strong { font-size:13px; }
+  .contact-channel-direct .contact-channel-text strong { font-size:12px; }
+  .contact-channel-icon { width:30px; height:30px; flex-basis:30px; }
+  .contact-channel-arrow { font-size:18px; }
+  #contact .contact-box { padding-inline:16px; }
+}

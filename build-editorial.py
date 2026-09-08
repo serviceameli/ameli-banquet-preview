@@ -49,9 +49,11 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.c
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260908p">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260908q">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
-html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908i"></script>\n</body>')
+html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908q"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
+html = html.replace('</body>', '  <script src="ameli-contact.js?v=20260908q"></script>\n</body>')
 for filename, description in {
     'dishware-clear-glass.png': 'Прозрачные бокалы для классической сервировки',
     'dishware-clear-plate-black.png': 'Прозрачная тарелка с чёрным краем',
@@ -309,5 +311,38 @@ html = html.replace("      inputIds.forEach(id => inputs[id].addEventListener('i
         inputs[id].addEventListener('input', update);
       });""")
 html = html.replace("          get('textileMainStatus').textContent = 'Комплекта достаточно';\n        }\n      }", "          get('textileMainStatus').textContent = 'Комплекта достаточно';\n        }\n        root.dispatchEvent(new Event('calculationupdate'));\n      }")
+# Render the same verified contact channels in the footer and in one native dialog.
+channels = json.loads((root / 'contact-channels.json').read_text())
+options = (root / 'contact-options.html').read_text()
+max_channel = ''
+if channels['max']:
+    assert channels['max'].startswith(('https://max.ru/', 'https://max.me/'))
+    max_channel = ('<a class="contact-channel" data-contact-channel="max" href="' + escape(channels['max'], quote=True) + '" target="_blank" rel="noopener">'
+                   '<span class="contact-channel-icon contact-channel-icon-max" aria-hidden="true">MAX</span>'
+                   '<span class="contact-channel-text"><strong>MAX</strong><span>Ameli Rental</span></span>'
+                   '<span class="contact-channel-arrow" aria-hidden="true">↗</span></a>')
+options = options.replace('{{max_channel}}', max_channel)
+for key, value in channels.items():
+    if value:
+        options = options.replace('{{' + key + '}}', escape(value, quote=True))
+assert '{{' not in options
+contact_box = ('<aside class="contact-box"><strong>Связаться с менеджером</strong>'
+               '<p>Для первого разговора достаточно фотографий зала и краткого описания задачи. Выберите удобный способ связи.</p>'
+               + options + '</aside>')
+html, contact_count = re.subn(r'<aside class="contact-box">.*?</aside>', lambda _: contact_box, html, flags=re.S)
+assert contact_count == 1
+# Keep navigation and interactive controls intact; only sales CTAs open the chooser.
+def contact_trigger(match):
+    tag = match.group()
+    classes = re.search(r'class="([^"]+)"', tag)
+    if not classes or 'button' not in classes.group(1).split():
+        return tag
+    tag = re.sub(r'href="[^"]+"', 'href="#contact"', tag)
+    tag = re.sub(r' (?:target|rel)="[^"]*"', '', tag)
+    return tag[:-1] + ' data-contact-open>'
+html, _ = re.subn(r'<a\b[^>]*href="(?:#contact|https://t\.me/amelirental|https://wa\.me/79850843855)"[^>]*>', contact_trigger, html)
+assert html.count(' data-contact-open') == 7
+dialog = (root / 'contact-dialog.html').read_text().replace('{{contact_options}}', options)
+html = html.replace('  <div class="mobile-cta">', dialog + '\n\n  <div class="mobile-cta">', 1)
 (root / 'modern-redesign.html').write_text(html)
 print('Created modern-redesign.html; source page unchanged.')

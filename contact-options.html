@@ -1,0 +1,28 @@
+<div class="contact-options" aria-label="Способы связи с менеджером">
+  <div class="contact-messengers">
+    <a class="contact-channel" data-contact-channel="telegram" href="{{telegram}}" target="_blank" rel="noopener">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m21 3-4 18-6-5-3 3 1-6 8-7-10 6-5-2Z"/></svg></span>
+      <span class="contact-channel-text"><strong>Telegram</strong><span>@amelirental</span></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-channel" data-contact-channel="whatsapp" href="{{whatsapp}}" target="_blank" rel="noopener">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.1-4.7A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="m8 7 2 3-1.4 1.4a8 8 0 0 0 4 4L14 14l3 2c-.5 2-2 2-3 1.5A12 12 0 0 1 6.5 10C6 9 6 7.5 8 7Z"/></svg></span>
+      <span class="contact-channel-text"><strong>WhatsApp</strong><span>Ameli Rental</span></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <!-- MAX is rendered only after the owner's direct chat URL is supplied. -->
+{{max_channel}}
+  </div>
+  <div class="contact-direct">
+    <a class="contact-channel contact-channel-direct" data-contact-channel="phone" href="tel:{{phone}}">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 3 3 5-3 2a16 16 0 0 0 7 7l2-3 5 3-1 4C10 22 2 14 3 4Z"/></svg></span>
+      <span class="contact-channel-text"><span>Позвонить</span><strong>{{phone_display}}</strong></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-channel contact-channel-direct" data-contact-channel="email" href="mailto:{{email}}">
+      <span class="contact-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span>
+      <span class="contact-channel-text"><span>Написать на почту</span><strong>{{email}}</strong></span>
+      <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</div>
