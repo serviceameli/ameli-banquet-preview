@@ -46,6 +46,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908i"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
@@ -75,6 +76,43 @@ furniture = re.sub(r'<img src="premium-assets/textile-chair-covers\.png"[^>]*>',
                   'sizes="(max-width:600px) 96px, (max-width:900px) 160px, (max-width:1406px) calc((91vw - 28px) * .301), 377px" '
                   'width="1000" height="1500" loading="lazy" decoding="async" alt="Зелёные стулья «Марсель» с золотистым каркасом у столов со светлыми скатертями">', furniture)
 html = html[:furniture_start] + furniture + html[furniture_end:]
+# Keep every original category explanation; use four cards beside a photograph
+# and a fifth card below it, so the extra point does not add a full desktop row.
+category_icons = {re.search(r'data-key="([^"]+)"', svg).group(1): svg
+                  for svg in re.findall(r'<svg\b.*?</svg>', (root / 'category-icons.html').read_text(), flags=re.S)}
+category_icons['palette'] = furniture_icons[1].replace('furniture-icon', 'category-icon')
+category_icons['covers'] = furniture_icons[2].replace('furniture-icon', 'category-icon')
+category_specs = [
+    ('textile', ['tablecloth', 'drapery', 'cushion', 'covers', 'sewing'],
+     'premium-assets/textile-banquet-set-1200.webp', 'premium-assets/textile-banquet-set-480.webp', 1200, 800,
+     'Бархатные скатерти и салфетки в согласованной зелёной палитре в оформлении зала'),
+    ('tableware', ['dishware', 'setting', 'palette', 'care', 'calculate'],
+     'premium-assets/space-showcase/light-detail-1600.webp', 'premium-assets/space-showcase/light-detail-800.webp', 1600, 1067,
+     'Фигурные белые тарелки, прозрачные бокалы и золотистые приборы в готовой сервировке'),
+    ('ceremony', ['modular', 'instructions', 'quick', 'storage', 'palette'],
+     'premium-assets/ceremony-terrace-960.webp', 'premium-assets/ceremony-terrace-480.webp', 960, 1280,
+     'Зона церемонии на террасе с волнообразным текстильным фоном и кремовыми пуфами'),
+]
+for category, icon_keys, large, small, width, height, alt in category_specs:
+    pattern = (rf'<div class="furniture-top {category}-top">\s*<div>(.*?)</div>\s*'
+               rf'<div class="furniture-points {category}-points">(.*?)</div>\s*</div>')
+    match = re.search(pattern, html, flags=re.S)
+    assert match, f'Missing {category} introduction'
+    intro, points = match.groups()
+    lead_start = intro.index('<p class="lead">')
+    intro = '<div class="category-heading">' + intro[:lead_start] + '</div>' + intro[lead_start:]
+    points = re.findall(r'<article class="furniture-point"><b>\d+</b><div><strong>(.*?)</strong><p>(.*?)</p></div></article>', points, flags=re.S)
+    assert len(points) == len(icon_keys) == 5, f'Expected all five {category} points'
+    cards = [f'<article class="category-card{ " category-final" if i == 4 else ""}">{category_icons[key]}<h3>{title}</h3><p>{body}</p></article>'
+             for i, ((title, body), key) in enumerate(zip(points, icon_keys))]
+    small_width = 800 if category == 'tableware' else 480
+    photo = (f'<figure class="category-photo"><img src="{large}" srcset="{small} {small_width}w, {large} {width}w" '
+             'sizes="(max-width:600px) 96px, (max-width:900px) 160px, (max-width:1406px) calc((91vw - 28px) * .301), 377px" '
+             f'width="{width}" height="{height}" loading="lazy" decoding="async" alt="{escape(alt)}"></figure>')
+    story = ('<div class="category-story"><div class="category-story-copy"><div class="category-intro">' + intro + '</div>'
+             '<div class="category-benefits">' + ''.join(cards[:4]) + '</div></div>'
+             '<div class="category-visual-column">' + photo + cards[4] + '</div></div>')
+    html = html[:match.start()] + story + html[match.end():]
 # Recompose the existing catalogue fragments in HTML without altering product pixels.
 def textile_fragment(class_name, box, label):
     x, y, width, height = box
