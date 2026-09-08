@@ -48,7 +48,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.cs
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909d">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909f">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909a">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
@@ -214,7 +214,7 @@ for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points, service_
     photograph = opening_image(slug, alt, sizes)
     photo_class = 'offer-service-photo' + (' offer-service-photo-full' if slug in ('visualization-layout', 'velvet-napkin', 'forest-ceremony') else '')
     service_cards.append(f'          <article class="offer-service"><figure class="{photo_class}">{photograph}</figure>'
-                         f'<div class="offer-service-heading"><span class="offer-index" aria-hidden="true">{number:02}</span><h3>{title}</h3></div><p>{copy}</p></article>')
+                         f'<div class="offer-service-heading"><h3>{title}</h3></div><p>{copy}</p></article>')
 offer = (root / 'opening-offer.html').read_text()
 offer_values = {
     'LABEL': re.search(r'<p class="label">.*?</p>', offer_source).group(),
