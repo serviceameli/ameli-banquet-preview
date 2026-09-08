@@ -1,0 +1,39 @@
+/* Keep section introductions in one reading column, immediately below their titles. */
+#reasons .payback-head,
+#before-after .before-after-head,
+#color-combinations>.shell>.section-head { display:block; }
+#color-combinations>.shell>.section-head h2 { max-width:920px; }
+
+#business .offer-heading,
+#visualization .visual-sales-head,
+#textile-payback .textile-payback-head,
+#order .order-head {
+  display:grid; grid-template-columns:minmax(0,1fr); gap:12px;
+  align-items:start;
+}
+#business .offer-heading h2 { max-width:780px; }
+#business .offer-heading .offer-intro { max-width:900px; margin:0; }
+#visualization .visual-sales-head h2 { max-width:none; }
+#visualization .visual-sales-head .lead { max-width:1160px; margin:0; text-wrap:pretty; }
+#textile-payback .textile-payback-head h2 { max-width:none; }
+#textile-payback .textile-payback-head .lead { max-width:1120px; margin:0; }
+#textile-payback .textile-payback-head .lead strong,
+#textile-payback .textile-payback-head .lead span { display:inline; margin:0; }
+#order .order-head .lead { max-width:1080px; margin:0; }
+
+@media(min-width:1001px) and (max-height:750px) {
+  #textile-payback .textile-payback-head,
+  #order .order-head { gap:8px; margin-bottom:10px; }
+  #textile-payback .textile-payback-head .label,
+  #order .order-head .label { margin-bottom:4px; }
+  #textile-payback { padding-block:12px; }
+  #order { padding-block:11px; }
+  #order .order-flow { row-gap:10px; }
+  #order .order-result { margin-top:8px; }
+}
+@media(max-width:600px) {
+  #business .offer-heading,
+  #visualization .visual-sales-head,
+  #textile-payback .textile-payback-head,
+  #order .order-head { gap:12px; }
+}

@@ -50,6 +50,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260908p">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260908q">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909a">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908q"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
@@ -249,6 +250,12 @@ for old_icon, icon_id in zip(re.findall(r'<span class="payback-icon".*?</span>',
     benefit_factors = benefit_factors.replace(old_icon, f'<svg class="benefit-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#benefit-{icon_id}"/></svg>', 1)
 benefits = (root / 'business-benefits.html').read_text().replace('{{FACTORS}}', benefit_factors)
 html = html[:benefits_start] + benefits.rstrip() + '\n\n' + html[benefits_end:]
+# The colour controls and examples already explain the combinations; remove the redundant introduction.
+combinations_start = html.index('    <section class="section dark color-combinations-section" id="color-combinations">')
+combinations_end = html.index('</section>', combinations_start)
+combinations, removed = re.subn(r'\s*<p class="lead">.*?</p>', '', html[combinations_start:combinations_end], count=1, flags=re.S)
+assert removed == 1
+html = html[:combinations_start] + combinations + html[combinations_end:]
 # The compact calculator reuses the original field IDs and calculation logic.
 calculator_start = html.index('    <section class="section soft textile-payback-section"')
 calculator_end = html.index('    <section class="section order-section"', calculator_start)
