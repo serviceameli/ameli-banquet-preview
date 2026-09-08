@@ -17,6 +17,11 @@ html = html.replace('<p class="lead">Помогаем площадкам<br>вы
 html = html.replace('example-gallery chair-gallery', 'example-gallery classic-gallery')
 html = html.replace('<div class="example-gallery">', '<div class="example-gallery tables-gallery">', 1)
 html = html.replace('<div class="example-gallery">', '<div class="example-gallery poufs-gallery">', 1)
+# Fit the complete source photo to the same presentation frame as neighbouring chairs.
+# The SVG only positions the original bitmap; the furniture pixels are unchanged.
+html = re.sub(r'<img src="premium-assets/marseille-blue-silver\.webp"[^>]*>',
+              '<svg class="marseille-source-photo" viewBox="0 0 840 1240" width="840" height="1240" role="img" aria-label="Стул Марсель с голубой обивкой и серебряным каркасом">'
+              '<image href="premium-assets/marseille-blue-silver-full.webp" x="-30" y="88" width="1024" height="1024"/></svg>', html)
 for field, name in [('textileRoundQty', 'Количество круглых скатертей'), ('textileRectQty', 'Количество прямоугольных скатертей'), ('textileNapkinQty', 'Количество салфеток')]:
     html = html.replace(f'<input id="{field}"', f'<input aria-label="{name}" id="{field}"')
 html = html.replace('<div class="combination-grid" id="combinationGrid"', '<div class="combination-grid" id="combinationGrid"')
@@ -34,7 +39,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
       header.addEventListener('focusout', event => { if (event.relatedTarget && !header.contains(event.relatedTarget)) close(); });""")
 # Second pass: apply the approved UX audit while retaining the original text source.
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908b"')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908g">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908h">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
