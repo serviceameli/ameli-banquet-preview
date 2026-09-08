@@ -49,7 +49,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.c
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260908p">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260908q">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909a">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908q"></script>\n</body>')
@@ -321,7 +321,9 @@ html = html.replace("          get('textileMainStatus').textContent = 'Комп�
 # Render the same verified contact channels in the footer and in one native dialog.
 channels = json.loads((root / 'contact-channels.json').read_text())
 options = (root / 'contact-options.html').read_text()
-max_channel = ''
+max_channel = ('<div class="contact-channel contact-channel-pending" data-contact-pending="max" role="group" aria-disabled="true">'
+               '<span class="contact-channel-icon contact-channel-icon-max" aria-hidden="true">MAX</span>'
+               '<span class="contact-channel-text"><strong>MAX</strong><span>Скоро подключим</span></span></div>')
 if channels['max']:
     assert channels['max'].startswith(('https://max.ru/', 'https://max.me/'))
     max_channel = ('<a class="contact-channel" data-contact-channel="max" href="' + escape(channels['max'], quote=True) + '" target="_blank" rel="noopener">'
