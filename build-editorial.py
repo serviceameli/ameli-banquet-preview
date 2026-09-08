@@ -45,7 +45,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908j">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908i"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
@@ -69,8 +69,11 @@ furniture_icons = re.findall(r'<svg\b.*?</svg>', (root / 'furniture-icons.html')
 assert len(furniture_icons) == 4
 for number, icon in enumerate(furniture_icons, start=1):
     furniture = furniture.replace(f'<b>{number:02}</b>', icon, 1)
-furniture = furniture.replace('alt="Как меняется чехол на стуле: сменные чехлы Ameli"', 'alt="Бархатные сменные чехлы на банкетных стульях"')
-furniture = furniture.replace('src="premium-assets/textile-chair-covers.png"', 'src="premium-assets/furniture-chair-covers.webp"')
+# Real photograph IMG_0169.jpg from the owner's shared shoot, compressed without retouching.
+furniture = re.sub(r'<img src="premium-assets/textile-chair-covers\.png"[^>]*>',
+                  '<img src="premium-assets/furniture-marseille-set-1000.webp" srcset="premium-assets/furniture-marseille-set-480.webp 480w, premium-assets/furniture-marseille-set-1000.webp 1000w" '
+                  'sizes="(max-width:600px) 96px, (max-width:900px) 160px, (max-width:1406px) calc((91vw - 28px) * .301), 377px" '
+                  'width="1000" height="1500" loading="lazy" decoding="async" alt="Зелёные стулья «Марсель» с золотистым каркасом у столов со светлыми скатертями">', furniture)
 html = html[:furniture_start] + furniture + html[furniture_end:]
 # Recompose the existing catalogue fragments in HTML without altering product pixels.
 def textile_fragment(class_name, box, label):
