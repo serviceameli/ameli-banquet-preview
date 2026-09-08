@@ -48,7 +48,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.cs
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260908p">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909a">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
@@ -193,21 +193,25 @@ problem_end = html.index('    <section class="section offer-section" id="busines
 problem = html[problem_start:problem_end].replace('class="section"', 'class="section soft"', 1)
 problem = re.sub(r'\n        <figure class="problem-photo">.*?</figure>', '', problem, flags=re.S)
 html = html[:problem_start] + problem + html[problem_end:]
-# Separate planning from four tangible product categories, each with a supplied photograph.
+# Give each of the five original services its own supplied image.
 offer_start = html.index('    <section class="section offer-section" id="business">')
 offer_end = html.index('    <section class="section soft about-section"', offer_start)
 offer_source = html[offer_start:offer_end]
 offer_points = re.findall(r'<article class="offer-item"><b>\d+</b><div><strong>(.*?)</strong><p>(.*?)</p></div></article>', offer_source, flags=re.S)
 assert len(offer_points) == 5, 'Preserve all five original offer explanations'
 service_photos = [
+    ('visualization-layout', 'Визуализация светлого зала с двумя группами фигурных столов и голубыми стульями'),
     ('banquet-chairs', 'Банкетная мебель со светлой обивкой в готовом оформлении зала'),
     ('draped-buffet', 'Фигурный фуршетный стол в светлой драпировке с пуфами в интерьере'),
     ('pink-glass', 'Розовые бокалы и стаканы со светлой сервировкой стола'),
     ('silver-ceremony', 'Зона церемонии с зеркальным фоном, драпировкой и серебристыми пуфами'),
 ]
 service_cards = []
-for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points[1:], service_photos), start=2):
-    photograph = opening_image(slug, alt, '(max-width:400px) 36vw, (max-width:600px) 144px, (max-width:900px) calc((91vw - 24px) / 2), (max-width:1406px) calc((91vw - 54px) / 4), 307px')
+for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points, service_photos), start=1):
+    sizes = '(max-width:400px) 36vw, (max-width:600px) 144px, (max-width:1100px) calc((91vw - 24px) / 2), (max-width:1406px) calc((91vw - 72px) / 5), 242px'
+    if number == 1:
+        sizes = '(max-width:400px) 36vw, (max-width:600px) 144px, (max-width:1100px) 260px, (max-width:1406px) calc((91vw - 72px) / 5), 242px'
+    photograph = opening_image(slug, alt, sizes)
     service_cards.append(f'          <article class="offer-service"><figure class="offer-service-photo">{photograph}</figure>'
                          f'<div class="offer-service-heading"><span class="offer-index" aria-hidden="true">{number:02}</span><h3>{title}</h3></div><p>{copy}</p></article>')
 offer = (root / 'opening-offer.html').read_text()
@@ -215,7 +219,6 @@ offer_values = {
     'LABEL': re.search(r'<p class="label">.*?</p>', offer_source).group(),
     'HEADING': re.search(r'<h2>.*?</h2>', offer_source).group(),
     'INTRO': re.search(r'<p class="offer-intro">.*?</p>', offer_source).group(),
-    'PLAN_TITLE': offer_points[0][0], 'PLAN_COPY': offer_points[0][1],
     'SERVICES': '\n'.join(service_cards),
 }
 for key, value in offer_values.items():

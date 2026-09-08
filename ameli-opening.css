@@ -1,5 +1,5 @@
 /* An editorial opening: one complete room, a typographic problem section,
-   then four real photographic examples. All selectors stay within these sections. */
+   then five illustrated services. All selectors stay within these sections. */
 #hero { padding:36px 0 44px; }
 #hero .hero-grid { grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); gap:40px; align-items:center; }
 #hero .hero-copy { padding:0; }
@@ -41,14 +41,10 @@
 #business .label { margin-bottom:10px; font-size:.6875rem; }
 #business h2 { max-width:660px; font-size:2.125rem; line-height:1.15; }
 #business .offer-intro { margin:0; font-size:1rem; line-height:1.6; max-width:350px; }
-#business .offer-planning { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; padding:20px 0; border-block:1px solid var(--line); margin-bottom:26px; }
-#business .offer-planning-heading { display:grid; grid-template-columns:32px minmax(0,1fr); gap:14px; align-items:start; }
 #business .offer-index { color:#737373; font-size:.75rem; line-height:1.6; padding-top:3px; font-weight:500; }
-#business .offer-planning h3 { font-size:1.0625rem; line-height:1.4; font-weight:600; letter-spacing:-.02em; max-width:440px; }
-#business .offer-planning p { font-size:.875rem; line-height:1.65; color:var(--muted); }
-#business .offer-services { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; align-items:start; }
+#business .offer-services { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:18px; align-items:start; }
 #business .offer-service { min-width:0; }
-#business .offer-service-photo { aspect-ratio:3/4; overflow:hidden; border-radius:12px; background:var(--soft); }
+#business .offer-service-photo { aspect-ratio:4/5; overflow:hidden; border-radius:12px; background:var(--soft); }
 #business .offer-service-photo img { width:100%; height:100%; object-fit:cover; object-position:center bottom; }
 #business .offer-service-heading { display:grid; grid-template-columns:24px minmax(0,1fr); gap:8px; align-items:start; margin-top:16px; min-height:44px; }
 #business .offer-service h3 { font-size:1rem; line-height:1.4; font-weight:600; letter-spacing:-.02em; text-wrap:pretty; }
@@ -72,7 +68,13 @@
   #hero .hero-fact strong { display:inline; margin-right:6px; }
   #hero .hero-actions { flex-direction:column; align-items:start; gap:10px; }
   #problem .problem-item { padding-inline:16px; }
-  #business .offer-services { gap:14px; }
+}
+@media(min-width:601px) and (max-width:1100px) {
+  #business .offer-services { grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px 24px; }
+  #business .offer-service:first-child { grid-column:1/-1; display:grid; grid-template-columns:260px minmax(0,1fr); grid-template-rows:auto 1fr; gap:10px 28px; padding-bottom:28px; border-bottom:1px solid var(--line); }
+  #business .offer-service:first-child .offer-service-photo { grid-column:1; grid-row:1/3; }
+  #business .offer-service:first-child .offer-service-heading { grid-column:2; min-height:0; margin-top:16px; }
+  #business .offer-service:first-child p { grid-column:2; margin:0; }
 }
 @media(max-width:900px) {
   #hero { padding-block:28px 36px; }
@@ -90,9 +92,6 @@
   #business { padding-block:36px; }
   #business .offer-heading { grid-template-columns:1fr; gap:14px; margin-bottom:24px; }
   #business .offer-intro { max-width:550px; }
-  #business .offer-planning { gap:24px; }
-  #business .offer-services { grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px 24px; }
-  #business .offer-service-photo { aspect-ratio:3/4; }
 }
 @media(max-width:600px) {
   #hero { padding:24px 0 30px; }
@@ -121,10 +120,6 @@
   #problem .note p { font-size:.875rem; }
   #business .offer-heading { margin-bottom:20px; }
   #business .offer-intro { font-size:.9375rem; }
-  #business .offer-planning { grid-template-columns:1fr; gap:10px; padding:16px 0; margin-bottom:24px; }
-  #business .offer-planning-heading { grid-template-columns:24px minmax(0,1fr); gap:10px; }
-  #business .offer-planning h3 { font-size:.9375rem; }
-  #business .offer-planning p { font-size:.875rem; line-height:1.6; }
   #business .offer-services { grid-template-columns:1fr; gap:24px; }
   #business .offer-service { display:grid; grid-template-columns:clamp(112px,36vw,144px) minmax(0,1fr); gap:12px 16px; padding-bottom:24px; border-bottom:1px solid var(--line); }
   #business .offer-service:last-child { border:0; padding-bottom:0; }
