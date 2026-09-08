@@ -52,32 +52,22 @@ body { font-size:1rem; }
 .gallery-more:hover { background:#fff; border-color:var(--ink); }
 .example-gallery,.textile-grid,.tableware-showcase,.ceremony-grid,.visual-sales-grid { scroll-margin-top:20px; }
 
-/* Every enlarged image uses the original asset, with keyboard navigation. */
-.image-zoom { position:relative; display:block; width:100%; height:100%; border:0; padding:0; background:transparent; color:var(--ink); cursor:zoom-in; }
-.image-zoom img { width:100%; height:100%; }
-.zoom-hint { position:absolute; right:8px; bottom:8px; display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#fffe; box-shadow:0 1px 8px #0001; font-size:20px; pointer-events:none; }
-.image-zoom:focus-visible { outline-offset:-4px; border-radius:12px; }
-.ceremony-example>.image-zoom { height:auto; aspect-ratio:1.65; }
-.tableware-example.setting>.image-zoom { height:310px; padding:26px; }
-.tableware-example.setting>.image-zoom img { object-fit:contain; }
-.dishware-duo-item>.image-zoom { min-width:0; }
-.dishware-plate-set>.image-zoom { width:30%; }
-.dishware-plate-set .image-zoom img { width:100%; height:100%; object-fit:contain; }
-.dishware-plate-set .zoom-hint { width:26px; height:26px; right:0; bottom:0; font-size:18px; }
-.photo-viewer-open { overflow:hidden; }
-.photo-dialog { width:min(1120px,calc(100% - 48px)); max-width:none; max-height:calc(100dvh - 48px); margin:auto; padding:0; border:0; border-radius:14px; color:var(--ink); background:#fff; box-shadow:0 20px 90px #0006; }
-.photo-dialog::backdrop { background:rgba(14,14,14,.84); }
-.photo-dialog-panel { padding:12px 20px 22px; }
-.photo-dialog-toolbar { display:flex; justify-content:space-between; align-items:center; font-size:.875rem; color:var(--muted); padding-left:8px; }
-.photo-close,.photo-prev,.photo-next { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:48px; height:48px; border:0; border-radius:50%; background:#f3f3f3; color:var(--ink); }
-.photo-close:hover,.photo-prev:hover,.photo-next:hover { background:var(--accent); }
-.photo-dialog-stage { display:grid; grid-template-columns:48px minmax(0,1fr) 48px; align-items:center; gap:12px; margin-top:12px; }
-.photo-dialog-stage .photo-full { grid-column:2; grid-row:1; width:100%; height:min(68dvh,720px); object-fit:contain; }
-.photo-prev { grid-column:1; grid-row:1; }.photo-next { grid-column:3; grid-row:1; }
-#photoViewerCaption { max-width:780px; margin:18px auto 0; font-size:.875rem; line-height:1.6; text-align:center; }
+/* Compact ceremony gallery, using full photographs with no image viewer. */
+.ceremony-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px 24px; }
+.ceremony-example img { width:100%; height:auto; aspect-ratio:3/2; object-fit:contain; background:var(--soft); }
+.ceremony-example figcaption { gap:12px; align-items:baseline; }
+.ceremony-example figcaption>span { flex-shrink:0; }
+@media(max-width:1000px) {
+  .ceremony-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:600px) {
+  .ceremony-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 14px; }
+  .ceremony-example figcaption { gap:8px; padding-top:10px; }
+  .ceremony-example figcaption strong { font-size:.8125rem; line-height:1.5; }
+}
+
 .honest-comparison { grid-template-columns:1fr 1fr; gap:28px; }
 .honest-comparison .comparison-frame { display:block; }
-.honest-comparison .image-zoom { height:auto; aspect-ratio:1.5; }
 .honest-comparison img { aspect-ratio:1.5; object-fit:cover; filter:none; }
 .honest-comparison figcaption { display:flex; flex-direction:column; align-items:start; gap:8px; }
 .honest-comparison figcaption span { font-size:.75rem; letter-spacing:.06em; }
@@ -131,7 +121,6 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
   :root { --header-height:75px; }
   .nav-links>a,.nav-links .button { font-size:.875rem; }
   .section { padding-block:72px; }
-  .tableware-example.setting>.image-zoom { height:260px; }
 }
 @media(max-width:900px) {
   .about-stats { grid-template-columns:1fr 1fr; gap:30px; }
@@ -169,8 +158,6 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
   .example-shot figcaption { font-size:.75rem; }
   .model-body strong { font-size:.8125rem; }
   .textile-materials li { font-size:.75rem; padding:7px 10px; }
-  .tableware-example.setting>.image-zoom { height:280px; padding:25px; }
-  .ceremony-example>.image-zoom { aspect-ratio:1.5; }
   .honest-comparison { grid-template-columns:1fr; gap:30px; }
   .honest-comparison figcaption { gap:6px; }
   .comparison-explanation { margin-top:24px; }
@@ -205,12 +192,6 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
   .textile-scenario output { font-size:.8125rem; }
   .textile-result-investment { align-items:start; }
   .textile-result-investment strong { font-size:1.125rem; white-space:nowrap; }
-  .photo-dialog { width:calc(100% - 20px); max-height:calc(100dvh - 20px); border-radius:10px; }
-  .photo-dialog-panel { padding:8px 12px 20px; }
-  .photo-dialog-stage { grid-template-columns:1fr 1fr; gap:12px; }
-  .photo-dialog-stage .photo-full { grid-column:1/-1; grid-row:1; height:55dvh; }
-  .photo-prev { grid-column:1; grid-row:2; justify-self:end; }.photo-next { grid-column:2; grid-row:2; }
-  #photoViewerCaption { margin-top:14px; font-size:.8125rem; }
   .contact-actions .button { padding-inline:12px; }
   .contact-details { grid-template-columns:1fr; }
   .contact-detail>a { font-size:1rem; }
@@ -221,6 +202,6 @@ footer { font-size:.75rem; letter-spacing:.02em; line-height:1.7; }
   .calc-live-summary output { font-size:.8125rem; }
 }
 @media print {
-  .section-jump-nav,.calc-live-summary,.gallery-more,.zoom-hint,.photo-dialog { display:none!important; }
+  .section-jump-nav,.calc-live-summary,.gallery-more { display:none!important; }
   .example-gallery>[hidden],.textile-grid>[hidden],.tableware-showcase>[hidden],.ceremony-grid>[hidden],.visual-sales-grid>[hidden] { display:block!important; }
 }

@@ -1,4 +1,6 @@
 from pathlib import Path
+from html import escape
+import json
 import re
 
 root = Path(__file__).resolve().parent
@@ -31,10 +33,10 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
       document.addEventListener('click', event => { if (!header.contains(event.target)) close(); });
       header.addEventListener('focusout', event => { if (event.relatedTarget && !header.contains(event.relatedTarget)) close(); });""")
 # Second pass: apply the approved UX audit while retaining the original text source.
-html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260907"')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260907">\n</head>')
-html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260907"')
-html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260907"></script>\n</body>')
+html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908"')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908">\n</head>')
+html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908"')
+html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908"></script>\n</body>')
 for filename, description in {
     'dishware-clear-glass.png': 'Прозрачные бокалы для классической сервировки',
     'dishware-clear-plate-black.png': 'Прозрачная тарелка с чёрным краем',
@@ -45,6 +47,21 @@ for filename, description in {
 }.items():
     html = re.sub(r'(<img src="premium-assets/' + re.escape(filename) + r'"[^>]*?)alt=""', r'\1alt="' + description + '"', html)
 html = html.replace('class="dishware-duo" role="img"', 'class="dishware-duo" role="group"')
+# Use compressed originals supplied by the owner; retain complete compositions.
+ceremony_images = json.loads((root / 'ceremony-images.json').read_text())
+ceremony_figures = []
+for number, item in enumerate(ceremony_images, start=1):
+    small, large = item['variants']
+    ceremony_figures.append(
+        f'          <figure class="ceremony-example"><img src="{large["path"]}" '
+        f'srcset="{small["path"]} {small["width"]}w, {large["path"]} {large["width"]}w" '
+        'sizes="(max-width:600px) calc((100vw - 54px) / 2), (max-width:1000px) calc((91vw - 24px) / 2), (max-width:1406px) calc((91vw - 48px) / 3), 411px" '
+        f'width="{large["width"]}" height="{large["height"]}" loading="lazy" decoding="async" alt="{escape(item["alt"])}">'
+        f'<figcaption><span>{number:02}</span><strong>{escape(item["title"])}</strong></figcaption></figure>'
+    )
+ceremony_start = html.index('        <div class="ceremony-grid"')
+ceremony_end = html.index('\n        </div>', ceremony_start)
+html = html[:ceremony_start] + '        <div class="ceremony-grid" aria-label="Примеры фотозон и зон церемонии">\n' + '\n'.join(ceremony_figures) + html[ceremony_end:]
 hero_start, hero_end = html.index('<section class="hero"'), html.index('<section class="section" id="problem">')
 hero = html[hero_start:hero_end].replace('s2-banquet-hall.jpeg', 's4-hall-toile.jpg').replace('width="1280" height="854"', 'width="852" height="1280"')
 html = html[:hero_start] + hero + html[hero_end:]

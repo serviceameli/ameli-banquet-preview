@@ -1,0 +1,140 @@
+[
+  {
+    "source": "арка волна с лавками.png",
+    "source_width": 1536,
+    "source_height": 1024,
+    "source_bytes": 2898413,
+    "slug": "modular-neutral",
+    "title": "Модульная зона церемонии",
+    "alt": "Белая модульная зона церемонии с проходом и скамьями",
+    "variants": [
+      {
+        "path": "premium-assets/ceremony-modular-neutral-600.webp",
+        "width": 600,
+        "height": 400,
+        "bytes": 70994
+      },
+      {
+        "path": "premium-assets/ceremony-modular-neutral-1200.webp",
+        "width": 1200,
+        "height": 800,
+        "bytes": 232118
+      }
+    ]
+  },
+  {
+    "source": "Колонны жемчуг + рюфики.png",
+    "source_width": 2528,
+    "source_height": 1696,
+    "source_bytes": 2831603,
+    "slug": "floral-columns",
+    "title": "Цветочные колонны",
+    "alt": "Зона церемонии с цветочными колоннами",
+    "variants": [
+      {
+        "path": "premium-assets/ceremony-floral-columns-600.webp",
+        "width": 600,
+        "height": 403,
+        "bytes": 65636
+      },
+      {
+        "path": "premium-assets/ceremony-floral-columns-1200.webp",
+        "width": 1200,
+        "height": 805,
+        "bytes": 180194
+      }
+    ]
+  },
+  {
+    "source": "Арка жемчуг + желт.png",
+    "source_width": 1264,
+    "source_height": 848,
+    "source_bytes": 882240,
+    "slug": "arch",
+    "title": "Арочная конструкция",
+    "alt": "Арочная конструкция с кремовыми пуфами",
+    "variants": [
+      {
+        "path": "premium-assets/ceremony-arch-600.webp",
+        "width": 600,
+        "height": 403,
+        "bytes": 79284
+      },
+      {
+        "path": "premium-assets/ceremony-arch-1200.webp",
+        "width": 1200,
+        "height": 805,
+        "bytes": 226496
+      }
+    ]
+  },
+  {
+    "source": "полярис жемчуг + роз пуф.jpeg",
+    "source_width": 1264,
+    "source_height": 848,
+    "source_bytes": 769103,
+    "slug": "draped-backdrop",
+    "title": "Текстильный фон",
+    "alt": "Текстильная фотозона с розовыми пуфами",
+    "variants": [
+      {
+        "path": "premium-assets/ceremony-draped-backdrop-600.webp",
+        "width": 600,
+        "height": 403,
+        "bytes": 59948
+      },
+      {
+        "path": "premium-assets/ceremony-draped-backdrop-1200.webp",
+        "width": 1200,
+        "height": 805,
+        "bytes": 152874
+      }
+    ]
+  },
+  {
+    "source": "Арка бел+зел.png",
+    "source_width": 1264,
+    "source_height": 848,
+    "source_bytes": 2110758,
+    "slug": "arch-green",
+    "title": "Арка и зелёные пуфы",
+    "alt": "Белая арка с зелёными пуфами в зоне церемонии",
+    "variants": [
+      {
+        "path": "premium-assets/ceremony-arch-green-600.webp",
+        "width": 600,
+        "height": 403,
+        "bytes": 62088
+      },
+      {
+        "path": "premium-assets/ceremony-arch-green-1200.webp",
+        "width": 1200,
+        "height": 805,
+        "bytes": 168686
+      }
+    ]
+  },
+  {
+    "source": "арка волна розовая + фиолет.png",
+    "source_width": 1264,
+    "source_height": 848,
+    "source_bytes": 902758,
+    "slug": "wave-pink",
+    "title": "Розовая и сиреневая палитра",
+    "alt": "Розовая модульная зона церемонии с сиреневыми пуфами",
+    "variants": [
+      {
+        "path": "premium-assets/ceremony-wave-pink-600.webp",
+        "width": 600,
+        "height": 403,
+        "bytes": 80272
+      },
+      {
+        "path": "premium-assets/ceremony-wave-pink-1200.webp",
+        "width": 1200,
+        "height": 805,
+        "bytes": 242316
+      }
+    ]
+  }
+]
