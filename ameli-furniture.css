@@ -1,0 +1,45 @@
+/* A compact furniture introduction with four clear benefits and one supporting photo. */
+#furniture { padding-block:28px; scroll-margin-top:-24px; }
+#furniture .furniture-story { grid-template-columns:minmax(0,1fr) minmax(240px,.43fr); gap:28px; align-items:stretch; }
+#furniture .furniture-story-copy { min-width:0; }
+#furniture .label { margin-bottom:8px; font-size:.6875rem; line-height:1.5; }
+#furniture h2 { font-size:2.125rem; line-height:1.15; }
+#furniture .furniture-intro>.lead { margin-top:12px; font-size:.9375rem; line-height:1.6; max-width:720px; }
+#furniture .furniture-benefits { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:20px 0 0; }
+#furniture .furniture-benefit { grid-template-columns:44px minmax(0,1fr); align-content:start; gap:8px 12px; padding:16px; border:1px solid #e0e0e0; border-radius:12px; background:#fff; }
+#furniture .furniture-icon { grid-column:1; grid-row:1; width:44px; height:44px; color:var(--ink); }
+#furniture .furniture-benefit h3 { grid-column:2; align-self:center; font-size:1rem; line-height:1.35; font-weight:600; text-wrap:pretty; }
+#furniture .furniture-benefit p { grid-column:1/-1; margin:0; font-size:.875rem; line-height:1.55; }
+#furniture .chair-change-media { position:relative; min-height:0; height:auto; max-height:none; aspect-ratio:auto; }
+#furniture .chair-change-media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 54%; }
+@media(min-width:901px) and (max-height:750px) {
+  #furniture { padding-block:22px; }
+  #furniture h2 { font-size:2rem; }
+  #furniture .furniture-intro>.lead { font-size:.875rem; }
+  #furniture .furniture-benefits { margin-top:16px; gap:10px; }
+  #furniture .furniture-benefit { padding:14px; }
+}
+@media(max-width:900px) {
+  #furniture .furniture-story { grid-template-columns:minmax(0,1fr) 160px; gap:20px 24px; }
+  #furniture .furniture-story-copy { display:contents; }
+  #furniture .furniture-intro { grid-column:1; grid-row:1; align-self:center; }
+  #furniture .furniture-benefits { grid-column:1/-1; grid-row:2; margin:0; }
+  #furniture .chair-change-media { grid-column:2; grid-row:1; aspect-ratio:720/1280; align-self:center; }
+  #furniture .chair-change-media img { object-fit:contain; object-position:center; }
+}
+@media(max-width:600px) {
+  #furniture { padding-block:14px; }
+  #furniture .furniture-story { grid-template-columns:minmax(0,1fr) 96px; gap:16px; }
+  #furniture .label { font-size:.625rem; letter-spacing:.07em; margin-bottom:6px; }
+  #furniture h2 { font-size:1.875rem; }
+  #furniture .furniture-intro>.lead { font-size:.875rem; line-height:1.55; margin-top:10px; }
+  #furniture .furniture-benefits { grid-template-columns:1fr; gap:8px; }
+  #furniture .furniture-benefit { grid-template-columns:36px minmax(0,1fr); gap:4px 12px; padding:10px 12px; }
+  #furniture .furniture-icon { width:36px; height:36px; grid-row:1; }
+  #furniture .furniture-benefit h3 { font-size:.9375rem; line-height:1.35; align-self:center; }
+  #furniture .furniture-benefit p { grid-column:1/-1; font-size:.875rem; line-height:1.5; }
+  #furniture .chair-change-media { border-radius:10px; }
+}
+@media print {
+  #furniture .furniture-benefit { break-inside:avoid; }
+}

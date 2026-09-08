@@ -45,6 +45,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908j">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908i"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
@@ -58,6 +59,19 @@ for filename, description in {
 }.items():
     html = re.sub(r'(<img src="premium-assets/' + re.escape(filename) + r'"[^>]*?)alt=""', r'\1alt="' + description + '"', html)
 html = html.replace('class="dishware-duo" role="img"', 'class="dishware-duo" role="group"')
+# Retain all four furniture explanations while making each benefit visually distinct.
+furniture_start = html.index('    <section class="section soft furniture-section" id="furniture">')
+furniture_end = html.index('    <section class="section furniture-examples-section"', furniture_start)
+furniture = html[furniture_start:furniture_end]
+furniture = furniture.replace('<div class="furniture-story-copy">', '<div class="furniture-story-copy"><div class="furniture-intro">', 1)
+furniture = furniture.replace('<ol class="furniture-benefits">', '</div><ol class="furniture-benefits">', 1)
+furniture_icons = re.findall(r'<svg\b.*?</svg>', (root / 'furniture-icons.html').read_text(), flags=re.S)
+assert len(furniture_icons) == 4
+for number, icon in enumerate(furniture_icons, start=1):
+    furniture = furniture.replace(f'<b>{number:02}</b>', icon, 1)
+furniture = furniture.replace('alt="Как меняется чехол на стуле: сменные чехлы Ameli"', 'alt="Бархатные сменные чехлы на банкетных стульях"')
+furniture = furniture.replace('src="premium-assets/textile-chair-covers.png"', 'src="premium-assets/furniture-chair-covers.webp"')
+html = html[:furniture_start] + furniture + html[furniture_end:]
 # Recompose the existing catalogue fragments in HTML without altering product pixels.
 def textile_fragment(class_name, box, label):
     x, y, width, height = box
