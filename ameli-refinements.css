@@ -47,6 +47,17 @@ body { font-size:1rem; }
 .gallery-more:hover { background:#fff; border-color:var(--ink); }
 .example-gallery,.textile-grid,.tableware-showcase,.ceremony-grid,.visual-sales-grid { scroll-margin-top:20px; }
 
+/* Original catalogue pixels, rearranged to fit the portrait product card. */
+.textile-grid .textile-image { aspect-ratio:4/5; }
+.textile-composition { position:relative; background:#fff; }
+.textile-composition .textile-fragment { display:block; position:absolute; overflow:hidden; }
+.textile-composition .textile-fragment>img { position:absolute; width:var(--fragment-width); max-width:none; height:auto; left:var(--fragment-left); top:var(--fragment-top); padding:0; object-fit:fill; pointer-events:none; }
+.textile-composition .textile-fragment-rect { width:88%; left:6%; top:6%; }
+.textile-composition .textile-fragment-round { width:62%; left:4%; top:38%; }
+.textile-composition .textile-fragment-napkin { width:30%; right:5%; top:34%; }
+.textile-swatch-grid { position:absolute; left:9%; right:9%; bottom:6%; display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:3px; }
+.textile-swatch-grid .textile-swatch { position:relative; border-radius:2px; box-shadow:inset 0 0 0 1px #00000008; }
+
 /* Compact ceremony gallery, using full photographs with no image viewer. */
 .ceremony-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px 24px; }
 .ceremony-example img { width:100%; height:auto; aspect-ratio:3/2; object-fit:contain; background:var(--soft); }

@@ -34,7 +34,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
       header.addEventListener('focusout', event => { if (event.relatedTarget && !header.contains(event.relatedTarget)) close(); });""")
 # Second pass: apply the approved UX audit while retaining the original text source.
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908b"')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908b">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908f">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
@@ -52,6 +52,36 @@ for filename, description in {
 }.items():
     html = re.sub(r'(<img src="premium-assets/' + re.escape(filename) + r'"[^>]*?)alt=""', r'\1alt="' + description + '"', html)
 html = html.replace('class="dishware-duo" role="img"', 'class="dishware-duo" role="group"')
+# Recompose the existing catalogue fragments in HTML without altering product pixels.
+def textile_fragment(class_name, box, label):
+    x, y, width, height = box
+    style = f'aspect-ratio:{width}/{height};--fragment-width:{1190 / width * 100:.6f}%;--fragment-left:{-x / width * 100:.6f}%;--fragment-top:{-y / height * 100:.6f}%'
+    return (f'<span class="textile-fragment {class_name}" style="{style}" role="img" aria-label="{escape(label)}">'
+            '<img src="premium-assets/textile-velvet-catalog.png" width="1190" height="649" loading="lazy" decoding="async" alt=""></span>')
+
+textile_products = ''.join(textile_fragment(name, box, label) for name, box, label in [
+    ('textile-fragment-rect', (96, 110, 336, 155), 'Прямоугольная скатерть из зелёного бархата'),
+    ('textile-fragment-round', (39, 296, 254, 171), 'Круглая скатерть из зелёного бархата'),
+    ('textile-fragment-napkin', (312, 270, 151, 213), 'Салфетка из зелёного бархата'),
+])
+swatch_columns = [508, 593, 678, 762, 847, 932, 1016]
+swatch_rows = [
+    (110, ['Чёрный', 'Тёмная ночь', 'Синий Ван Гога', 'Тихий океан', 'Голубой сапфир', 'Белый ландыш', 'Жемчужный']),
+    (214, ['Серо-серебряный', 'Пепельно-серый', 'Серый', 'Фиалковая', 'Сиреневая дымка', 'Пастельно-сиреневый', 'Бледно-розовый']),
+    (317, ['Малиновый', 'Розовая сакура', 'Фруктовый зефир', 'Кокосовый раф', 'Капучино', 'Латте', 'Миндальный латте']),
+    (419, ['Зелёный малахит', 'Зелёный чай', 'Шалфей', 'Светло-зелёный', 'Золотая горчица', 'Спелая дыня', 'Рыжая лиса']),
+    (522, ['Гранатовая', 'Красный дракон', 'Янтарная']),
+]
+textile_swatches = ''
+for row_index, (y, names) in enumerate(swatch_rows):
+    columns = swatch_columns[2:5] if row_index == 4 else swatch_columns
+    for x, name in zip(columns, names):
+        textile_swatches += textile_fragment('textile-swatch', (x, y, 53, 30), name)
+textile_composition = ('<div class="model-image textile-image textile-composition" role="group" aria-label="Скатерти, салфетка и палитра бархата">'
+                       + textile_products + '<div class="textile-swatch-grid" role="group" aria-label="31 оттенок бархата">'
+                       + textile_swatches + '</div></div>')
+html, textile_replacements = re.subn(r'<div class="model-image textile-image catalog"><img src="premium-assets/textile-velvet-catalog\.png"[^>]*></div>', textile_composition, html)
+assert textile_replacements == 1, 'Expected one textile catalogue card.'
 # Use compressed originals supplied by the owner; retain complete compositions.
 ceremony_images = json.loads((root / 'ceremony-images.json').read_text())
 ceremony_figures = []
