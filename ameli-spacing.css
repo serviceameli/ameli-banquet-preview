@@ -1,0 +1,51 @@
+/* A little more separation between sections, with the compact content preserved. */
+@media screen {
+  main>.section { padding-block:92px; }
+  #hero { padding-bottom:12px; }
+  #furniture,#textile,#tableware,#ceremony-zones,#order { padding-block:40px; }
+  #visualization { padding-block:44px; }
+  #before-after { padding-block:48px; }
+  #reasons { padding-block:52px; }
+  #textile-payback { padding-block:36px; }
+  #contact { padding-top:94px; }
+  .category-story { margin-bottom:38px; }
+}
+@media screen and (min-width:901px) and (max-height:750px) {
+  #hero { padding-bottom:32px; }
+  #furniture,#textile,#tableware,#ceremony-zones { padding-block:34px; }
+}
+@media screen and (min-width:1001px) and (max-height:750px) {
+  #before-after { padding-block:34px; }
+  #textile-payback { padding-block:18px; }
+  #order { padding-block:20px; }
+  #reasons { padding-block:22px; }
+  /* Move spare internal space to the edges without shrinking text or illustrations. */
+  #reasons .payback-head { margin-bottom:12px; }
+  #reasons .benefit-cycle { margin-bottom:14px; }
+  #reasons .payback-factors { row-gap:14px; }
+  #reasons .benefit-next { margin-top:12px; }
+}
+@media screen and (max-width:1200px) {
+  #contact { padding-top:78px; }
+}
+@media screen and (max-width:1000px) {
+  #order,#textile-payback { padding-block:52px; }
+}
+@media screen and (max-width:900px) {
+  #before-after { padding-block:48px; }
+}
+@media screen and (max-width:600px) {
+  main>.section { padding-block:56px; }
+  #furniture,#textile,#tableware,#ceremony-zones { padding-block:24px; }
+  #visualization { padding-block:32px; }
+  #before-after,#reasons { padding-block:48px; }
+  #order,#textile-payback { padding-block:52px; }
+  #contact { padding-top:66px; }
+  .category-story { margin-bottom:30px; }
+}
+@media screen and (max-width:600px) and (max-height:700px) {
+  #visualization { padding-block:24px; }
+}
+@media screen and (max-width:360px) and (max-height:640px) {
+  #visualization { padding-block:12px; }
+}
