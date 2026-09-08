@@ -40,7 +40,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
       header.addEventListener('focusout', event => { if (event.relatedTarget && !header.contains(event.relatedTarget)) close(); });""")
 # Second pass: apply the approved UX audit while retaining the original text source.
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260908b"')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908i">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260908n">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
@@ -160,6 +160,12 @@ ceremony_end = html.index('\n        </div>', ceremony_start)
 html = html[:ceremony_start] + '        <div class="ceremony-grid" aria-label="Примеры фотозон и зон церемонии">\n' + '\n'.join(ceremony_figures) + html[ceremony_end:]
 hero_start, hero_end = html.index('<section class="hero"'), html.index('<section class="section" id="problem">')
 hero = html[hero_start:hero_end].replace('s2-banquet-hall.jpeg', 's4-hall-toile.jpg').replace('width="1280" height="854"', 'width="852" height="1280"')
+# Put the trust facts next to the introduction, before the primary actions.
+hero_facts = re.search(r'\n        <div class="hero-facts".*?\n        </div>', hero, flags=re.S)
+assert hero_facts, 'Expected the hero trust facts'
+hero = hero[:hero_facts.start()] + hero[hero_facts.end():]
+hero = hero.replace('          <div class="hero-actions">',
+                    '\n'.join('  ' + line for line in hero_facts.group().strip('\n').splitlines()) + '\n          <div class="hero-actions">', 1)
 html = html[:hero_start] + hero + html[hero_end:]
 # A real-photo showcase with explicitly labelled empty-room visualizations.
 comparison_start = html.index('    <section class="section dark before-after-section"')
