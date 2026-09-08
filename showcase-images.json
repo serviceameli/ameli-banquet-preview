@@ -1,0 +1,194 @@
+{
+  "green-hall": {
+    "original": "IMG_0100.jpg",
+    "original_bytes": 7428999,
+    "original_size": [
+      5822,
+      3881
+    ],
+    "alt": "Общий план зала с зелёными скатертями и светлыми стульями Ameli",
+    "kind": "photograph",
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/green-hall-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 50730
+      },
+      {
+        "path": "premium-assets/space-showcase/green-hall-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 139662
+      }
+    ]
+  },
+  "green-angle": {
+    "original": "IMG_0042.jpg",
+    "original_bytes": 8126551,
+    "original_size": [
+      6240,
+      4160
+    ],
+    "alt": "Другой ракурс зала с зелёным текстилем и светлыми стульями",
+    "kind": "photograph",
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/green-angle-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 52084
+      },
+      {
+        "path": "premium-assets/space-showcase/green-angle-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 143882
+      }
+    ]
+  },
+  "green-detail": {
+    "original": "IMG_0065.jpg",
+    "original_bytes": 7912294,
+    "original_size": [
+      6240,
+      4160
+    ],
+    "alt": "Сервировка на зелёной скатерти: фигурные тарелки, бокалы и золотистые приборы",
+    "kind": "photograph",
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/green-detail-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 39000
+      },
+      {
+        "path": "premium-assets/space-showcase/green-detail-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 118018
+      }
+    ]
+  },
+  "light-hall": {
+    "original": "IMG_0138.jpg",
+    "original_bytes": 7927666,
+    "original_size": [
+      6196,
+      4131
+    ],
+    "alt": "Тот же зал со светлыми скатертями и зелёными стульями Ameli",
+    "kind": "photograph",
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/light-hall-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 44160
+      },
+      {
+        "path": "premium-assets/space-showcase/light-hall-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 122052
+      }
+    ]
+  },
+  "light-angle": {
+    "original": "IMG_0158.jpg",
+    "original_bytes": 7636778,
+    "original_size": [
+      6240,
+      4160
+    ],
+    "alt": "Расстановка столов со светлыми скатертями и зелёными стульями",
+    "kind": "photograph",
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/light-angle-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 41584
+      },
+      {
+        "path": "premium-assets/space-showcase/light-angle-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 112240
+      }
+    ]
+  },
+  "light-detail": {
+    "original": "IMG_0179.jpg",
+    "original_bytes": 6265302,
+    "original_size": [
+      6240,
+      4160
+    ],
+    "alt": "Сервировка на светлой скатерти с зелёными салфетками",
+    "kind": "photograph",
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/light-detail-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 28410
+      },
+      {
+        "path": "premium-assets/space-showcase/light-detail-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 70086
+      }
+    ]
+  },
+  "before-light": {
+    "original": "before-light.png",
+    "based_on": "IMG_0138.jpg",
+    "kind": "ai-visualization",
+    "alt": "Визуализация того же ракурса зала без банкетных столов, стульев и сервировки",
+    "original_size": [
+      1536,
+      1024
+    ],
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/before-light-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 26956
+      },
+      {
+        "path": "premium-assets/space-showcase/before-light-1536.webp",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 74502
+      }
+    ]
+  },
+  "before-green": {
+    "original": "before-green.png",
+    "based_on": "IMG_0100.jpg",
+    "kind": "ai-visualization",
+    "alt": "Визуализация того же ракурса зала без банкетных столов, стульев и сервировки",
+    "original_size": [
+      1536,
+      1024
+    ],
+    "variants": [
+      {
+        "path": "premium-assets/space-showcase/before-green-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 32228
+      },
+      {
+        "path": "premium-assets/space-showcase/before-green-1536.webp",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 80720
+      }
+    ]
+  }
+}

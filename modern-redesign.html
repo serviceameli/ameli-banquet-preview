@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">
   <link rel="stylesheet" href="ameli-order.css?v=20260908c">
   <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">
+  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -331,26 +332,83 @@
       </div>
     </section>
 
-    <section class="section dark before-after-section" id="before-after">
+    <section class="section dark before-after-section" id="before-after" aria-labelledby="showcase-title">
       <div class="shell">
         <div class="section-head before-after-head">
-          <div><p class="label">Преображение пространства</p><h2>Площадка до/после</h2></div>
-          <p class="lead">Один зал в одном ракурсе: без оформления и с мебелью, текстилем и декором Ameli.</p>
+          <div><p class="label">Один зал · разные образы</p><h2 id="showcase-title">Площадка до/после</h2></div>
+          <p class="lead">Два комплекта в одном пространстве. Посмотрите, как мебель, текстиль и сервировка меняют впечатление от зала.</p>
         </div>
-        <div class="before-after-grid honest-comparison">
-          <figure class="comparison-frame comparison-before">
-            <img src="premium-assets/hall-without-decor-visualization.jpg" width="1535" height="1024" loading="lazy" alt="Визуализация того же зала без банкетной мебели и оформления">
-            <figcaption><span>ДО · ВИЗУАЛИЗАЦИЯ</span><strong>Пространство без оформления</strong></figcaption>
-          </figure>
-          <figure class="comparison-frame comparison-after">
-            <img src="s2-banquet-hall.jpeg" width="1280" height="854" loading="lazy" alt="Фотография того же банкетного зала с мебелью, текстилем и сервировкой">
-            <figcaption><span>ПОСЛЕ · ФОТОГРАФИЯ</span><strong>Мебель и текстиль в единой палитре</strong></figcaption>
-          </figure>
+
+        <div class="showcase-tabs" role="tablist" aria-label="Выберите комплект оформления" hidden>
+          <button type="button" class="showcase-tab" id="showcase-tab-green" role="tab" aria-selected="true" aria-controls="showcase-panel-green">
+            <img src="premium-assets/space-showcase/green-hall-1600.webp" srcset="premium-assets/space-showcase/green-hall-800.webp 800w, premium-assets/space-showcase/green-hall-1600.webp 1600w" sizes="(max-width:600px) 86px, 112px" width="1600" height="1067" loading="lazy" decoding="async" alt="">
+            <span class="showcase-tab-copy"><span>01 · Реальные фотографии</span><strong>Зелёный текстиль</strong><small>Светлые стулья · золотистый каркас</small></span>
+            <span class="showcase-tab-mark" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="showcase-tab" id="showcase-tab-light" role="tab" aria-selected="false" aria-controls="showcase-panel-light" tabindex="-1">
+            <img src="premium-assets/space-showcase/light-hall-1600.webp" srcset="premium-assets/space-showcase/light-hall-800.webp 800w, premium-assets/space-showcase/light-hall-1600.webp 1600w" sizes="(max-width:600px) 86px, 112px" width="1600" height="1067" loading="lazy" decoding="async" alt="">
+            <span class="showcase-tab-copy"><span>02 · Реальные фотографии</span><strong>Светлый текстиль</strong><small>Зелёные стулья · золотистый каркас</small></span>
+            <span class="showcase-tab-mark" aria-hidden="true">✓</span>
+          </button>
         </div>
-        <p class="comparison-explanation">Слева — визуализация зала без оформления, созданная на основе фотографии справа. Справа — фотография готового оформления. Так можно сравнить одно пространство в одном ракурсе.</p>
+
+        <article class="showcase-panel" id="showcase-panel-green" aria-labelledby="showcase-green-title">
+          <h3 class="showcase-fallback-title" id="showcase-green-title">Зелёный текстиль и светлые стулья</h3>
+          <div class="showcase-layout">
+            <div class="showcase-main">
+              <div class="showcase-comparison" style="--reveal:36%">
+                <div class="showcase-frame-labels"><span>До <small>· визуализация</small></span><span>После <small>· реальное фото</small></span></div>
+                <div class="showcase-scene">
+                  <figure class="showcase-after"><img src="premium-assets/space-showcase/green-hall-1600.webp" srcset="premium-assets/space-showcase/green-hall-800.webp 800w, premium-assets/space-showcase/green-hall-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), (max-width:1406px) calc((91vw - 24px) * .678), 852px" width="1600" height="1067" loading="lazy" decoding="async" alt="Общий план зала с зелёными скатертями и светлыми стульями Ameli"><figcaption>После — реальная фотография</figcaption></figure>
+                  <figure class="showcase-before"><img src="premium-assets/space-showcase/before-green-1536.webp" srcset="premium-assets/space-showcase/before-green-800.webp 800w, premium-assets/space-showcase/before-green-1536.webp 1536w" sizes="(max-width:900px) calc(100vw - 40px), (max-width:1406px) calc((91vw - 24px) * .678), 852px" width="1536" height="1024" loading="lazy" decoding="async" alt="Визуализация того же ракурса зала без банкетных столов, стульев и сервировки"><figcaption>До — визуализация без мебели и сервировки</figcaption></figure>
+                  <div class="showcase-divider" aria-hidden="true"><span>↔</span></div>
+                  <input class="showcase-range" type="range" min="0" max="100" value="36" step="1" aria-label="Сравнить зал до и после — зелёный текстиль" aria-describedby="showcase-hint-green" hidden>
+                </div>
+              </div>
+              <div class="showcase-compare-footer" hidden>
+                <p id="showcase-hint-green">Двигайте ползунок, чтобы сравнить</p>
+                <div class="showcase-view-controls" aria-label="Показать фотографию целиком">
+                  <button type="button" data-reveal="100">До</button><button type="button" data-reveal="36" aria-pressed="true">Сравнить</button><button type="button" data-reveal="0">После</button>
+                </div>
+              </div>
+            </div>
+            <div class="showcase-details" aria-label="Зелёный комплект с декором — другие фотографии">
+              <figure><img src="premium-assets/space-showcase/green-angle-1600.webp" srcset="premium-assets/space-showcase/green-angle-800.webp 800w, premium-assets/space-showcase/green-angle-1600.webp 1600w" sizes="(max-width:600px) calc((100vw - 52px) / 2), (max-width:900px) calc((100vw - 64px) / 2), (max-width:1406px) calc((91vw - 24px) * .322), 404px" width="1600" height="1067" loading="lazy" decoding="async" alt="Другой ракурс зала с зелёным текстилем и светлыми стульями"><figcaption><span>В пространстве</span><strong>Расстановка и сочетание мебели</strong></figcaption></figure>
+              <figure><img src="premium-assets/space-showcase/green-detail-1600.webp" srcset="premium-assets/space-showcase/green-detail-800.webp 800w, premium-assets/space-showcase/green-detail-1600.webp 1600w" sizes="(max-width:600px) calc((100vw - 52px) / 2), (max-width:900px) calc((100vw - 64px) / 2), (max-width:1406px) calc((91vw - 24px) * .322), 404px" width="1600" height="1067" loading="lazy" decoding="async" alt="Сервировка на зелёной скатерти: фигурные тарелки, бокалы и золотистые приборы"><figcaption><span>В деталях</span><strong>Текстиль, посуда и сервировка</strong></figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="showcase-panel" id="showcase-panel-light" aria-labelledby="showcase-light-title">
+          <h3 class="showcase-fallback-title" id="showcase-light-title">Светлый текстиль и зелёные стулья</h3>
+          <div class="showcase-layout">
+            <div class="showcase-main">
+              <div class="showcase-comparison" style="--reveal:36%">
+                <div class="showcase-frame-labels"><span>До <small>· визуализация</small></span><span>После <small>· реальное фото</small></span></div>
+                <div class="showcase-scene">
+                  <figure class="showcase-after"><img src="premium-assets/space-showcase/light-hall-1600.webp" srcset="premium-assets/space-showcase/light-hall-800.webp 800w, premium-assets/space-showcase/light-hall-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), (max-width:1406px) calc((91vw - 24px) * .678), 852px" width="1600" height="1067" loading="lazy" decoding="async" alt="Тот же зал со светлыми скатертями и зелёными стульями Ameli"><figcaption>После — реальная фотография</figcaption></figure>
+                  <figure class="showcase-before"><img src="premium-assets/space-showcase/before-light-1536.webp" srcset="premium-assets/space-showcase/before-light-800.webp 800w, premium-assets/space-showcase/before-light-1536.webp 1536w" sizes="(max-width:900px) calc(100vw - 40px), (max-width:1406px) calc((91vw - 24px) * .678), 852px" width="1536" height="1024" loading="lazy" decoding="async" alt="Визуализация того же ракурса зала без банкетных столов, стульев и сервировки"><figcaption>До — визуализация без мебели и сервировки</figcaption></figure>
+                  <div class="showcase-divider" aria-hidden="true"><span>↔</span></div>
+                  <input class="showcase-range" type="range" min="0" max="100" value="36" step="1" aria-label="Сравнить зал до и после — светлый текстиль" aria-describedby="showcase-hint-light" hidden>
+                </div>
+              </div>
+              <div class="showcase-compare-footer" hidden>
+                <p id="showcase-hint-light">Двигайте ползунок, чтобы сравнить</p>
+                <div class="showcase-view-controls" aria-label="Показать фотографию целиком">
+                  <button type="button" data-reveal="100">До</button><button type="button" data-reveal="36" aria-pressed="true">Сравнить</button><button type="button" data-reveal="0">После</button>
+                </div>
+              </div>
+            </div>
+            <div class="showcase-details" aria-label="Светлый комплект с декором — другие фотографии">
+              <figure><img src="premium-assets/space-showcase/light-angle-1600.webp" srcset="premium-assets/space-showcase/light-angle-800.webp 800w, premium-assets/space-showcase/light-angle-1600.webp 1600w" sizes="(max-width:600px) calc((100vw - 52px) / 2), (max-width:900px) calc((100vw - 64px) / 2), (max-width:1406px) calc((91vw - 24px) * .322), 404px" width="1600" height="1067" loading="lazy" decoding="async" alt="Расстановка столов со светлыми скатертями и зелёными стульями"><figcaption><span>В пространстве</span><strong>Светлый текстиль и зелёные стулья</strong></figcaption></figure>
+              <figure><img src="premium-assets/space-showcase/light-detail-1600.webp" srcset="premium-assets/space-showcase/light-detail-800.webp 800w, premium-assets/space-showcase/light-detail-1600.webp 1600w" sizes="(max-width:600px) calc((100vw - 52px) / 2), (max-width:900px) calc((100vw - 64px) / 2), (max-width:1406px) calc((91vw - 24px) * .322), 404px" width="1600" height="1067" loading="lazy" decoding="async" alt="Сервировка на светлой скатерти с зелёными салфетками"><figcaption><span>В деталях</span><strong>Сервировка в общей палитре</strong></figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <p class="showcase-note">«После» — реальные фотографии наших комплектов. «До» — визуализации на основе этих же кадров: мебель и сервировка удалены с помощью ИИ.</p>
       </div>
     </section>
-
     <section class="section" id="reasons" aria-labelledby="benefits-title">
       <div class="shell">
         <svg class="benefit-symbols" width="0" height="0" aria-hidden="true" focusable="false">
@@ -915,5 +973,6 @@
 
   <script src="ameli-modern.js?v=20260908b"></script>
   <script src="ameli-refinements.js?v=20260908b"></script>
+  <script src="ameli-showcase.js?v=20260908e"></script>
 </body>
 </html>

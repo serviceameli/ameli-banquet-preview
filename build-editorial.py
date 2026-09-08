@@ -38,8 +38,10 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260908c">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260908b"></script>\n</body>')
+html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
 for filename, description in {
     'dishware-clear-glass.png': 'Прозрачные бокалы для классической сервировки',
     'dishware-clear-plate-black.png': 'Прозрачная тарелка с чёрным краем',
@@ -68,23 +70,26 @@ html = html[:ceremony_start] + '        <div class="ceremony-grid" aria-label="�
 hero_start, hero_end = html.index('<section class="hero"'), html.index('<section class="section" id="problem">')
 hero = html[hero_start:hero_end].replace('s2-banquet-hall.jpeg', 's4-hall-toile.jpg').replace('width="1280" height="854"', 'width="852" height="1280"')
 html = html[:hero_start] + hero + html[hero_end:]
-html = html.replace('Покажем один зал без оформления и несколько вариантов после обновления — с мебелью, текстилем и декором Ameli.', 'Один зал в одном ракурсе: без оформления и с мебелью, текстилем и декором Ameli.')
-comparison_start = html.index('        <div class="before-after-grid">')
-comparison_end = html.index('\n    <section class="section" id="reasons">', comparison_start)
-html = html[:comparison_start] + '''        <div class="before-after-grid honest-comparison">
-          <figure class="comparison-frame comparison-before">
-            <img src="premium-assets/hall-without-decor-visualization.jpg" width="1535" height="1024" loading="lazy" alt="Визуализация того же зала без банкетной мебели и оформления">
-            <figcaption><span>ДО · ВИЗУАЛИЗАЦИЯ</span><strong>Пространство без оформления</strong></figcaption>
-          </figure>
-          <figure class="comparison-frame comparison-after">
-            <img src="s2-banquet-hall.jpeg" width="1280" height="854" loading="lazy" alt="Фотография того же банкетного зала с мебелью, текстилем и сервировкой">
-            <figcaption><span>ПОСЛЕ · ФОТОГРАФИЯ</span><strong>Мебель и текстиль в единой палитре</strong></figcaption>
-          </figure>
-        </div>
-        <p class="comparison-explanation">Слева — визуализация зала без оформления, созданная на основе фотографии справа. Справа — фотография готового оформления. Так можно сравнить одно пространство в одном ракурсе.</p>
-      </div>
-    </section>
-''' + html[comparison_end:]
+# A real-photo showcase with explicitly labelled empty-room visualizations.
+comparison_start = html.index('    <section class="section dark before-after-section"')
+comparison_end = html.index('    <section class="section" id="reasons">', comparison_start)
+showcase_assets = json.loads((root / 'showcase-images.json').read_text())
+
+def showcase_image(slug, sizes, decorative=False):
+    item = showcase_assets[slug]
+    variants = item['variants']
+    large = variants[-1]
+    srcset = ', '.join(f'{variant["path"]} {variant["width"]}w' for variant in variants)
+    alt = '' if decorative else escape(item['alt'])
+    return f'<img src="{large["path"]}" srcset="{srcset}" sizes="{sizes}" width="{large["width"]}" height="{large["height"]}" loading="lazy" decoding="async" alt="{alt}">'
+
+showcase = (root / 'space-showcase.html').read_text()
+for slug in showcase_assets:
+    showcase = showcase.replace('{{IMAGE:' + slug + '}}', showcase_image(slug, '(max-width:900px) calc(100vw - 40px), (max-width:1406px) calc((91vw - 24px) * .678), 852px'))
+    showcase = showcase.replace('{{DETAIL:' + slug + '}}', showcase_image(slug, '(max-width:600px) calc((100vw - 52px) / 2), (max-width:900px) calc((100vw - 64px) / 2), (max-width:1406px) calc((91vw - 24px) * .322), 404px'))
+    showcase = showcase.replace('{{THUMB:' + slug + '}}', showcase_image(slug, '(max-width:600px) 86px, 112px', decorative=True))
+assert not re.search(r'\{\{(?:IMAGE|DETAIL|THUMB):', showcase), 'A showcase image has not been prepared.'
+html = html[:comparison_start] + showcase + html[comparison_end:]
 # Make the business mechanism explicit while keeping all six original explanations.
 benefits_start = html.index('    <section class="section" id="reasons">')
 benefits_end = html.index('    <section class="section dark color-combinations-section" id="color-combinations">', benefits_start)
