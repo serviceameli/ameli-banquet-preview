@@ -46,6 +46,7 @@
 #business .offer-service { min-width:0; }
 #business .offer-service-photo { aspect-ratio:4/5; overflow:hidden; border-radius:12px; background:var(--soft); }
 #business .offer-service-photo img { width:100%; height:100%; object-fit:cover; object-position:center bottom; }
+#business .offer-service-photo-full img { object-fit:contain; }
 #business .offer-service-heading { display:grid; grid-template-columns:24px minmax(0,1fr); gap:8px; align-items:start; margin-top:16px; min-height:44px; }
 #business .offer-service h3 { font-size:1rem; line-height:1.4; font-weight:600; letter-spacing:-.02em; text-wrap:pretty; }
 #business .offer-service p { margin-top:10px; font-size:.875rem; line-height:1.6; color:var(--muted); }

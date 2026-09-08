@@ -48,7 +48,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.cs
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909c">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909a">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
@@ -204,7 +204,7 @@ service_photos = [
     ('banquet-chairs', 'Банкетная мебель со светлой обивкой в готовом оформлении зала'),
     ('draped-buffet', 'Фигурный фуршетный стол в светлой драпировке с пуфами в интерьере'),
     ('pink-glass', 'Розовые бокалы и стаканы со светлой сервировкой стола'),
-    ('silver-ceremony', 'Зона церемонии с зеркальным фоном, драпировкой и серебристыми пуфами'),
+    ('draped-photozone', 'Фотозона с волнообразным текстильным фоном и белыми цветочными композициями на ступенях'),
 ]
 service_cards = []
 for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points, service_photos), start=1):
@@ -212,7 +212,8 @@ for number, ((title, copy), (slug, alt)) in enumerate(zip(offer_points, service_
     if number == 1:
         sizes = '(max-width:400px) 36vw, (max-width:600px) 144px, (max-width:1100px) 260px, (max-width:1406px) calc((91vw - 72px) / 5), 242px'
     photograph = opening_image(slug, alt, sizes)
-    service_cards.append(f'          <article class="offer-service"><figure class="offer-service-photo">{photograph}</figure>'
+    photo_class = 'offer-service-photo' + (' offer-service-photo-full' if slug in ('visualization-layout', 'draped-photozone') else '')
+    service_cards.append(f'          <article class="offer-service"><figure class="{photo_class}">{photograph}</figure>'
                          f'<div class="offer-service-heading"><span class="offer-index" aria-hidden="true">{number:02}</span><h3>{title}</h3></div><p>{copy}</p></article>')
 offer = (root / 'opening-offer.html').read_text()
 offer_values = {
