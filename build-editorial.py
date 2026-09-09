@@ -80,7 +80,8 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909o">\n</head>')
-html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260909o"')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-combinations.css?v=20260909p">\n</head>')
+html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260909p"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909g"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-contact.js?v=20260908q"></script>\n</body>')
@@ -384,6 +385,11 @@ for old, new in combination_copy.items():
     combinations = combinations.replace(old, new, 1)
 combinations, removed = re.subn(r'(<div class="combination-element">)<span>0[123]</span>', r'\1', combinations)
 assert removed == 3
+combinations = combinations.replace(
+    '<strong id="combinationGridTitle">Примеры сочетаний</strong></div>',
+    '<strong id="combinationGridTitle">Примеры сочетаний</strong></div>'
+    '\n              <button class="combination-scroll-hint" type="button" aria-controls="combinationGrid" hidden>Листать сочетания ↓</button>', 1)
+combinations = combinations.replace('id="combinationGrid" data-mode="3"', 'id="combinationGrid" role="region" data-mode="3"', 1)
 combinations = re.sub(r'\n[ \t]+\n', '\n', combinations)
 html = html[:combinations_start] + combinations + html[combinations_end:]
 # These former repeated counters no longer have a visible element to update.

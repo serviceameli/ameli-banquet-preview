@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="ameli-opening.css?v=20260909g">
   <link rel="stylesheet" href="ameli-contact.css?v=20260909b">
   <link rel="stylesheet" href="ameli-headings.css?v=20260909o">
+  <link rel="stylesheet" href="ameli-combinations.css?v=20260909p">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -458,8 +459,9 @@
           <div class="combination-gallery">
             <div class="combination-gallery-head">
               <div><span>На основе реальных изделий</span><strong id="combinationGridTitle">Примеры сочетаний</strong></div>
+              <button class="combination-scroll-hint" type="button" aria-controls="combinationGrid" hidden>Листать сочетания ↓</button>
             </div>
-            <div class="combination-grid" id="combinationGrid" data-mode="3" aria-label="Примеры сочетаний скатертей, салфеток и стульев или чехлов"></div>
+            <div class="combination-grid" id="combinationGrid" role="region" data-mode="3" aria-label="Примеры сочетаний скатертей, салфеток и стульев или чехлов"></div>
             <button class="combination-expand" type="button" aria-expanded="false" aria-controls="combinationGrid" hidden>Показать все сочетания</button>
             <p class="combination-gallery-note">Показаны все возможные сочетания. Для вашей площадки отберём гармоничные варианты; оттенки на экране ориентировочные.</p>
           </div>
@@ -976,7 +978,7 @@
     })();
   </script>
 
-  <script src="ameli-modern.js?v=20260909o"></script>
+  <script src="ameli-modern.js?v=20260909p"></script>
   <script src="ameli-refinements.js?v=20260909g"></script>
   <script src="ameli-showcase.js?v=20260908e"></script>
   <script src="ameli-contact.js?v=20260908q"></script>

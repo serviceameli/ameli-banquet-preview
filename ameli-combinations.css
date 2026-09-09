@@ -1,0 +1,55 @@
+/* Make the next examples discoverable without extending the desktop page. */
+#color-combinations .combination-scroll-hint,
+#color-combinations .combination-expand {
+  background:var(--accent);
+  border:1px solid var(--accent);
+  color:var(--ink);
+  font-weight:600;
+  cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+#color-combinations .combination-scroll-hint {
+  flex-shrink:0;
+  min-height:44px;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:.8125rem;
+}
+#color-combinations .combination-expand { min-height:52px; font-size:.875rem; }
+#color-combinations .combination-scroll-hint:hover,
+#color-combinations .combination-expand:hover { background:#ffe268; border-color:#ffe268; }
+#color-combinations .combination-scroll-hint:focus-visible,
+#color-combinations .combination-expand:focus-visible,
+#color-combinations .combination-grid:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+
+@media(min-width:901px) {
+  #color-combinations .combination-gallery-head { align-items:center; }
+  #color-combinations .combination-grid {
+    max-height:clamp(320px,49vh,480px);
+    overflow-y:auto;
+    padding:12px;
+    background:#2d2d2d;
+    border:1px solid #555;
+    border-radius:12px;
+    scrollbar-gutter:stable;
+    scrollbar-width:thin;
+    scrollbar-color:var(--accent) #454545;
+  }
+  #color-combinations .combination-grid::-webkit-scrollbar { width:8px; }
+  #color-combinations .combination-grid::-webkit-scrollbar-track { background:#454545; border-radius:8px; }
+  #color-combinations .combination-grid::-webkit-scrollbar-thumb { background:var(--accent); border-radius:8px; }
+  #color-combinations .combination-grid.is-collapsed .combination-thumb { display:block; }
+  #color-combinations .combination-expand { display:none; }
+}
+@media(max-width:900px) {
+  #color-combinations .combination-scroll-hint { display:none; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #color-combinations .combination-scroll-hint,
+  #color-combinations .combination-expand { transition:none; }
+}
+@media print {
+  #color-combinations .combination-grid { max-height:none; overflow:visible; padding:0; border:0; }
+  #color-combinations .combination-scroll-hint,
+  #color-combinations .combination-expand { display:none; }
+}

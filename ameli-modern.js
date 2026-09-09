@@ -2,13 +2,28 @@
 (() => {
   const grid = document.querySelector('#combinationGrid');
   const expand = document.querySelector('.combination-expand');
-  const limit = () => window.matchMedia('(max-width:600px)').matches ? 8 : 9;
+  const scrollHint = document.querySelector('.combination-scroll-hint');
+  const desktopGallery = window.matchMedia('(min-width:901px)');
+  const smallGallery = window.matchMedia('(max-width:600px)');
+  const limit = () => smallGallery.matches ? 8 : 9;
+  const reducedMotion = () => window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const updateScrollHint = () => {
+    const scrollable = desktopGallery.matches && grid.scrollHeight > grid.clientHeight + 1;
+    if (scrollable) grid.setAttribute('tabindex', '0');
+    else grid.removeAttribute('tabindex');
+    if (!scrollHint) return;
+    scrollHint.hidden = !scrollable;
+    const atEnd = grid.scrollTop + grid.clientHeight >= grid.scrollHeight - 2;
+    scrollHint.textContent = atEnd ? 'В начало ↑' : 'Листать сочетания ↓';
+    scrollHint.setAttribute('aria-label', atEnd ? 'В начало сочетаний' : 'Листать сочетания вниз');
+  };
   const updateGallery = () => {
     const total = grid.children.length;
     const expanded = expand.getAttribute('aria-expanded') === 'true';
-    expand.hidden = total <= limit();
-    grid.classList.toggle('is-collapsed', !expanded && total > limit());
+    expand.hidden = desktopGallery.matches || total <= limit();
+    grid.classList.toggle('is-collapsed', !desktopGallery.matches && !expanded && total > limit());
     expand.textContent = expanded ? 'Свернуть сочетания' : 'Показать все сочетания';
+    updateScrollHint();
   };
   if (grid && expand) {
     expand.addEventListener('click', () => {
@@ -17,8 +32,20 @@
       updateGallery();
       if (!opening) document.querySelector('.combination-gallery').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'start'});
     });
-    new MutationObserver(() => { expand.setAttribute('aria-expanded','false'); updateGallery(); }).observe(grid,{childList:true});
-    window.matchMedia('(max-width:600px)').addEventListener('change', updateGallery);
+    new MutationObserver(() => {
+      expand.setAttribute('aria-expanded','false');
+      grid.scrollTop = 0;
+      updateGallery();
+    }).observe(grid,{childList:true});
+    scrollHint?.addEventListener('click', () => {
+      const atEnd = grid.scrollTop + grid.clientHeight >= grid.scrollHeight - 2;
+      grid.scrollTo({top:atEnd ? 0 : grid.scrollTop + grid.clientHeight * .85,
+        behavior:reducedMotion() ? 'instant' : 'smooth'});
+    });
+    grid.addEventListener('scroll', updateScrollHint, {passive:true});
+    new ResizeObserver(updateScrollHint).observe(grid);
+    smallGallery.addEventListener('change', updateGallery);
+    desktopGallery.addEventListener('change', () => { grid.scrollTop = 0; updateGallery(); });
     updateGallery();
   }
   const topLink = document.createElement('a');
