@@ -6,8 +6,8 @@ Example:
   python3 export-runtime.py ../audit/ameli-site.zip --base-url https://example.ru/venues/
 
 The repository's historical index.html is never modified. Build the modern page
-with build-editorial.py before exporting. With no base URL, current preview
-metadata is preserved; choose a real URL before the final domain release.
+with build-editorial.py before exporting. With no base URL, the export stays
+noindex. An explicit base URL creates the indexable release and crawler files.
 """
 from argparse import ArgumentParser
 from collections import defaultdict
@@ -15,7 +15,8 @@ from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from urllib.parse import unquote, urljoin, urlsplit
+from urllib.parse import unquote, urlsplit
+from release_content import apply_metadata
 import json
 import re
 import zipfile
@@ -101,25 +102,22 @@ def collect(entry_html):
 
 
 def metadata(html, base_url):
+    return apply_metadata(html, base_url)
+
+
+def crawler_files(base_url):
     if not base_url:
-        return html
-    parsed = urlsplit(base_url)
-    if parsed.scheme != 'https' or not parsed.netloc or parsed.query or parsed.fragment or parsed.username:
-        raise ValueError('--base-url must be the real public HTTPS directory URL, without query or fragment.')
-    base_url = base_url.rstrip('/') + '/'
-    # The share image's portable path is read from the current hero rather than a fixed domain.
-    hero = re.search(r'<figure class="hero-visual">.*?<img\s[^>]*src="([^"]+)"', html, re.S)
-    if not hero:
-        raise ValueError('Cannot find the current hero image for the Open Graph card.')
-    html = re.sub(r'\s*<meta\b(?=[^>]*\bproperty="og:(?:url|type|image)")[^>]*>', '', html)
-    html = re.sub(r'\s*<link\b(?=[^>]*\brel="canonical")[^>]*>', '', html)
-    additions = (
-        f'  <link rel="canonical" href="{escape(base_url, quote=True)}">\n'
-        '  <meta property="og:type" content="website">\n'
-        f'  <meta property="og:url" content="{escape(base_url, quote=True)}">\n'
-        f'  <meta property="og:image" content="{escape(urljoin(base_url, hero.group(1)), quote=True)}">\n'
-    )
-    return html.replace('</head>', additions + '</head>', 1)
+        return {}
+    url = base_url.rstrip('/') + '/'
+    return {
+        Path('robots.txt'): ('User-agent: *\nAllow: /\n\nSitemap: '
+                             + url + 'sitemap.xml\n').encode('utf-8'),
+        Path('sitemap.xml'): (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            '  <url><loc>' + escape(url) + '</loc></url>\n</urlset>\n'
+        ).encode('utf-8'),
+    }
 
 
 def main():
@@ -133,6 +131,7 @@ def main():
     try:
         html = metadata((ROOT / ENTRY).read_text(encoding='utf-8'), args.base_url)
         files, external, references = collect(html)
+        files.update(crawler_files(args.base_url))
         unpacked = sum(map(len, files.values()))
         if len(files) > 500 or unpacked > 50_000_000:
             raise ValueError(f'Hosting limit exceeded: {len(files)} files / {unpacked} bytes unpacked')
@@ -162,7 +161,7 @@ def main():
         print(f'Created {output}\nFiles: {len(files)} / 500; unpacked: {unpacked} / 50000000 B; ZIP: {packed} / 25000000 B')
         print(f'Manifest: {manifest_path}')
         if not args.base_url:
-            print('Preview metadata preserved. Re-export with --base-url after the actual domain is selected.')
+            print('Preview export is noindex. Use --base-url for an indexable domain release.')
     except (OSError, ValueError) as error:
         parser.exit(1, f'Export failed: {error}\n')
 

@@ -590,5 +590,7 @@ for section_id, edits in copy_edits.items():
         assert section.count(old) == 1, f'Expected one copy match in {section_id}: {old}'
         section = section.replace(old, new, 1)
     html = html[:start] + section + html[end:]
+from release_content import apply_release_content
+html = apply_release_content(html)
 (root / 'modern-redesign.html').write_text(html)
 print('Created modern-redesign.html; source page unchanged.')
