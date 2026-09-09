@@ -79,8 +79,8 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909h">\n</head>')
-html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909o">\n</head>')
+html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260909o"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909g"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-contact.js?v=20260908q"></script>\n</body>')
@@ -359,7 +359,44 @@ combinations_start = html.index('    <section class="section dark color-combinat
 combinations_end = html.index('</section>', combinations_start)
 combinations, removed = re.subn(r'\s*<p class="lead">.*?</p>', '', html[combinations_start:combinations_end], count=1, flags=re.S)
 assert removed == 1
+# Keep the result in one live counter; the remaining labels explain the choice and examples.
+combination_copy = {
+    'Вариативность оформления': 'Цветовые решения',
+    'Три элемента — до 27 вариантов оформления': 'Одна основа — разные образы зала',
+    '2 цвета · 8 сочетаний': '2 цвета',
+    '3 цвета · 27 сочетаний': '3 цвета',
+    '<p class="combination-kicker">В выбранном режиме</p>': '',
+    '<div class="combination-total"><strong id="combinationTotal">27</strong><span>вариантов оформления</span></div>':
+        '<div class="combination-total" role="status" aria-atomic="true"><span class="combination-prefix">До</span><strong id="combinationTotal">27</strong><span>сочетаний</span></div>',
+    '<p class="combination-formula" id="combinationFormula">3 × 3 × 3 = 27</p>': '',
+    'Стулья или чехлы на стулья': 'Стулья или чехлы',
+    'Белый, розовый и зелёный показаны для примера. Для вашей площадки подберём палитру с учётом интерьера и форматов мероприятий.':
+        'Палитра показана для примера. Для вашей площадки подберём цвета под интерьер и форматы мероприятий.',
+    'Менеджер показывает клиенту готовые сочетания, а не отдельные образцы. Так проще представить оформление зала и выбрать подходящий вариант.':
+        'Готовые сочетания помогут клиенту быстрее выбрать оформление.',
+    '27 сочетаний из трёх цветов': 'Примеры сочетаний',
+    '<span class="combination-gallery-count" id="combinationPreviewCount" aria-live="polite">27 превью</span>': '',
+    'Расчёт показывает максимальное число комбинаций при независимом выборе цвета каждого элемента. Превью собраны на основе реальной модели стула «Марсель», банкетной скатерти и салфетки. В презентацию включим только сочетания, которые гармонично смотрятся в интерьере площадки; оттенки на экране являются ориентировочными.':
+        'Показаны все возможные сочетания. Для вашей площадки отберём гармоничные варианты; оттенки на экране ориентировочные.',
+}
+for old, new in combination_copy.items():
+    assert combinations.count(old) == 1, f'Expected one combination copy match: {old}'
+    combinations = combinations.replace(old, new, 1)
+combinations, removed = re.subn(r'(<div class="combination-element">)<span>0[123]</span>', r'\1', combinations)
+assert removed == 3
+combinations = re.sub(r'\n[ \t]+\n', '\n', combinations)
 html = html[:combinations_start] + combinations + html[combinations_end:]
+# These former repeated counters no longer have a visible element to update.
+for statement in [
+    "      const formula = root.querySelector('#combinationFormula');\n",
+    "      const gridTitle = root.querySelector('#combinationGridTitle');\n",
+    "      const previewCount = root.querySelector('#combinationPreviewCount');\n",
+    '        formula.textContent = `${mode} × ${mode} × ${mode} = ${variants.length}`;\n',
+    "        gridTitle.textContent = `${variants.length} сочетаний из ${mode === 2 ? 'двух' : 'трёх'} цветов`;\n",
+    '        previewCount.textContent = `${variants.length} превью`;\n',
+]:
+    assert html.count(statement) == 1, f'Expected one combination script statement: {statement}'
+    html = html.replace(statement, '', 1)
 # The compact calculator reuses the original field IDs and calculation logic.
 calculator_start = html.index('    <section class="section soft textile-payback-section"')
 calculator_end = html.index('    <section class="section order-section"', calculator_start)

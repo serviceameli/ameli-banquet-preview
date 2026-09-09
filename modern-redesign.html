@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">
   <link rel="stylesheet" href="ameli-opening.css?v=20260909g">
   <link rel="stylesheet" href="ameli-contact.css?v=20260909b">
-  <link rel="stylesheet" href="ameli-headings.css?v=20260909h">
+  <link rel="stylesheet" href="ameli-headings.css?v=20260909o">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -434,37 +434,34 @@
     <section class="section dark color-combinations-section" id="color-combinations">
       <div class="shell">
         <div class="section-head combination-head">
-          <div><p class="label">Вариативность оформления</p><h2>Три элемента — до 27 вариантов оформления</h2></div>
+          <div><p class="label">Цветовые решения</p><h2>Одна основа — разные образы зала</h2></div>
         </div>
 
         <div class="combination-layout">
           <aside class="combination-control" aria-label="Настройки примера сочетаний">
             <div class="combination-toggle" role="group" aria-label="Количество цветов в комплекте">
-              <button type="button" data-combination-colors="2" aria-pressed="false">2 цвета · 8 сочетаний</button>
-              <button type="button" data-combination-colors="3" aria-pressed="true">3 цвета · 27 сочетаний</button>
+              <button type="button" data-combination-colors="2" aria-pressed="false">2 цвета</button>
+              <button type="button" data-combination-colors="3" aria-pressed="true">3 цвета</button>
             </div>
-            <p class="combination-kicker">В выбранном режиме</p>
-            <div class="combination-total"><strong id="combinationTotal">27</strong><span>вариантов оформления</span></div>
-            <p class="combination-formula" id="combinationFormula">3 × 3 × 3 = 27</p>
+            <div class="combination-total" role="status" aria-atomic="true"><span class="combination-prefix">До</span><strong id="combinationTotal">27</strong><span>сочетаний</span></div>
             <div class="combination-elements" aria-label="Три элемента комплекта">
-              <div class="combination-element"><span>01</span><strong>Скатерти</strong></div>
-              <div class="combination-element"><span>02</span><strong>Салфетки</strong></div>
-              <div class="combination-element"><span>03</span><strong>Стулья или чехлы на стулья</strong></div>
+              <div class="combination-element"><strong>Скатерти</strong></div>
+              <div class="combination-element"><strong>Салфетки</strong></div>
+              <div class="combination-element"><strong>Стулья или чехлы</strong></div>
             </div>
             <div class="combination-palette" id="combinationPalette" aria-label="Цвета примера"></div>
-            <p class="combination-palette-note">Белый, розовый и зелёный показаны для примера. Для вашей площадки подберём палитру с учётом интерьера и форматов мероприятий.</p>
-            <p class="combination-sales-note">Менеджер показывает клиенту готовые сочетания, а не отдельные образцы. Так проще представить оформление зала и выбрать подходящий вариант.</p>
+            <p class="combination-palette-note">Палитра показана для примера. Для вашей площадки подберём цвета под интерьер и форматы мероприятий.</p>
+            <p class="combination-sales-note">Готовые сочетания помогут клиенту быстрее выбрать оформление.</p>
             <a class="button light" href="#contact" data-contact-open>Подобрать палитру для площадки</a>
           </aside>
 
           <div class="combination-gallery">
             <div class="combination-gallery-head">
-              <div><span>На основе реальных изделий</span><strong id="combinationGridTitle">27 сочетаний из трёх цветов</strong></div>
-              <span class="combination-gallery-count" id="combinationPreviewCount" aria-live="polite">27 превью</span>
+              <div><span>На основе реальных изделий</span><strong id="combinationGridTitle">Примеры сочетаний</strong></div>
             </div>
             <div class="combination-grid" id="combinationGrid" data-mode="3" aria-label="Примеры сочетаний скатертей, салфеток и стульев или чехлов"></div>
             <button class="combination-expand" type="button" aria-expanded="false" aria-controls="combinationGrid" hidden>Показать все сочетания</button>
-            <p class="combination-gallery-note">Расчёт показывает максимальное число комбинаций при независимом выборе цвета каждого элемента. Превью собраны на основе реальной модели стула «Марсель», банкетной скатерти и салфетки. В презентацию включим только сочетания, которые гармонично смотрятся в интерьере площадки; оттенки на экране являются ориентировочными.</p>
+            <p class="combination-gallery-note">Показаны все возможные сочетания. Для вашей площадки отберём гармоничные варианты; оттенки на экране ориентировочные.</p>
           </div>
         </div>
       </div>
@@ -782,11 +779,8 @@
       ];
       const buttons = [...root.querySelectorAll('[data-combination-colors]')];
       const total = root.querySelector('#combinationTotal');
-      const formula = root.querySelector('#combinationFormula');
       const paletteView = root.querySelector('#combinationPalette');
       const grid = root.querySelector('#combinationGrid');
-      const gridTitle = root.querySelector('#combinationGridTitle');
-      const previewCount = root.querySelector('#combinationPreviewCount');
 
       const combinations = colors => colors.flatMap(cloth =>
         colors.flatMap(napkin => colors.map(chair => ({ cloth, napkin, chair })))
@@ -840,9 +834,6 @@
 
         buttons.forEach(button => button.setAttribute('aria-pressed', Number(button.dataset.combinationColors) === mode ? 'true' : 'false'));
         total.textContent = String(variants.length);
-        formula.textContent = `${mode} × ${mode} × ${mode} = ${variants.length}`;
-        gridTitle.textContent = `${variants.length} сочетаний из ${mode === 2 ? 'двух' : 'трёх'} цветов`;
-        previewCount.textContent = `${variants.length} превью`;
         grid.dataset.mode = String(mode);
         grid.replaceChildren(fragment);
         paletteView.replaceChildren(...colors.map(makeSwatch));
@@ -985,7 +976,7 @@
     })();
   </script>
 
-  <script src="ameli-modern.js?v=20260908b"></script>
+  <script src="ameli-modern.js?v=20260909o"></script>
   <script src="ameli-refinements.js?v=20260909g"></script>
   <script src="ameli-showcase.js?v=20260908e"></script>
   <script src="ameli-contact.js?v=20260908q"></script>

@@ -8,7 +8,7 @@
     const expanded = expand.getAttribute('aria-expanded') === 'true';
     expand.hidden = total <= limit();
     grid.classList.toggle('is-collapsed', !expanded && total > limit());
-    expand.textContent = expanded ? 'Свернуть сочетания' : `Показать все ${total} сочетаний`;
+    expand.textContent = expanded ? 'Свернуть сочетания' : 'Показать все сочетания';
   };
   if (grid && expand) {
     expand.addEventListener('click', () => {

@@ -2,7 +2,15 @@
 #reasons .payback-head,
 #before-after .before-after-head,
 #color-combinations>.shell>.section-head { display:block; }
-#color-combinations>.shell>.section-head h2 { max-width:920px; }
+#color-combinations>.shell>.section-head h2 { max-width:none; }
+#color-combinations .combination-total { margin-top:24px; align-items:baseline; gap:12px; }
+#color-combinations .combination-total span { max-width:none; line-height:1.4; }
+#color-combinations .combination-prefix { color:var(--accent); }
+#color-combinations .combination-elements { margin-top:20px; }
+@media(min-width:601px) and (max-width:900px) {
+  #color-combinations .combination-elements { grid-row:2/5; }
+  #color-combinations .combination-sales-note { grid-column:1/-1; grid-row:auto; }
+}
 
 #business .offer-heading,
 #visualization .visual-sales-head,
