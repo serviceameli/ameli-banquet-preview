@@ -15,7 +15,9 @@
 #textile-payback .textile-table-head { padding-bottom:8px; font-size:.75rem; color:var(--muted); line-height:1.5; }
 #textile-payback .textile-product-row { align-items:center; padding:11px 0; }
 #textile-payback .textile-product-copy strong { font-size:.9375rem; line-height:1.4; }
+#textile-payback .textile-product-size { display:block; margin-top:3px; font-size:.8125rem; line-height:1.5; color:var(--muted); }
 #textile-payback .textile-unit-price { margin-top:4px; font-size:.8125rem; line-height:1.5; }
+#textile-payback .textile-sale-note { margin-top:16px; padding-top:12px; border-top:1px solid var(--line); font-size:.8125rem; line-height:1.6; color:var(--muted); }
 #textile-payback .textile-product-row label { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 #textile-payback .textile-input-wrap { padding-right:9px; }
 #textile-payback .textile-input-wrap input { min-height:44px; padding:9px 8px; font-size:1rem; line-height:1.5; }

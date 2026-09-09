@@ -70,7 +70,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
 # Second pass: apply the approved UX audit while retaining the original text source.
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260909g"')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260909g">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260908b">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260909q">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
@@ -407,6 +407,13 @@ for statement in [
 calculator_start = html.index('    <section class="section soft textile-payback-section"')
 calculator_end = html.index('    <section class="section order-section"', calculator_start)
 html = html[:calculator_start] + (root / 'textile-calculator.html').read_text().rstrip() + '\n\n' + html[calculator_end:]
+# Use the sale prices displayed in the calculator as the calculation source.
+old_investment = 'const oneColor = roundQty * 3000 + rectQty * 2700 + napkinQty * 300;'
+assert html.count(old_investment) == 1
+html = html.replace(old_investment,
+    "const oneColor = roundQty * Number(get('textileRoundPrice').dataset.price)\n"
+    "          + rectQty * Number(get('textileRectPrice').dataset.price)\n"
+    "          + napkinQty * Number(get('textileNapkinPrice').dataset.price);", 1)
 # Keep the six original steps and perks, replacing hidden photos with light SVG illustrations.
 order_start = html.index('    <section class="section order-section"')
 order_end = html.index('    <section class="final"', order_start)
