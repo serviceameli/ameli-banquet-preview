@@ -5,39 +5,40 @@
           <p class="lead"><strong>На примере бархатных скатертей.</strong> <span>Укажите состав комплекта в одном цвете и ставки аренды. Калькулятор покажет инвестицию и окупаемость для 40, 60 и 80 гостей.</span></p>
         </div>
         <div class="calc-live-summary" aria-label="Текущий результат расчёта">
-          <div><span>Инвестиция</span><output id="textileStickyInvestment">141 000 ₽</output></div>
-          <div><span>Для 60 гостей</span><output id="textileStickyEvents">4 мероприятия</output></div>
+          <div><span id="textileStickyInvestmentLabel">Итого за 2 цвета</span><output id="textileStickyInvestment">141 000 ₽</output></div>
+          <div><span>Для 60 гостей</span><output id="textileStickyEvents">6 мероприятий</output></div>
           <a href="#textileResultPanel">К результату</a>
         </div>
         <div class="textile-payback-layout">
           <div class="textile-calc-form" id="textileCalcForm">
-            <fieldset class="textile-calc-group">
-              <legend>Состав комплекта и ставки аренды</legend>
-              <p class="textile-rental-intro">Указана базовая стоимость аренды текстиля по Москве. Можно указать свои ставки.</p>
-              <div class="textile-table-head" aria-hidden="true"><span>Изделие · цена продажи</span><span>Количество</span><span>Аренда за шт.</span></div>
+            <div class="textile-calc-group" role="group" aria-labelledby="textileFormTitle" aria-describedby="textileEditHint">
+              <h3 class="textile-form-title" id="textileFormTitle">Состав комплекта и ставки аренды</h3>
+              <p class="textile-rental-intro" id="textileEditHint"><strong>Измените количество и ставки аренды — расчёт обновится автоматически.</strong><span>Указана базовая стоимость аренды текстиля по Москве.</span></p>
+              <div class="textile-table-head" aria-hidden="true"><span></span><span>Количество</span><span>Ваша аренда за шт.</span></div>
               <div class="textile-product-list">
                 <div class="textile-product-row">
                   <div class="textile-product-copy"><strong>Круглая бархатная скатерть</strong><span class="textile-product-size">Для стола Ø180 см</span><span class="textile-unit-price" id="textileRoundPrice" data-price="4300">4 300 ₽/шт.</span></div>
                   <div class="textile-input"><label for="textileRoundQty">Количество</label><div class="textile-input-wrap"><input aria-label="Количество круглых скатертей" id="textileRoundQty" type="number" min="0" step="1" value="6" inputmode="numeric"><span>шт.</span></div></div>
-                  <div class="textile-input textile-rent-input"><label for="textileRentRound">Аренда за шт.</label><div class="textile-input-wrap"><input aria-label="Аренда за шт. — круглая скатерть" id="textileRentRound" type="number" min="0" step="1" value="3900" inputmode="numeric"><span>₽</span></div></div>
+                  <div class="textile-input textile-rent-input"><label for="textileRentRound">Аренда за шт.</label><div class="textile-input-wrap"><input aria-label="Аренда за шт. — круглая скатерть" id="textileRentRound" type="number" min="0" step="1" value="2700" inputmode="numeric"><span>₽</span></div></div>
                 </div>
                 <div class="textile-product-row">
                   <div class="textile-product-copy"><strong>Прямоугольная бархатная скатерть</strong><span class="textile-product-size">Для стола 240 × 100 см</span><span class="textile-unit-price" id="textileRectPrice" data-price="4400">4 400 ₽/шт.</span></div>
                   <div class="textile-input"><label for="textileRectQty">Количество</label><div class="textile-input-wrap"><input aria-label="Количество прямоугольных скатертей" id="textileRectQty" type="number" min="0" step="1" value="3" inputmode="numeric"><span>шт.</span></div></div>
-                  <div class="textile-input textile-rent-input"><label for="textileRentRect">Аренда за шт.</label><div class="textile-input-wrap"><input aria-label="Аренда за шт. — прямоугольная скатерть" id="textileRentRect" type="number" min="0" step="1" value="3850" inputmode="numeric"><span>₽</span></div></div>
+                  <div class="textile-input textile-rent-input"><label for="textileRentRect">Аренда за шт.</label><div class="textile-input-wrap"><input aria-label="Аренда за шт. — прямоугольная скатерть" id="textileRentRect" type="number" min="0" step="1" value="2700" inputmode="numeric"><span>₽</span></div></div>
                 </div>
                 <div class="textile-product-row">
                   <div class="textile-product-copy"><strong>Бархатная салфетка</strong><span class="textile-product-size">Размер 45 × 45 см</span><span class="textile-unit-price" id="textileNapkinPrice" data-price="350">350 ₽/шт.</span></div>
                   <div class="textile-input"><label for="textileNapkinQty">Количество</label><div class="textile-input-wrap"><input aria-label="Количество салфеток" id="textileNapkinQty" type="number" min="0" step="1" value="90" inputmode="numeric"><span>шт.</span></div></div>
-                  <div class="textile-input textile-rent-input"><label for="textileRentNapkin">Аренда за шт.</label><div class="textile-input-wrap"><input aria-label="Аренда за шт. — салфетка" id="textileRentNapkin" type="number" min="0" step="1" value="185" inputmode="numeric"><span>₽</span></div></div>
+                  <div class="textile-input textile-rent-input"><label for="textileRentNapkin">Аренда за шт.</label><div class="textile-input-wrap"><input aria-label="Аренда за шт. — салфетка" id="textileRentNapkin" type="number" min="0" step="1" value="130" inputmode="numeric"><span>₽</span></div></div>
                 </div>
               </div>
               <div class="textile-investment-bar">
+                <div class="textile-investment-total textile-one-color"><span>Комплект в одном цвете</span><strong id="textileOneColorTotal">70 500 ₽</strong></div>
                 <div class="textile-input textile-colors-input"><label for="textileColors">Количество цветов</label><div class="textile-input-wrap"><input id="textileColors" type="number" min="1" step="1" value="2" inputmode="numeric"><span>цв.</span></div></div>
-                <div class="textile-investment-total"><span>Комплект одного цвета</span><strong id="textileOneColorTotal">70 500 ₽</strong></div>
-                <div class="textile-investment-total"><span>Сумма инвестиции</span><strong id="textileInvestmentTotal">141 000 ₽</strong></div>
+                <div class="textile-investment-total textile-grand-total"><span id="textileInvestmentLabel">Итого за 2 цвета</span><strong id="textileInvestmentTotal">141 000 ₽</strong></div>
               </div>
-            </fieldset>
+              <p class="textile-sale-note">Указаны средние цены продажи готовых изделий. Итоговая стоимость зависит от конкретного материала и объёма заказа.</p>
+            </div>
             <details class="textile-calc-help">
               <summary>Запас и условия расчёта</summary>
               <div class="textile-help-content">
@@ -55,19 +56,18 @@
           <aside id="textileResultPanel" class="textile-payback-result" aria-labelledby="textileResultTitle">
             <div class="textile-result-overview">
               <p class="textile-result-kicker" id="textileResultTitle">Окупаемость · 60 гостей</p>
-              <div class="textile-main-payback"><strong id="textileMainPayback">4</strong><span id="textileMainPaybackLabel">мероприятия до окупаемости</span></div>
+              <div class="textile-main-payback"><strong id="textileMainPayback">6</strong><span id="textileMainPaybackLabel">мероприятий до окупаемости</span></div>
               <p class="textile-result-basis">По арендной выручке, без учёта расходов.</p>
               <p class="textile-result-status" id="textileMainStatus" aria-live="polite">Комплекта достаточно</p>
-              <div class="textile-result-investment"><span>Инвестиция всего</span><strong id="textileResultInvestment">141 000 ₽</strong></div>
+              <div class="textile-result-investment"><span id="textileResultInvestmentLabel">Итого за 2 цвета</span><strong id="textileResultInvestment">141 000 ₽</strong></div>
             </div>
             <div class="textile-scenarios" aria-label="Сценарии окупаемости текстиля">
-              <div class="textile-scenario" id="textileScenario40"><div class="textile-scenario-guests"><strong>40 гостей</strong><span id="textileStatus40">комплекта достаточно</span></div><output id="textilePayback40">6 мероприятий</output></div>
-              <div class="textile-scenario" id="textileScenario60"><div class="textile-scenario-guests"><strong>60 гостей</strong><span id="textileStatus60">комплекта достаточно</span></div><output id="textilePayback60">4 мероприятия</output></div>
-              <div class="textile-scenario" id="textileScenario80"><div class="textile-scenario-guests"><strong>80 гостей</strong><span id="textileStatus80">комплекта достаточно</span></div><output id="textilePayback80">3 мероприятия</output></div>
+              <div class="textile-scenario" id="textileScenario40"><div class="textile-scenario-guests"><strong>40 гостей</strong><span id="textileStatus40">комплекта достаточно</span></div><output id="textilePayback40">8 мероприятий</output></div>
+              <div class="textile-scenario" id="textileScenario60"><div class="textile-scenario-guests"><strong>60 гостей</strong><span id="textileStatus60">комплекта достаточно</span></div><output id="textilePayback60">6 мероприятий</output></div>
+              <div class="textile-scenario" id="textileScenario80"><div class="textile-scenario-guests"><strong>80 гостей</strong><span id="textileStatus80">комплекта достаточно</span></div><output id="textilePayback80">5 мероприятий</output></div>
             </div>
             <div class="textile-result-actions"><a class="button" id="textileDiscussTelegram" href="#contact">Обсудить этот комплект</a><p>Выберите способ связи — расчёт уже подготовлен.</p></div>
           </aside>
         </div>
-        <p class="textile-sale-note">Указаны средние цены продажи готовых изделий. Итоговая стоимость зависит от конкретного материала и объёма заказа.</p>
       </div>
     </section>

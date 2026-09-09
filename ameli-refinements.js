@@ -40,6 +40,13 @@
   const discussHint = discuss.closest('.textile-result-actions').querySelector('p');
   const syncQuote = () => {
     const valid = calculator.dataset.valid !== 'false';
+    const colorCount = Number(get('textileColors').value);
+    const colorWord = colorCount % 100 >= 11 && colorCount % 100 <= 14 ? 'цветов'
+      : colorCount % 10 === 1 ? 'цвет' : colorCount % 10 >= 2 && colorCount % 10 <= 4 ? 'цвета' : 'цветов';
+    const totalLabel = valid ? `Итого за ${new Intl.NumberFormat('ru-RU').format(colorCount)} ${colorWord}` : 'Итого за все цвета';
+    ['textileInvestmentLabel','textileResultInvestmentLabel','textileStickyInvestmentLabel'].forEach(id => {
+      get(id).textContent = totalLabel;
+    });
     get('textileStickyInvestment').textContent = get('textileInvestmentTotal').textContent;
     get('textileStickyEvents').textContent = valid ? get('textilePayback60').textContent : 'Проверьте поля';
     discuss.setAttribute('aria-disabled', String(!valid));

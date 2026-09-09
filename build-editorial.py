@@ -70,7 +70,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
 # Second pass: apply the approved UX audit while retaining the original text source.
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260909g"')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260909g">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260909q">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260909r">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
@@ -82,7 +82,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-combinations.css?v=20260909p">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260909p"')
-html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909g"></script>\n</body>')
+html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909r"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-contact.js?v=20260908q"></script>\n</body>')
 for filename, description in {
@@ -573,10 +573,6 @@ copy_edits = {
     ],
     'tableware': [
         ('Цветные акценты · бокалы «Роуминг» и тарелки', 'Цветные акцентные бокалы и тарелки'),
-    ],
-    'textile-payback': [
-        ('Сумма инвестиции', 'Стоимость комплекта'),
-        ('Инвестиция всего', 'Стоимость комплекта'),
     ],
     'order': [
         ('Пришлите фотографии или видео зала, план и размеры, вместимость и краткое описание задачи.',
