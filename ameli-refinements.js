@@ -65,7 +65,7 @@
       'Хочу уточнить комплектацию и стоимость для моего зала.'
     ];
     discuss.href = '#contact';
-    discuss.dataset.contactMessage = lines.join('\n');
+    discuss.dataset.contactMessage = lines.filter(Boolean).join('\n');
   };
   calculator.addEventListener('calculationupdate', syncQuote);
   discuss.addEventListener('click', event => { if (discuss.getAttribute('aria-disabled') === 'true') event.preventDefault(); });

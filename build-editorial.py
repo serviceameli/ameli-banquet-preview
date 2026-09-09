@@ -70,7 +70,7 @@ html = html.replace("nav.querySelectorAll('a').forEach((link) => link.addEventLi
 # Second pass: apply the approved UX audit while retaining the original text source.
 html = html.replace('href="ameli-modern.css"', 'href="ameli-modern.css?v=20260909g"')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-refinements.css?v=20260909g">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260909r">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.css?v=20260909s">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
@@ -82,7 +82,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-combinations.css?v=20260909p">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260909p"')
-html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909r"></script>\n</body>')
+html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909s"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-contact.js?v=20260908q"></script>\n</body>')
 for filename, description in {
@@ -472,6 +472,9 @@ html = html.replace("      inputIds.forEach(id => inputs[id].addEventListener('i
         inputs[id].addEventListener('input', update);
       });""")
 html = html.replace("          get('textileMainStatus').textContent = 'Комплекта достаточно';\n        }\n      }", "          get('textileMainStatus').textContent = 'Комплекта достаточно';\n        }\n        root.dispatchEvent(new Event('calculationupdate'));\n      }")
+# Show status text only when a calculation needs attention.
+html = html.replace("get('textileMainStatus').textContent = 'Комплекта достаточно';", "get('textileMainStatus').textContent = '';")
+html = html.replace("result.enough ? 'комплекта достаточно' :", "result.enough ? '' :")
 # Render the same verified contact channels in the footer and in one native dialog.
 channels = json.loads((root / 'contact-channels.json').read_text())
 options = (root / 'contact-options.html').read_text()

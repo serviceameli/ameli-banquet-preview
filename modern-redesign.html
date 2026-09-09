@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="ameli-modern.css?v=20260909g">
   <link rel="icon" href="premium-assets/ameli-rental-logo.png">
   <link rel="stylesheet" href="ameli-refinements.css?v=20260909g">
-  <link rel="stylesheet" href="ameli-calculator.css?v=20260909r">
+  <link rel="stylesheet" href="ameli-calculator.css?v=20260909s">
   <link rel="stylesheet" href="ameli-order.css?v=20260909g">
   <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">
   <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">
@@ -529,13 +529,13 @@
               <p class="textile-result-kicker" id="textileResultTitle">Окупаемость · 60 гостей</p>
               <div class="textile-main-payback"><strong id="textileMainPayback">6</strong><span id="textileMainPaybackLabel">мероприятий до окупаемости</span></div>
               <p class="textile-result-basis">По арендной выручке, без учёта расходов.</p>
-              <p class="textile-result-status" id="textileMainStatus" aria-live="polite">Комплекта достаточно</p>
+              <p class="textile-result-status" id="textileMainStatus" aria-live="polite"></p>
               <div class="textile-result-investment"><span id="textileResultInvestmentLabel">Итого за 2 цвета</span><strong id="textileResultInvestment">141 000 ₽</strong></div>
             </div>
             <div class="textile-scenarios" aria-label="Сценарии окупаемости текстиля">
-              <div class="textile-scenario" id="textileScenario40"><div class="textile-scenario-guests"><strong>40 гостей</strong><span id="textileStatus40">комплекта достаточно</span></div><output id="textilePayback40">8 мероприятий</output></div>
-              <div class="textile-scenario" id="textileScenario60"><div class="textile-scenario-guests"><strong>60 гостей</strong><span id="textileStatus60">комплекта достаточно</span></div><output id="textilePayback60">6 мероприятий</output></div>
-              <div class="textile-scenario" id="textileScenario80"><div class="textile-scenario-guests"><strong>80 гостей</strong><span id="textileStatus80">комплекта достаточно</span></div><output id="textilePayback80">5 мероприятий</output></div>
+              <div class="textile-scenario" id="textileScenario40"><div class="textile-scenario-guests"><strong>40 гостей</strong><span id="textileStatus40"></span></div><output id="textilePayback40">8 мероприятий</output></div>
+              <div class="textile-scenario" id="textileScenario60"><div class="textile-scenario-guests"><strong>60 гостей</strong><span id="textileStatus60"></span></div><output id="textilePayback60">6 мероприятий</output></div>
+              <div class="textile-scenario" id="textileScenario80"><div class="textile-scenario-guests"><strong>80 гостей</strong><span id="textileStatus80"></span></div><output id="textilePayback80">5 мероприятий</output></div>
             </div>
             <div class="textile-result-actions"><a class="button" id="textileDiscussTelegram" href="#contact" data-contact-open>Обсудить этот комплект</a><p>Выберите способ связи — расчёт уже подготовлен.</p></div>
           </aside>
@@ -953,7 +953,7 @@
           const suffix = result.guests;
           const row = get(`textileScenario${suffix}`);
           row.classList.toggle('is-short', !result.enough);
-          get(`textileStatus${suffix}`).textContent = result.enough ? 'комплекта достаточно' : `не хватает: ${result.shortage.join(', ')}`;
+          get(`textileStatus${suffix}`).textContent = result.enough ? '' : `не хватает: ${result.shortage.join(', ')}`;
           get(`textileUse${suffix}`).textContent = `${result.roundNeeded} ${word(result.roundNeeded, 'круглая', 'круглые', 'круглых')} · ${result.rectNeeded} ${word(result.rectNeeded, 'прямоугольная', 'прямоугольные', 'прямоугольных')} · ${result.napkinsNeeded} ${word(result.napkinsNeeded, 'салфетка', 'салфетки', 'салфеток')} с запасом`;
           get(`textilePayback${suffix}`).textContent = Number.isFinite(result.events) ? `${result.events} ${word(result.events, 'мероприятие', 'мероприятия', 'мероприятий')}` : '—';
         });
@@ -968,7 +968,7 @@
         } else if (main.revenue <= 0) {
           get('textileMainStatus').textContent = 'Укажите ставки аренды для расчёта окупаемости';
         } else {
-          get('textileMainStatus').textContent = 'Комплекта достаточно';
+          get('textileMainStatus').textContent = '';
         }
         root.dispatchEvent(new Event('calculationupdate'));
       }
@@ -982,7 +982,7 @@
   </script>
 
   <script src="ameli-modern.js?v=20260909p"></script>
-  <script src="ameli-refinements.js?v=20260909r"></script>
+  <script src="ameli-refinements.js?v=20260909s"></script>
   <script src="ameli-showcase.js?v=20260908e"></script>
   <script src="ameli-contact.js?v=20260908q"></script>
 </body>

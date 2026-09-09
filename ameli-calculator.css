@@ -51,14 +51,15 @@
 #textile-payback .textile-main-payback span { font-size:clamp(1rem,1.3vw,1.25rem); font-weight:600; line-height:1.5; max-width:none; color:var(--accent); white-space:nowrap; }
 #textile-payback .textile-result-basis { margin-top:10px; font-size:.8125rem; line-height:1.5; }
 #textile-payback .textile-result-status { margin-top:5px; font-size:.75rem; line-height:1.5; }
+#textile-payback .textile-result-status:empty { display:none; }
 #textile-payback .textile-result-investment { flex-direction:row; align-items:center; padding:11px 0; margin-top:12px; gap:12px; }
 #textile-payback .textile-result-investment strong { font-size:1.375rem; font-weight:600; line-height:1.5; color:var(--accent); overflow-wrap:anywhere; min-width:0; }
 #textile-payback .textile-scenarios { margin-top:0; }
-#textile-payback .textile-scenario { display:grid; grid-template-columns:1fr auto; gap:2px 12px; padding:9px 0; }
-#textile-payback .textile-scenario-guests strong { font-size:.8125rem; line-height:1.5; }
+#textile-payback .textile-scenario { display:grid; grid-template-columns:1fr auto; gap:2px 12px; padding:14px 0; }
+#textile-payback .textile-scenario-guests strong { font-size:1.125rem; font-weight:500; line-height:1.5; }
 #textile-payback .textile-scenario-guests span { font-size:.75rem; line-height:1.45; margin:0; }
 #textile-payback .textile-scenario:not(.is-short) .textile-scenario-guests span { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
-#textile-payback .textile-scenario output { position:static; font-size:.8125rem; line-height:1.5; }
+#textile-payback .textile-scenario output { position:static; min-width:0; font-size:1.125rem; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
 #textile-payback .textile-result-actions { margin-top:0; }
 #textile-payback .textile-result-actions .button { min-height:44px; padding:10px 14px; font-size:.875rem; }
 #textile-payback .textile-result-actions p { margin-top:7px; font-size:.75rem; line-height:1.5; }
@@ -76,7 +77,7 @@
   #textile-payback .textile-investment-bar { padding-top:12px; }
   #textile-payback .textile-payback-result { padding:18px 22px; }
   #textile-payback .textile-main-payback strong { font-size:3.25rem; }
-  #textile-payback .textile-scenario { padding-block:7px; }
+  #textile-payback .textile-scenario { padding-block:11px; }
 }
 @media(max-width:1100px) and (min-width:1001px) {
   #textile-payback .textile-payback-layout { --calc-columns:minmax(0,1fr) 76px 132px; }
@@ -122,6 +123,7 @@
 @media(max-width:360px) {
   #textile-payback .calc-live-summary output { font-size:.8125rem; }
   #textile-payback .textile-main-payback span { font-size:.90625rem; }
+  #textile-payback .textile-scenario-guests strong,#textile-payback .textile-scenario output { font-size:.9375rem; }
 }
 @media print {
   #textile-payback .calc-live-summary { display:none!important; }
