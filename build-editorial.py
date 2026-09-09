@@ -75,7 +75,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260909k">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260909m">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260909n">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
@@ -124,12 +124,28 @@ clear_plates = ''.join(dishware_fragment(filename, size, box, label)
                            ('dishware-clear-plate-silver.png', (210, 210), (12, 23, 199, 209), 'Прозрачная тарелка с серебряным краем'),
                            ('dishware-clear-plate-gold.png', (202, 215), (8, 5, 195, 193), 'Прозрачная тарелка с золотым краем'),
                        ])
-color_glasses = ''.join(dishware_fragment('dishware-rouming-glasses.png', (705, 140), box, label, 117)
-                        for box, label in [
-                            ((27, 35, 75, 139), 'Зелёный бокал «Роуминг»'),
-                            ((344, 22, 381, 139), 'Голубой фужер «Роуминг»'),
-                            ((646, 66, 690, 140), 'Сиреневый стакан «Роуминг»'),
-                        ])
+color_glasses = ''.join(
+    f'<div class="dishware-glass-set" role="group" aria-label="{set_label}">'
+    + ''.join(dishware_fragment('dishware-rouming-glasses.png', (705, 140), box, label, 117)
+              for box, label in items)
+    + '</div>'
+    for set_label, items in [
+        ('Зелёный комплект бокалов', [
+            ((27, 35, 75, 139), 'Зелёный бокал «Роуминг»'),
+            ((93, 22, 130, 139), 'Зелёный фужер «Роуминг»'),
+            ((150, 66, 194, 140), 'Зелёный стакан «Роуминг»'),
+        ]),
+        ('Голубой комплект бокалов', [
+            ((276, 35, 326, 139), 'Голубой бокал «Роуминг»'),
+            ((344, 22, 381, 139), 'Голубой фужер «Роуминг»'),
+            ((401, 66, 445, 140), 'Голубой стакан «Роуминг»'),
+        ]),
+        ('Сиреневый комплект бокалов', [
+            ((522, 35, 573, 139), 'Сиреневый бокал «Роуминг»'),
+            ((590, 22, 627, 139), 'Сиреневый фужер «Роуминг»'),
+            ((646, 66, 690, 140), 'Сиреневый стакан «Роуминг»'),
+        ]),
+    ])
 color_plates = ''.join(dishware_fragment('dishware-color-plates-studio.webp', (1600, 600), box, label)
                        for box, label in [
                            ((38, 108, 387, 455), 'Визуализация зелёной стеклянной тарелки'),

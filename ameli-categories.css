@@ -1,13 +1,15 @@
 /* Product rows use matching visual sizes in the neighbouring serving cards. */
 #tableware .dishware-duo {
-  --glass-unit:clamp(68px,8.5vw,118px);
+  --glass-unit:min(112px,calc((100cqw - 36px) / 3.4));
   grid-template-rows:1fr 1fr; gap:24px; padding:28px 20px;
 }
 #tableware .dishware-glass-row,
 #tableware .dishware-plate-row {
   display:flex; width:100%; min-width:0; min-height:0; justify-content:center;
 }
-#tableware .dishware-glass-row { align-items:flex-end; gap:clamp(8px,1.1vw,16px); }
+#tableware .dishware-glass-row { container-type:inline-size; align-items:flex-end; gap:clamp(8px,1.1vw,16px); }
+#tableware .colors .dishware-glass-row { gap:9px; }
+#tableware .dishware-glass-set { display:flex; align-items:flex-end; flex-shrink:0; gap:3px; }
 #tableware .dishware-plate-row { align-items:center; gap:8px; }
 #tableware .dishware-fragment { position:relative; display:block; overflow:hidden; flex-shrink:0; }
 #tableware .dishware-glass { height:calc(var(--glass-unit) * var(--glass-scale)); }
@@ -16,9 +18,6 @@
 #tableware .dishware-fragment img {
   position:absolute; width:var(--fragment-width); max-width:none; height:auto; max-height:none;
   left:var(--fragment-left); top:var(--fragment-top); mix-blend-mode:multiply;
-}
-@media(max-width:600px) {
-  #tableware .dishware-duo { --glass-unit:min(108px,31vw); padding-inline:20px; }
 }
 
 /* The same compact introduction and illustrated cards as the furniture section. */
