@@ -21,6 +21,29 @@ html = html.replace('<a href="#order">Как мы работаем</a>', '<a hre
 html = html.replace('<p class="lead">Помогаем площадкам<br>выглядеть дороже, продавать<br>мероприятия выгоднее<br>и зарабатывать на оформлении.</p>', '<p class="lead">Помогаем площадкам выглядеть дороже, продавать мероприятия выгоднее и зарабатывать на оформлении.</p>')
 # Preserve the source content and its calculators. Only replace presentation.
 html = html.replace('example-gallery chair-gallery', 'example-gallery classic-gallery')
+# Align the visible chair silhouettes, not the differently padded image canvases.
+# Bounds include faint transparent edges; source pixels and image proportions stay intact.
+classic_chair_bounds = {
+    'chair-ghost-clear-new.png': (20, 21, 320, 520),
+    'chair-ghost-green.png': (18, 20, 242, 422),
+    'chair-ghost-amber.png': (16, 16, 313, 561),
+    'chair-crossback-cushion-new.png': (168, 28, 730, 873),
+    'chair-modern-black.png': (28, 28, 822, 964),
+    'chair-chiavari-clear-cushion.png': (17, 19, 516, 872),
+    'chair-napoleon-white.png': (193, 13, 600, 792),
+}
+for filename, (left, top, right, bottom) in classic_chair_bounds.items():
+    pattern = r'<img src="premium-assets/' + re.escape(filename) + r'"[^>]*>'
+    matches = re.findall(pattern, html)
+    assert len(matches) == 1, f'Expected one classic chair: {filename}'
+    tag = matches[0]
+    width = int(re.search(r'width="(\d+)"', tag).group(1))
+    height = int(re.search(r'height="(\d+)"', tag).group(1))
+    scale = 82 / (bottom - top)
+    style = (f'--chair-height:{height * scale:.6f}%;'
+             f'--chair-top:{9 - top * scale:.6f}%;'
+             f'--chair-center:{-(left + right) / (2 * width) * 100:.6f}%')
+    html = html.replace(tag, tag[:-1] + f' style="{style}">', 1)
 html = html.replace('<div class="example-gallery">', '<div class="example-gallery tables-gallery">', 1)
 html = html.replace('<div class="example-gallery">', '<div class="example-gallery poufs-gallery">', 1)
 # Fit the complete source photo to the same presentation frame as neighbouring chairs.
@@ -51,7 +74,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-calculator.
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260908k">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260909k">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909g">\n</head>')

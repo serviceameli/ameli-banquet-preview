@@ -1,3 +1,11 @@
+/* Match visible chair heights and baselines while preserving intrinsic proportions. */
+.classic-gallery .example-media { position:relative; padding:0; }
+.classic-gallery .example-media img {
+  position:absolute; left:50%; top:var(--chair-top);
+  width:auto; max-width:none; height:var(--chair-height);
+  transform:translateX(var(--chair-center)); transition:none;
+}
+
 /* A compact furniture introduction with four clear benefits and one supporting photo. */
 #furniture { padding-block:28px; scroll-margin-top:-24px; }
 #furniture .furniture-story { grid-template-columns:minmax(0,1fr) minmax(240px,.43fr); gap:28px; align-items:stretch; }
