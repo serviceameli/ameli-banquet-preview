@@ -21,10 +21,6 @@
 .order-faq details>p { max-width:920px; padding:0 56px 24px 0; margin:0; color:#656565; font-size:15px; line-height:1.8; }
 .order-faq a { color:#202020; text-underline-offset:4px; }
 #contact .minimum-order { margin-top:22px; font-weight:600; color:var(--accent); font-size:16px; }
-.warehouse-info { margin-top:32px; padding-top:24px; border-top:1px solid #505050; }
-.warehouse-info h3 { font-size:17px; line-height:1.5; font-weight:600; color:#fff; }
-.warehouse-info address { margin-top:12px; font-style:normal; font-size:15px; line-height:1.8; }
-.warehouse-info p { margin-top:8px; color:#bbb; font-size:14px; line-height:1.7; }
 .company-footer { align-items:start; flex-wrap:wrap; letter-spacing:0; }
 .company-identity,.company-legal { display:grid; gap:5px; }
 .company-identity strong { color:#fff; font-size:17px; font-weight:600; }
@@ -40,7 +36,6 @@
   .order-faq summary { font-size:16px; gap:16px; padding-block:20px; }
   .order-faq details>p { font-size:14px; padding-right:0; }
   .order-faq .faq-list { margin-top:22px; }
-  .warehouse-info { margin-top:26px; }
   .company-footer { gap:22px; }
   .company-legal { max-width:100%; }
 }

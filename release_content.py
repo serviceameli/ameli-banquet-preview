@@ -33,10 +33,6 @@ def apply_metadata(html, base_url=None):
                 'logo': urljoin(url, 'premium-assets/ameli-rental-logo.png'),
                 'email': channels['email'], 'telephone': channels['phone'],
                 'areaServed': {'@type': 'Country', 'name': 'Россия'},
-                'location': {
-                    '@type': 'Place', 'name': 'Склад: просмотр изделий и самовывоз по согласованию',
-                    'address': {'@type': 'PostalAddress', **site['warehouse']},
-                },
                 'sameAs': [channels['telegram'], channels['max']],
             },
             {
@@ -83,14 +79,8 @@ def apply_release_content(html):
                         (ROOT / 'order-faq.html').read_text() + '\n    <section class="final" id="contact">', 1)
     checklist = '<div class="checklist"><span>мебель и текстиль</span><span>посуда и декор</span><span>визуализация зала</span><span>презентация для продаж</span></div>'
     assert html.count(checklist) == 1
-    html = html.replace(checklist, '''<p class="minimum-order">Минимальной суммы заказа нет</p>
-            <div class="warehouse-info">
-              <h3>Посмотреть изделия и забрать заказ</h3>
-              <address>Московская область, г. Дзержинский,<br>ул. Стройгородок, 5</address>
-              <p>Посещение склада — по предварительному согласованию с менеджером.</p>
-              <p>Самовывоз или доставка в любой регион России.</p>
-            </div>''', 1)
+    html = html.replace(checklist, '<p class="minimum-order">Минимальной суммы заказа нет</p>', 1)
     html, count = re.subn(r'        <footer>.*?</footer>', (ROOT / 'company-footer.html').read_text().rstrip(), html, count=1, flags=re.S)
     assert count == 1
-    html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-launch.css?v=20260909t">\n</head>', 1)
+    html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-launch.css?v=20260909u">\n</head>', 1)
     return apply_metadata(html)
