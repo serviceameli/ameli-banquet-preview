@@ -75,7 +75,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-order.css?v
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-benefits.css?v=20260908d">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-showcase.css?v=20260908e">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-furniture.css?v=20260909k">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260908l">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.css?v=20260909m">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
@@ -94,6 +94,60 @@ for filename, description in {
 }.items():
     html = re.sub(r'(<img src="premium-assets/' + re.escape(filename) + r'"[^>]*?)alt=""', r'\1alt="' + description + '"', html)
 html = html.replace('class="dishware-duo" role="img"', 'class="dishware-duo" role="group"')
+# Present individual catalogue items at a shared scale; crop only empty canvas in CSS.
+def dishware_fragment(filename, source_size, box, label, glass_reference=None):
+    width, height = source_size
+    left, top, right, bottom = box
+    crop_width, crop_height = right - left, bottom - top
+    style = (f'aspect-ratio:{crop_width}/{crop_height};'
+             f'--fragment-width:{width / crop_width * 100:.6f}%;'
+             f'--fragment-left:{-left / crop_width * 100:.6f}%;'
+             f'--fragment-top:{-top / crop_height * 100:.6f}%')
+    if glass_reference:
+        style += f';--glass-scale:{crop_height / glass_reference:.6f}'
+    fragment = (f'<span class="dishware-fragment{" dishware-glass" if glass_reference else ""}" '
+                f'style="{style}" role="img" aria-label="{escape(label, quote=True)}">'
+                f'<img src="premium-assets/{filename}" width="{width}" height="{height}" '
+                'loading="lazy" decoding="async" alt=""></span>')
+    return fragment if glass_reference else '<span class="dishware-plate">' + fragment + '</span>'
+
+clear_glasses = ''.join(dishware_fragment('dishware-clear-glass.png', (730, 360), box, label, 322)
+                        for box, label in [
+                            ((49, 105, 187, 347), 'Прозрачный бокал-креманка'),
+                            ((219, 54, 344, 347), 'Прозрачный бокал для вина'),
+                            ((403, 25, 500, 347), 'Прозрачный фужер'),
+                            ((544, 185, 673, 347), 'Прозрачный стакан'),
+                        ])
+clear_plates = ''.join(dishware_fragment(filename, size, box, label)
+                       for filename, size, box, label in [
+                           ('dishware-clear-plate-black.png', (215, 215), (17, 7, 201, 192), 'Прозрачная тарелка с чёрным краем'),
+                           ('dishware-clear-plate-silver.png', (210, 210), (12, 23, 199, 209), 'Прозрачная тарелка с серебряным краем'),
+                           ('dishware-clear-plate-gold.png', (202, 215), (8, 5, 195, 193), 'Прозрачная тарелка с золотым краем'),
+                       ])
+color_glasses = ''.join(dishware_fragment('dishware-rouming-glasses.png', (705, 140), box, label, 117)
+                        for box, label in [
+                            ((27, 35, 75, 139), 'Зелёный бокал «Роуминг»'),
+                            ((344, 22, 381, 139), 'Голубой фужер «Роуминг»'),
+                            ((646, 66, 690, 140), 'Сиреневый стакан «Роуминг»'),
+                        ])
+color_plates = ''.join(dishware_fragment('dishware-color-plates-studio.webp', (1600, 600), box, label)
+                       for box, label in [
+                           ((38, 108, 387, 455), 'Визуализация зелёной стеклянной тарелки'),
+                           ((424, 106, 778, 457), 'Визуализация малиновой стеклянной тарелки'),
+                           ((814, 106, 1167, 456), 'Визуализация светло-зелёной стеклянной тарелки'),
+                           ((1208, 105, 1561, 457), 'Визуализация голубой стеклянной тарелки'),
+                       ])
+for category, label, glasses, plates in [
+    ('classic', 'Классическая сервировка с бокалами и прозрачными тарелками', clear_glasses, clear_plates),
+    ('colors', 'Цветные акцентные бокалы и тарелки', color_glasses, color_plates),
+]:
+    marker = f'<figure class="tableware-example {category}">'
+    start = html.index(marker) + len(marker)
+    end = html.index('<figcaption>', start)
+    html = (html[:start] + f'\n            <div class="dishware-duo" role="group" aria-label="{label}">'
+            + '<div class="dishware-glass-row">' + glasses + '</div>'
+            + '<div class="dishware-plate-row">' + plates + '</div>'
+            + '</div>\n            ' + html[end:])
 # Retain all four furniture explanations while making each benefit visually distinct.
 furniture_start = html.index('    <section class="section soft furniture-section" id="furniture">')
 furniture_end = html.index('    <section class="section furniture-examples-section"', furniture_start)
@@ -450,6 +504,9 @@ copy_edits = {
     'textile': [
         ('Более 10 лет работаем с текстилем в прокате: наши комплекты прошли более 10 000 мероприятий. Поэтому мы отобрали ткани, которые долго служат, хорошо отстирываются и сохраняют аккуратный вид.',
          'Более 10 лет работаем с текстилем в прокате и обеспечили текстилем более 10 000 мероприятий. За это время отобрали ткани, которые долго служат, хорошо отстирываются и сохраняют аккуратный вид.'),
+    ],
+    'tableware': [
+        ('Цветные акценты · бокалы «Роуминг» и тарелки', 'Цветные акцентные бокалы и тарелки'),
     ],
     'textile-payback': [
         ('Сумма инвестиции', 'Стоимость комплекта'),
