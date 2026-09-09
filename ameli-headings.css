@@ -37,3 +37,7 @@
   #textile-payback .textile-payback-head,
   #order .order-head { gap:12px; }
 }
+/* Keep serving captions aligned when one description wraps onto two lines. */
+@media (min-width:901px) {
+  #tableware .tableware-example figcaption { min-height:90px; align-items:flex-start; }
+}

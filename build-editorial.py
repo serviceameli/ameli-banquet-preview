@@ -56,7 +56,7 @@ html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-categories.
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-spacing.css?v=20260908o">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-opening.css?v=20260909g">\n</head>')
 html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-contact.css?v=20260909b">\n</head>')
-html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909a">\n</head>')
+html = html.replace('</head>', '  <link rel="stylesheet" href="ameli-headings.css?v=20260909h">\n</head>')
 html = html.replace('src="ameli-modern.js"', 'src="ameli-modern.js?v=20260908b"')
 html = html.replace('</body>', '  <script src="ameli-refinements.js?v=20260909g"></script>\n</body>')
 html = html.replace('</body>', '  <script src="ameli-showcase.js?v=20260908e"></script>\n</body>')
@@ -366,6 +366,16 @@ dialog = (root / 'contact-dialog.html').read_text().replace('{{contact_options}}
 html = html.replace('  <div class="mobile-cta">', dialog + '\n\n  <div class="mobile-cta">', 1)
 for asset in ['textile-chair-covers', 'textile-seat-cushion', 'textile-event-draping']:
     html = html.replace(f'premium-assets/{asset}.png', f'premium-assets/{asset}.webp')
+# Product categories and serving examples are not sequential steps.
+for section_id, pattern, expected in [
+    ('furniture-options', r'<span class="example-no">\d+</span>', 4),
+    ('tableware', r'(?<=<figcaption>)<span>\d+</span>', 3),
+]:
+    start = html.index(f'id="{section_id}"')
+    end = html.index('</section>', start)
+    section, removed = re.subn(pattern, '', html[start:end])
+    assert removed == expected, f'Unexpected numbering in {section_id}'
+    html = html[:start] + section + html[end:]
 # Decorative font glyphs must not become words in assistive technology.
 html = re.sub(r'<span class="material-symbols-outlined">', '<span class="material-symbols-outlined" aria-hidden="true">', html)
 (root / 'modern-redesign.html').write_text(html)
